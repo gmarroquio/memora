@@ -44,6 +44,7 @@ interface AlbumPhotoGalleryProps {
   albumId: string;
 }
 
+// eslint-disable-next-line
 export default function AlbumPhotoGallery({ albumId }: AlbumPhotoGalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<
     (typeof mockPhotos)[0] | null

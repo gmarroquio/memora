@@ -21,10 +21,11 @@ async function getAlbum(id: string) {
 }
 
 export async function generateMetadata({
-  params,
+  params: _params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }): Promise<Metadata> {
+  const params = await _params;
   const album = await getAlbum(params.id);
   return {
     title: album ? `${album.name} Album` : "Album Not Found",

@@ -49,7 +49,7 @@ const mockAlbums = [
 
 export default function GuestCodeGenerator() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
-  const [_, copy] = useCopyToClipboard();
+  const [, copy] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState(false);
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({

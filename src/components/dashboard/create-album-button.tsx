@@ -51,7 +51,7 @@ export default function CreateAlbumButton() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsOpen(false);
     // In a real application, you might redirect to the new album page
-    // router.push(`/dashboard/albums/${newAlbumId}`)
+    router.push(`/dashboard/albums/1`);
   };
 
   return (

@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SignIn, SignUp } from "@clerk/nextjs";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
-  const router = useRouter();
 
   return (
     <div className="min-h-dvh flex flex-col">

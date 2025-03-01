@@ -1,8 +1,7 @@
 "use client";
 
 import { CameraComponent } from "@/components/camera";
-import { UploadButton } from "@/components/upload";
-import { twMerge } from "tailwind-merge";
+//import { UploadButton } from "@/components/upload";
 
 export default function Home() {
   return (
@@ -11,7 +10,6 @@ export default function Home() {
       {/*
               <UploadButton
         className="ut-button:bg-primary"
-        config={{ cn: twMerge }}
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response

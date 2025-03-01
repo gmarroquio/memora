@@ -25,9 +25,9 @@ export default function AboutPage() {
             comprehensive and heartwarming collection of memories.
           </p>
           <p className="text-lg text-balance">
-            Since our launch in 2020, we've helped thousands of couples around
-            the world collect, organize, and cherish their wedding photos in a
-            whole new way.
+            Since our launch, we&apos;ve helped thousands of couples around the
+            world collect, organize, and cherish their wedding photos in a whole
+            new way.
           </p>
         </div>
         <div className="relative h-[400px] rounded-lg overflow-hidden">

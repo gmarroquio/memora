@@ -99,8 +99,8 @@ export default function WeddingAlbumLanding() {
                 <div className="space-y-2">
                   <h3 className="text-xl font-bold">Easy Sharing</h3>
                   <p className="text-muted-foreground">
-                    Share your album with friends and family who couldn't make
-                    it to the celebration.
+                    Share your album with friends and family who couldn&apos;t
+                    make it to the celebration.
                   </p>
                 </div>
               </div>
@@ -280,7 +280,7 @@ export default function WeddingAlbumLanding() {
                     ))}
                   </div>
                   <p className="text-center text-sm font-medium">
-                    "So easy to use! All our guests loved it!"
+                    &quot;So easy to use! All our guests loved it!&quot;
                   </p>
                 </div>
               </div>
@@ -320,9 +320,9 @@ export default function WeddingAlbumLanding() {
                     ))}
                   </div>
                   <p className="text-muted-foreground">
-                    "We got so many more photos than we would have with just our
-                    photographer. Our guests captured moments we would have
-                    missed!"
+                    &quot;We got so many more photos than we would have with
+                    just our photographer. Our guests captured moments we would
+                    have missed!&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -348,9 +348,9 @@ export default function WeddingAlbumLanding() {
                     ))}
                   </div>
                   <p className="text-muted-foreground">
-                    "So easy to set up! We included the QR code on our reception
-                    tables and everyone loved adding their photos throughout the
-                    night."
+                    &quot;So easy to set up! We included the QR code on our
+                    reception tables and everyone loved adding their photos
+                    throughout the night.&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -376,9 +376,9 @@ export default function WeddingAlbumLanding() {
                     ))}
                   </div>
                   <p className="text-muted-foreground">
-                    "Our grandparents who couldn't travel for the wedding loved
-                    being able to see all the photos in real-time. Best decision
-                    we made!"
+                    &quot;Our grandparents who couldn&apos;t travel for the
+                    wedding loved being able to see all the photos in real-time.
+                    Best decision we made!&quot;
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -536,8 +536,8 @@ export default function WeddingAlbumLanding() {
                   Start Collecting Your Wedding Memories Today
                 </h2>
                 <p className="max-w-[900px] text-primary-foreground/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Don't miss a single moment from your special day. Create your
-                  wedding album in minutes.
+                  Don&apos;t miss a single moment from your special day. Create
+                  your wedding album in minutes.
                 </p>
               </div>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">

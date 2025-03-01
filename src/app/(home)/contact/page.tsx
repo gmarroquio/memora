@@ -20,8 +20,8 @@ export default function ContactPage() {
           <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
           <p className="mb-6 text-balance">
             Have questions about WeddingSnap or need assistance with your
-            wedding album? We're here to help! Fill out the form below, and
-            we'll get back to you as soon as possible.
+            wedding album? We&apos;re here to help! Fill out the form below, and
+            we&apos;ll get back to you as soon as possible.
           </p>
           <form className="flex flex-col gap-4">
             <Input type="text" placeholder="Your Name" />

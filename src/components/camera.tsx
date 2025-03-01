@@ -27,7 +27,7 @@ export const CameraComponent = () => {
               ref.current!.src = URL.createObjectURL(stream as unknown as Blob);
             }
           })
-          .catch(function (error) {
+          .catch(function () {
             console.log("Something went wrong!");
           });
       }
