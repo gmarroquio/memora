@@ -4,15 +4,18 @@
 
 ## Todo
 
-- [ ] Cadastro
-- [ ] Codigo do album
-- [ ] Upload photo
-- [ ] Photo limit (quantity)
-- [ ] Expiration time for photo
-- [ ] Create album
-- [ ] Code expiration time
-- [ ] Generate QR code to album
 - [x] Mudar a navegação da dashboard pro lado
+- [x] Cadastro
+- [x] Show Camera
+- [x] Take photo
+- [ ] Upload photo
+- [ ] Improve photo quality
+- [ ] Create album
+- [ ] Codigo do album
+- [ ] Generate QR code to album - site.com/album/${CODE}
+- [ ] Photo limit (quantity)
+- [ ] Photo expiration time
+- [ ] Code expiration time
 
 ## Todo Post launch
 
