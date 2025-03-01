@@ -3,18 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LoginForm from "@/components/sign/login-form";
-import SignUpForm from "@/components/sign/signup-form";
-import { Heart } from "lucide-react";
-import Link from "next/link";
+import { SignIn, SignUp } from "@clerk/nextjs";
 
 export default function LoginPage() {
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
   const router = useRouter();
-
-  const handleSuccess = () => {
-    router.push("/dashboard");
-  };
 
   return (
     <div className="min-h-dvh flex flex-col">
@@ -32,10 +25,10 @@ export default function LoginPage() {
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-              <LoginForm onSuccess={handleSuccess} />
+              <SignIn fallbackRedirectUrl="/dashboard" />
             </TabsContent>
             <TabsContent value="signup">
-              <SignUpForm onSuccess={handleSuccess} />
+              <SignUp fallbackRedirectUrl="/dashboard" />
             </TabsContent>
           </Tabs>
         </div>

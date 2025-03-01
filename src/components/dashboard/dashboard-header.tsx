@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { AlbumIcon, CogIcon, Heart, ImagesIcon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { SignOutButton } from "@clerk/nextjs";
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -57,10 +58,12 @@ export default function DashboardHeader() {
           </Link>
         </nav>
         <div className="mt-auto flex items-center space-x-4">
-          <Button variant="ghost">
-            <LogOut className="h-4 w-4" />
-            <span>Log out</span>
-          </Button>
+          <SignOutButton>
+            <Button variant="ghost">
+              <LogOut className="h-4 w-4" />
+              <span>Log out</span>
+            </Button>
+          </SignOutButton>
         </div>
       </div>
     </aside>
