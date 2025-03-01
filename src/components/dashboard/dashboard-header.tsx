@@ -3,59 +3,66 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Heart, LogOut } from "lucide-react";
+import { AlbumIcon, CogIcon, Heart, ImagesIcon, LogOut } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export default function DashboardHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="flex h-14 items-center px-4">
-        <Link href="/" className="flex items-center gap-2 mr-4">
+    <aside className="w-52 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex flex-col items-center py-8 px-4 space-y-8 pb-20">
+        <Link href="/" className="flex items-center gap-2">
           <Heart className="h-6 w-6 text-primary" />
           <span className="text-xl font-semibold tracking-tight">
             WeddingSnap
           </span>
         </Link>
-        <nav className="flex items-center space-x-4 lg:space-x-6 mx-6">
+        <nav className="flex flex-col items-center space-y-4 lg:space-y-6 my-6">
           <Link
             href="/dashboard"
-            className={`text-sm font-medium transition-colors hover:text-primary ${
+            className={cn(
+              "text-sm font-medium transition-colors flex items-center justify-center space-x-2 hover:text-primary",
               pathname === "/dashboard"
-                ? "text-primary"
+                ? "text-primary font-bold"
                 : "text-muted-foreground"
-            }`}
+            )}
           >
-            Gallery
+            <ImagesIcon />
+            <span>Gallery</span>
           </Link>
           <Link
             href="/dashboard/albums"
-            className={`text-sm font-medium transition-colors hover:text-primary ${
+            className={cn(
+              "text-sm font-medium transition-colors flex items-center justify-center space-x-2 hover:text-primary",
               pathname.startsWith("/dashboard/albums")
-                ? "text-primary"
+                ? "text-primary font-bold"
                 : "text-muted-foreground"
-            }`}
+            )}
           >
-            Albums
+            <AlbumIcon />
+            <span>Albums</span>
           </Link>
           <Link
             href="/dashboard/settings"
-            className={`text-sm font-medium transition-colors hover:text-primary ${
+            className={cn(
+              "text-sm font-medium transition-colors flex items-center justify-center space-x-2 hover:text-primary",
               pathname === "/dashboard/settings"
-                ? "text-primary"
+                ? "text-primary font-bold"
                 : "text-muted-foreground"
-            }`}
+            )}
           >
-            Settings
+            <CogIcon />
+            <span>Settings</span>
           </Link>
         </nav>
-        <div className="ml-auto flex items-center space-x-4">
-          <Button variant="ghost" size="icon">
+        <div className="mt-auto flex items-center space-x-4">
+          <Button variant="ghost">
             <LogOut className="h-4 w-4" />
-            <span className="sr-only">Log out</span>
+            <span>Log out</span>
           </Button>
         </div>
       </div>
-    </header>
+    </aside>
   );
 }

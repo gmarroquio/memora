@@ -32,10 +32,11 @@ export async function generateMetadata({
 }
 
 export default async function AlbumPage({
-  params,
+  params: _params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const params = await _params;
   const album = await getAlbum(params.id);
 
   if (!album) {
