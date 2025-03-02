@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Heart, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -46,9 +47,16 @@ export const TopBar = () => {
             </Link>
           </nav>
 
-          <Link href="/login" className="hidden md:flex">
-            <Button>Get Started</Button>
-          </Link>
+          <SignedIn>
+            <Link href="/dashboard" className="hidden md:flex">
+              <Button>Dashboard</Button>
+            </Link>
+          </SignedIn>
+          <SignedOut>
+            <Link href="/login" className="hidden md:flex">
+              <Button>Get Started</Button>
+            </Link>
+          </SignedOut>
 
           <Button
             variant="ghost"
@@ -95,9 +103,16 @@ export const TopBar = () => {
             >
               Pricing
             </Link>
-            <Link href="/login" className="flex flex-col gap-2 mt-4">
-              <Button>Get Started</Button>
-            </Link>
+            <SignedOut>
+              <Link href="/login" className="flex flex-col gap-2 mt-4">
+                <Button>Sign In</Button>
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard" className="flex flex-col gap-2 mt-4">
+                <Button>Dashboard</Button>
+              </Link>
+            </SignedIn>
           </div>
         </div>
       )}

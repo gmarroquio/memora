@@ -26,6 +26,14 @@ export default function CameraCapture({ onCapture }: CameraCaptureProps) {
     }
   }, [videoRef]);
 
+  const stopCapture = useCallback(() => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      tracks.forEach((track) => track.stop());
+      setIsCapturing(false);
+    }
+  }, []);
+
   const capturePhoto = useCallback(() => {
     if (videoRef.current && canvasRef.current) {
       const context = canvasRef.current.getContext("2d");
@@ -42,15 +50,7 @@ export default function CameraCapture({ onCapture }: CameraCaptureProps) {
         stopCapture();
       }
     }
-  }, [onCapture]);
-
-  const stopCapture = useCallback(() => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-      tracks.forEach((track) => track.stop());
-      setIsCapturing(false);
-    }
-  }, []);
+  }, [onCapture, stopCapture]);
 
   return (
     <div className="space-y-4">

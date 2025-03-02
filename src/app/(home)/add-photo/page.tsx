@@ -1,20 +1,23 @@
 "use client";
 
 import type React from "react";
-
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Camera, Upload } from "lucide-react";
 import CameraCapture from "@/components/camera";
+import { useUploadThing } from "@/lib/uploadthing";
+import { dataURLtoFile } from "@/lib/utils";
+import Image from "next/image";
 
 export default function AddPhotoPage() {
-  const [albumCode, setAlbumCode] = useState("");
+  const query = useSearchParams();
+  const [albumCode, setAlbumCode] = useState(query.get("code") ?? "");
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const router = useRouter();
+  const { startUpload, isUploading } = useUploadThing("imageUploader");
+  //const router = useRouter();
 
   const handleCapture = (imageData: string) => {
     setCapturedImage(imageData);
@@ -24,22 +27,14 @@ export default function AddPhotoPage() {
     e.preventDefault();
     if (!capturedImage || !albumCode) return;
 
-    setIsUploading(true);
-
-    // Here you would typically make an API call to upload the image
-    // For this example, we'll simulate an API call
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const image = dataURLtoFile(capturedImage, "photo");
+      if (image) startUpload([image]);
 
       console.log("Uploading image to album with code:", albumCode);
-      // After successful upload, you might want to show a success message or redirect
-      router.push("/photo-added-success");
+      // router.push("/photo-added-success");
     } catch (error) {
       console.error("Error uploading image:", error);
-      // Handle error (e.g., show error message to user)
-    } finally {
-      setIsUploading(false);
     }
   };
 
@@ -68,7 +63,7 @@ export default function AddPhotoPage() {
         {capturedImage && (
           <div>
             <Label>Preview</Label>
-            <img
+            <Image
               src={capturedImage || "/placeholder.svg"}
               alt="Captured"
               className="mt-2 max-w-full h-auto rounded-lg"
@@ -83,7 +78,7 @@ export default function AddPhotoPage() {
         >
           {isUploading ? (
             <>
-              <Upload className="mr-2 h-4 w-4 animate-spin" />
+              <Upload className="mr-2 h-4 w-4" />
               Uploading...
             </>
           ) : (

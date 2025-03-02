@@ -1,5 +1,6 @@
 import { TopBar } from "@/components/topbar";
 import { Footer } from "@/components/footer";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -9,7 +10,7 @@ export default function RootLayout({
   return (
     <>
       <TopBar />
-      {children}
+      <Suspense>{children}</Suspense>
       <Footer />
     </>
   );

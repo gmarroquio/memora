@@ -1,14 +1,11 @@
 "use client";
 
-import { CameraComponent } from "@/components/camera";
-//import { UploadButton } from "@/components/upload";
+import { UploadButton } from "@/components/upload";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <CameraComponent />
-      {/*
-              <UploadButton
+      <UploadButton
         className="ut-button:bg-primary"
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
@@ -21,8 +18,6 @@ export default function Home() {
           console.log(`ERROR! ${error.message}`);
         }}
       />
-
-      */}
     </main>
   );
 }

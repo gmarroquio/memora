@@ -8,7 +8,7 @@
 - [x] Cadastro
 - [x] Show Camera
 - [x] Take photo
-- [ ] Upload photo
+- [x] Upload photo
 - [ ] Improve photo quality
 - [ ] Create album
 - [ ] Codigo do album
