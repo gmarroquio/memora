@@ -49,7 +49,7 @@ const mockAlbums = [
 
 export default function GuestCodeGenerator() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
-  const [, copy] = useCopyToClipboard();
+  const [_, copy] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState(false);
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({
@@ -150,24 +150,47 @@ export default function GuestCodeGenerator() {
           </form>
         </Form>
         {generatedCode && (
-          <div className="mt-4 p-4 bg-muted rounded-md flex items-center justify-between">
-            <div>
-              <p className="font-semibold">Generated Code:</p>
-              <p className="text-2xl font-bold">{generatedCode}</p>
+          <div className="mt-4 p-4 bg-muted rounded-md space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-semibold">Generated Code:</p>
+                <p className="text-2xl font-bold">{generatedCode}</p>
+              </div>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleCopy}
+                className="ml-2"
+              >
+                {isCopied ? (
+                  <Check className="h-4 w-4" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+                <span className="sr-only">Copy code</span>
+              </Button>
             </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={handleCopy}
-              className="ml-2"
-            >
-              {isCopied ? (
-                <Check className="h-4 w-4" />
-              ) : (
-                <Copy className="h-4 w-4" />
-              )}
-              <span className="sr-only">Copy code</span>
-            </Button>
+            <div>
+              <p className="font-semibold mb-2">
+                Share this link with your guests:
+              </p>
+              <div className="flex gap-2">
+                <Input value={`${window.location.origin}/add-photo`} readOnly />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => {
+                    copy(`${window.location.origin}/add-photo`);
+                    toast("Link copied", {
+                      description:
+                        "The photo upload link has been copied to your clipboard.",
+                    });
+                  }}
+                >
+                  <Copy className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
           </div>
         )}
       </CardContent>
