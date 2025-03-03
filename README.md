@@ -9,7 +9,10 @@
 - [x] Show Camera
 - [x] Take photo
 - [x] Upload photo
-- [ ] Improve photo quality
+- [x] Colocar botão pra mudar a camera
+- [x] Colocar a camera em full screen
+- [x] Improve photo quality
+- [ ] Arrumar o tamanho do preview
 - [ ] Create album
 - [ ] Codigo do album
 - [ ] Generate QR code to album - site.com/album/${CODE}

@@ -8,9 +8,8 @@ export default function Home() {
       <UploadButton
         className="ut-button:bg-primary"
         endpoint="imageUploader"
-        onClientUploadComplete={(res) => {
+        onClientUploadComplete={() => {
           // Do something with the response
-          console.log("Files: ", res);
           console.log("Upload Completed");
         }}
         onUploadError={(error: Error) => {

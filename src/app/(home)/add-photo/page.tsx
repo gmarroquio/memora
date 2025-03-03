@@ -9,29 +9,28 @@ import { Label } from "@/components/ui/label";
 import { Camera, Upload } from "lucide-react";
 import CameraCapture from "@/components/camera";
 import { useUploadThing } from "@/lib/uploadthing";
-import { dataURLtoFile } from "@/lib/utils";
 import Image from "next/image";
 
 export default function AddPhotoPage() {
   const query = useSearchParams();
   const [albumCode, setAlbumCode] = useState(query.get("code") ?? "");
-  const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
   //const router = useRouter();
 
-  const handleCapture = (imageData: string) => {
+  const handleCapture = (imageData: File[]) => {
     setCapturedImage(imageData);
+    if (imageData) setImagePreview(URL.createObjectURL(imageData[0]));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!capturedImage || !albumCode) return;
+    if (!capturedImage || !albumCode || !imagePreview) return;
 
     try {
-      const image = dataURLtoFile(capturedImage, "photo");
-      if (image) startUpload([image]);
+      if (capturedImage) startUpload([capturedImage[0]]);
 
-      console.log("Uploading image to album with code:", albumCode);
       // router.push("/photo-added-success");
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -60,21 +59,23 @@ export default function AddPhotoPage() {
           <CameraCapture onCapture={handleCapture} />
         </div>
 
-        {capturedImage && (
+        {imagePreview && (
           <div>
             <Label>Preview</Label>
             <Image
-              src={capturedImage || "/placeholder.svg"}
+              src={imagePreview || "/placeholder.svg"}
               alt="Captured"
               className="mt-2 max-w-full h-auto rounded-lg"
+              width={1920}
+              height={1080}
             />
           </div>
         )}
 
         <Button
-          type="submit"
           disabled={!capturedImage || !albumCode || isUploading}
           className="w-full"
+          type="submit"
         >
           {isUploading ? (
             <>
