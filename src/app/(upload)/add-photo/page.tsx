@@ -75,7 +75,7 @@ export default function Page() {
                 <FormItem>
                   <FormLabel>Album Code</FormLabel>
                   <FormControl>
-                    <InputOTP maxLength={6} {...field}>
+                    <InputOTP maxLength={6} {...field} inputMode="text">
                       <InputOTPGroup>
                         <InputOTPSlot
                           className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"

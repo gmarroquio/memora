@@ -48,7 +48,7 @@ export default function CameraCapture({ onCapture }: CameraCaptureProps) {
         className="sr-only hidden"
         onChange={onChange}
         type="file"
-        name="image"
+        name="media"
         accept="image/*"
         capture="environment"
       />
