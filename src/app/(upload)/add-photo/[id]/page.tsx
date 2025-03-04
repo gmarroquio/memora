@@ -1,4 +1,5 @@
 "use client";
+//Change to server????
 
 import type React from "react";
 import { useState } from "react";
@@ -15,8 +16,8 @@ const album = { title: "Album title" };
 
 export default function AddPhotoPage() {
   const path = usePathname();
+  const albumCode = path.split("/").at(-1);
   const cover = "";
-  const [albumCode, setAlbumCode] = useState(path.split("/").at(-1));
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
@@ -28,10 +29,9 @@ export default function AddPhotoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!capturedImage || !albumCode || !imagePreview) return;
+    if (!capturedImage || !imagePreview) return;
 
     try {
-      throw new Error();
       if (capturedImage) startUpload([capturedImage[0]]);
     } catch (error) {
       toast.error("Error uploading image");
@@ -39,7 +39,7 @@ export default function AddPhotoPage() {
   };
 
   return (
-    <div className="md:w-xl mx-auto px-4 space-y-2 flex-1 flex flex-col">
+    <div className="md:w-xl mx-auto pt-4 px-4 space-y-2 flex-1 flex flex-col">
       {cover ? (
         <>
           <Image

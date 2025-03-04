@@ -12,14 +12,15 @@
 - [x] Colocar botão pra mudar a camera
 - [x] Colocar a camera em full screen
 - [x] Improve photo quality
-- [ ] Upload page
-  - [ ] Upload page topbar only with log
-  - [ ] Arrumar o tamanho do preview
-  - [ ] Change button to retake
-  - [ ] blank page with powered by [App Name]
+- [x] Upload page
+  - [x] Upload page topbar only with logo
+  - [x] Arrumar o tamanho do preview
+  - [x] Change button to retake
+  - [x] blank page with powered by [App Name]
 - [ ] Create album
   - [ ] Add cover
   - [ ] Show cover or title on upload photo
+- [ ] On open upload check id code is valid
 - [ ] Codigo do album
   - [ ] Validade do codigo
 - [ ] Generate QR code to album - site.com/album/add-photo/${CODE}

@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { Heart } from "lucide-react";
 import Loading from "./add-photo/loading";
 
 export default function Layout({
@@ -10,15 +9,14 @@ export default function Layout({
 }>) {
   return (
     <div className="h-dvh flex flex-col">
-      <header className="hidden md:flex items-center justify-center p-2 md:p-4">
+      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <footer className="absolute bottom-4 right-0 border rounded-l-md py-1 px-2">
         <Link href="/" className="flex items-center gap-2">
-          <Heart className="md:h-9 md:w-9 text-primary" />
-          <span className="md:text-4xl font-semibold tracking-tight">
-            WeddingSnap
+          <span className="font-semibold text-sm tracking-tight">
+            powered by WeddingSnap
           </span>
         </Link>
-      </header>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      </footer>
     </div>
   );
 }
