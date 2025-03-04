@@ -16,7 +16,8 @@ const album = { title: "Album title" };
 
 export default function AddPhotoPage() {
   const path = usePathname();
-  //const albumCode = path.split("/").at(-1);
+  //eslint-disable-next-line
+  const albumCode = path.split("/").at(-1);
   const cover = "";
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
