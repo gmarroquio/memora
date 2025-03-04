@@ -134,4 +134,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  img {
+    height: revert-layer;
+  }
 }
