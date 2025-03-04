@@ -47,7 +47,7 @@ export default function Page() {
       console.log("Checa se existe");
       console.log("Valida expiration date");
       router.push(`/add-photo/${data.code}`);
-    } catch (error) {
+    } catch {
       toast.error("Error searching for album");
     }
   };
