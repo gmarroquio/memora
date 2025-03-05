@@ -17,7 +17,6 @@ interface AlbumPhotoGalleryProps {
   medias: Media[];
 }
 
-// eslint-disable-next-line
 export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Media | null>(null);
 

@@ -3,11 +3,6 @@ import { codesTable } from "@/db/schema";
 import { NextRequest, NextResponse } from "next/server";
 import { addDays } from "date-fns";
 
-const SECONDS = 1000;
-const MINUTE = SECONDS * 60;
-const HOUR = MINUTE * 60;
-const DAY = HOUR * 24;
-
 export async function POST(req: NextRequest) {
   const userId = req.headers.get("userId");
   if (!userId)

@@ -60,7 +60,7 @@ export default async function AlbumPage({
       {album.medias.length === 0 && (
         <>
           <span className="text-muted-foreground">
-            Album doesn't have any media yet
+            Album doesn&apos;t have any media yet
           </span>
         </>
       )}

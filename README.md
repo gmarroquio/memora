@@ -40,7 +40,7 @@
 
 ### Pre launch
 
-- [ ] Change all localhost
+- [x] Change all localhost
 - [ ] Ajustar site para eventos e em português
 - [ ] Gerar fotos para o site
 - [ ] Nome

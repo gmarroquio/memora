@@ -49,7 +49,7 @@ export default function Page() {
     if (toastMessage) {
       toast(toastMessage);
     }
-  }, []);
+  }, [toastMessage]);
 
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     try {

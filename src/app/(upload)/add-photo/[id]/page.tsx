@@ -3,7 +3,7 @@
 
 import type React from "react";
 import { useEffect, useState } from "react";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Camera, Upload } from "lucide-react";
 import CameraCapture from "@/components/camera";
