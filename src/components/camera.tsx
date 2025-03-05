@@ -4,7 +4,7 @@ import { ChangeEvent, useRef } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Camera } from "lucide-react";
-import { stringHash } from "@/lib/utils";
+import { renameFile } from "@/lib/utils";
 
 interface CameraCaptureProps {
   onCapture: (imageData: File[]) => void;
@@ -17,15 +17,7 @@ export default function CameraCapture({ onCapture }: CameraCaptureProps) {
       e.preventDefault();
       const files: File[] = [];
       for (const file of e.target.files) {
-        const blob = file.slice(0, file.size, file.type);
-        const newFile = new File(
-          [blob],
-          stringHash(file.name + new Date().toISOString()),
-          {
-            type: file.type,
-          }
-        );
-        files.push(newFile);
+        files.push(renameFile(file));
       }
       onCapture(files);
     }

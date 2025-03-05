@@ -17,25 +17,30 @@
   - [x] Arrumar o tamanho do preview
   - [x] Change button to retake
   - [x] blank page with powered by [App Name]
-- [ ] Create album
-  - [ ] Add cover
-  - [ ] Show cover or title on upload photo
-- [ ] On open upload check id code is valid
-- [ ] Codigo do album
-  - [ ] Validade do codigo
+- [x] Database
+- [x] Create album
+  - [x] Add cover
+  - [x] Show cover or title on upload photo
+- [x] Codigo do album
+  - [x] Validade do codigo
+- [x] On open upload check id code is valid
+- [ ] Add user on header
+- [ ] Fix dashboard sidebar on mobile
 - [ ] Generate QR code to album - site.com/album/add-photo/${CODE}
 - [ ] Delete photo
+- [ ] Delete cover when create album fails
 - [ ] Photo expiration time kinda
   - add to metadata
   - add to database
-- [ ] Code expiration time
+- [ ] Code expiration time (test)
 - [ ] if db failed -> Delete photo
-- [ ] Check code expiration date when page load
-  - [ ] Show invalid code page
+- [x] Check code expiration date when page load
+  - [x] Show invalid code page
 - [ ] On upload generate 3 images with lower quality for preview
 
 ### Pre launch
 
+- [ ] Change all localhost
 - [ ] Ajustar site para eventos e em português
 - [ ] Gerar fotos para o site
 - [ ] Nome
@@ -44,7 +49,10 @@
 
 ### Post launch
 
+- [ ] Album list without useEffect on load
+- [ ] Add a subscription table
 - [ ] App
+- [ ] Add posthog
 - [ ] Upload video
 - [ ] Photo limit (quantity)
 - [ ] Add presentation slide for the guests

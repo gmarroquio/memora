@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -32,6 +32,8 @@ import {
 } from "@/components/ui/card";
 import { toast } from "sonner";
 import { Copy, Check } from "lucide-react";
+import { Album } from "./album-list";
+import { baseUrl } from "@/lib/utils";
 
 const guestCodeSchema = z.object({
   albumId: z.string({
@@ -40,17 +42,11 @@ const guestCodeSchema = z.object({
   expirationDays: z.number().min(1).max(30),
 });
 
-// Mock data for albums
-const mockAlbums = [
-  { id: "1", name: "Wedding Day" },
-  { id: "2", name: "Engagement Party" },
-  { id: "3", name: "Honeymoon" },
-];
-
 export default function GuestCodeGenerator() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [, copy] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState(false);
+  const [albums, setAlbums] = useState<Album[]>([]);
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({
     resolver: zodResolver(guestCodeSchema),
@@ -59,18 +55,24 @@ export default function GuestCodeGenerator() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof guestCodeSchema>) {
-    // Here you would typically make an API call to generate the code
-    console.log(values);
-    // Simulating an API call
-    setTimeout(() => {
-      const code = Math.random().toString(36).substring(2, 8).toUpperCase();
-      setGeneratedCode(code);
+  async function onSubmit(values: z.infer<typeof guestCodeSchema>) {
+    try {
       setIsCopied(false);
-      toast("Guest Code Generated", {
-        description: `Your guest code is: ${code}`,
+      const response = await fetch(baseUrl({ path: `/api/code` }), {
+        method: "POST",
+        headers: { userId: "1" },
+        body: JSON.stringify(values),
       });
-    }, 1000);
+      if (response.ok) {
+        const body = await response.json();
+        setGeneratedCode(body.code);
+        toast("Guest Code Generated", {
+          description: `Your guest code is: ${body.code}`,
+        });
+      }
+    } catch {
+      toast.error("Error generating album code");
+    }
   }
 
   const handleCopy = () => {
@@ -82,6 +84,16 @@ export default function GuestCodeGenerator() {
       });
     }
   };
+
+  useEffect(() => {
+    fetch(baseUrl({ path: "/api/albums" }), {
+      headers: { userId: "1" },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then(setAlbums);
+      }
+    });
+  }, []);
 
   return (
     <Card>
@@ -110,9 +122,9 @@ export default function GuestCodeGenerator() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {mockAlbums.map((album) => (
+                      {albums.map((album) => (
                         <SelectItem key={album.id} value={album.id}>
-                          {album.name}
+                          {album.title}
                         </SelectItem>
                       ))}
                     </SelectContent>

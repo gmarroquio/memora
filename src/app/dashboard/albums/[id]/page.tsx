@@ -1,23 +1,19 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AlbumPhotoGallery from "@/components/dashboard/album-photo-gallery";
+import Image from "next/image";
+import { baseUrl } from "@/lib/utils";
+import { headers } from "next/headers";
 
-// This is a mock function to simulate fetching album data
-// In a real application, you would fetch this data from your API
 async function getAlbum(id: string) {
-  // Simulating an API call
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  const albums = [
-    { id: "1", name: "Wedding Day", photoCount: 150 },
-    { id: "2", name: "Engagement Party", photoCount: 75 },
-    { id: "3", name: "Honeymoon", photoCount: 200 },
-  ];
-
-  const album = albums.find((a) => a.id === id);
-  if (!album) return null;
-
-  return album;
+  const host = (await headers()).get("host");
+  const response = await fetch(baseUrl({ path: `/api/albums/${id}`, host }), {
+    headers: { userId: "1" },
+  });
+  if (response.ok) {
+    return response.json();
+  }
+  return;
 }
 
 export async function generateMetadata({
@@ -28,7 +24,7 @@ export async function generateMetadata({
   const params = await _params;
   const album = await getAlbum(params.id);
   return {
-    title: album ? `${album.name} Album` : "Album Not Found",
+    title: album ? `${album.title} Album` : "Album Not Found",
   };
 }
 
@@ -46,9 +42,29 @@ export default async function AlbumPage({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-2">{album.name}</h1>
-      <p className="text-muted-foreground mb-6">{album.photoCount} photos</p>
-      <AlbumPhotoGallery albumId={album.id} />
+      <div className="space-y-2 mb-4">
+        {album.coverUrl && (
+          <>
+            <Image
+              src={album.coverUrl}
+              alt="Album cover"
+              className="hidden md:block object-cover"
+              width={1000}
+              height={300}
+            />
+          </>
+        )}
+        <h1 className="text-3xl font-bold">{album.title}</h1>
+        <p className="text-muted-foreground">{album.medias.length} photos</p>
+      </div>
+      {album.medias.length === 0 && (
+        <>
+          <span className="text-muted-foreground">
+            Album doesn't have any media yet
+          </span>
+        </>
+      )}
+      <AlbumPhotoGallery medias={album.medias} />
     </div>
   );
 }

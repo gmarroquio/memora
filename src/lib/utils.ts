@@ -30,3 +30,28 @@ export function stringHash(str: string) {
   }
   return hash.toString(36);
 }
+
+export function renameFile(file: File, name?: string) {
+  const blob = file.slice(0, file.size, file.type);
+  const newFile = new File(
+    [blob],
+    name ?? stringHash(file.name + new Date().toISOString()),
+    {
+      type: file.type,
+    }
+  );
+  return newFile;
+}
+
+export const baseUrl = ({
+  path,
+  host,
+}: {
+  path: string;
+  host?: string | null;
+}) => {
+  if (host) return (process.env.VERCEL ? "https://" : "http://") + host + path;
+  else {
+    return `${window.location.protocol}//${window.location.host}/${path}`;
+  }
+};

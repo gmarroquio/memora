@@ -20,8 +20,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useEffect } from "react";
+import { baseUrl } from "@/lib/utils";
 
 const searchAlbum = z.object({
   code: z
@@ -33,6 +35,8 @@ const searchAlbum = z.object({
 type SearchAlbum = z.infer<typeof searchAlbum>;
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const toastMessage = searchParams.get("toast");
   const router = useRouter();
   const form = useForm<SearchAlbum>({
     resolver: zodResolver(searchAlbum),
@@ -41,12 +45,21 @@ export default function Page() {
     },
   });
 
+  useEffect(() => {
+    if (toastMessage) {
+      toast(toastMessage);
+    }
+  }, []);
+
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     try {
-      console.log("Buscando por album:", data.code);
-      console.log("Checa se existe");
-      console.log("Valida expiration date");
-      router.push(`/add-photo/${data.code}`);
+      const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
+      if (response.ok) {
+        const { code } = await response.json();
+        router.push(`/add-photo/${code.albumId}`);
+      } else {
+        throw new Error();
+      }
     } catch {
       toast.error("Error searching for album");
     }

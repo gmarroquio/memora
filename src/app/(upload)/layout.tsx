@@ -10,7 +10,7 @@ export default function Layout({
   return (
     <div className="h-dvh flex flex-col">
       <Suspense fallback={<Loading />}>{children}</Suspense>
-      <footer className="absolute bottom-4 right-0 border rounded-l-md py-1 px-2">
+      <footer className="absolute bottom-4 right-0 border rounded-l-md py-1 px-2 shadow-md">
         <Link href="/" className="flex items-center gap-2">
           <span className="font-semibold text-sm tracking-tight">
             powered by WeddingSnap
