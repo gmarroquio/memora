@@ -134,6 +134,7 @@
         "title": "Simple, Transparent Pricing",
         "subtitle": "Choose the perfect plan for your special party. No hidden fees or surprises.",
         "cta": "Get Started",
+        "most_popular": "Most Popular",
         "one_time": "one-time",
         "prices": [
           {
@@ -484,6 +485,7 @@
         "subtitle": "Escolha o plano perfeito para a sua festa especial. Sem taxas ocultas ou surpresas.",
         "cta": "Comece Agora",
         "one_time": "uma vez",
+        "most_popular": "Mais Vendido",
         "prices": [
           {
             "name": "Básico",

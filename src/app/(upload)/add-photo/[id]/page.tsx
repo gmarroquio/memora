@@ -55,7 +55,7 @@ export default function AddPhotoPage() {
       resp.json().then(setAlbum);
       setIsLoading(false);
     });
-  }, []);
+  }, [albumId]);
 
   if (isLoading) {
     return <div>Loading</div>;

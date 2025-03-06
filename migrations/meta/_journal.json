@@ -36,6 +36,13 @@
       "when": 1741166554956,
       "tag": "0004_overconfident_caretaker",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1741256723280,
+      "tag": "0005_gifted_serpent_society",
+      "breakpoints": true
     }
   ]
 }

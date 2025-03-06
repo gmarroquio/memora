@@ -6,7 +6,6 @@ import {
   Share2,
   Download,
   Lock,
-  ChevronRight,
   Star,
 } from "lucide-react";
 import Image from "next/image";
