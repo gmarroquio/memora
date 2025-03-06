@@ -247,6 +247,14 @@
         "description": "For quick answers to common questions, check out our FAQ page.",
         "visit_faq": "Visit FAQ"
       }
+    },
+    "login_page": {
+      "title": "Welcome to Memora",
+      "tabs": {
+        "login": "Login",
+        "signup": "Sign Up"
+      },
+      "fallback_redirect_url": "/dashboard"
     }
   },
   "pt": {
@@ -497,6 +505,14 @@
         "description": "Para respostas rápidas a perguntas comuns, visite nossa página de FAQ.",
         "visit_faq": "Visitar FAQ"
       }
+    },
+    "login_page": {
+      "title": "Bem-vindo à Memora",
+      "tabs": {
+        "login": "Entrar",
+        "signup": "Cadastrar"
+      },
+      "fallback_redirect_url": "/dashboard"
     }
   }
 }
