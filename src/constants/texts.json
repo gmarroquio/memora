@@ -179,6 +179,38 @@
         "button": "Create Your Album",
         "learn_more": "Learn More"
       }
+    },
+    "about": {
+      "title": "About Memora",
+      "our_story": {
+        "title": "Our Story",
+        "content": [
+          "Memora was born from a simple idea: to make sure no precious moment goes uncaptured at your special party. Founded by a team of photographers and tech enthusiasts, we set out to create a platform that brings together the perspectives of all your guests, creating a comprehensive and heartwarming collection of memories.",
+          "Since our launch, we've helped thousands of hosts around the world collect, organize, and cherish their party photos in a whole new way."
+        ]
+      },
+      "our_mission": {
+        "title": "Our Mission",
+        "content": "At Memora, our mission is to ensure that every host has a complete, beautiful, and easily accessible collection of their party memories. We believe in the power of shared experiences and the joy that comes from reliving those special moments through photos."
+      },
+      "features": [
+        {
+          "title": "Easy Collaboration",
+          "content": "We make it simple for all your guests to contribute their photos in real-time."
+        },
+        {
+          "title": "Beautiful Organization",
+          "content": "Your photos are automatically sorted and organized for easy browsing and sharing."
+        },
+        {
+          "title": "Lasting Memories",
+          "content": "We ensure your precious moments are safely stored and easily accessible for years to come."
+        }
+      ],
+      "cta": {
+        "title": "Ready to Capture Your Special Day?",
+        "button": "Get Started with Memora"
+      }
     }
   },
   "pt": {
@@ -316,7 +348,6 @@
         "subtitle": "Escolha o plano perfeito para a sua festa especial. Sem taxas ocultas ou surpresas.",
         "cta": "Comece Agora",
         "one_time": "uma vez",
-        "most_popular": "Mais Vendido",
         "prices": [
           {
             "name": "Básico",
@@ -334,11 +365,11 @@
             "currency": "U$",
             "price": 99,
             "perks": [
-              "Tudo do Básico +",
               "Fotos ilimitadas",
               "1 ano de armazenamento",
-              "Código QR para album",
-              "Ferramentas de edição de fotos"
+              "Link personalizado do álbum e código QR",
+              "Baixar todas as fotos",
+              "Ferramentas de edição de fotos (em breve)"
             ]
           },
           {
@@ -346,8 +377,11 @@
             "currency": "U$",
             "price": 149,
             "perks": [
-              "Tudo do Premium +",
+              "Fotos ilimitadas",
               "Armazenamento vitalício",
+              "Link personalizado do álbum e código QR",
+              "Baixar todas as fotos",
+              "Ferramentas de edição de fotos (em breve)",
               "Criação de livro de fotos (em breve)"
             ]
           }
@@ -358,6 +392,38 @@
         "subtitle": "Não perca um único momento da sua festa especial. Crie seu álbum de festa em minutos.",
         "button": "Crie Seu Álbum",
         "learn_more": "Saiba Mais"
+      }
+    },
+    "about": {
+      "title": "Sobre a Memora",
+      "our_story": {
+        "title": "Nossa História",
+        "content": [
+          "A Memora nasceu de uma ideia simples: garantir que nenhum momento precioso passe despercebido na sua festa especial. Fundada por uma equipe de fotógrafos e entusiastas de tecnologia, nos propusemos a criar uma plataforma que reúne as perspectivas de todos os seus convidados, criando uma coleção abrangente e emocionante de memórias.",
+          "Desde o nosso lançamento, ajudamos milhares de anfitriões ao redor do mundo a coletar, organizar e valorizar suas fotos de festa de uma maneira totalmente nova."
+        ]
+      },
+      "our_mission": {
+        "title": "Nossa Missão",
+        "content": "Na Memora, nossa missão é garantir que cada anfitrião tenha uma coleção completa, bonita e facilmente acessível de suas memórias de festa. Acreditamos no poder das experiências compartilhadas e na alegria que vem de reviver esses momentos especiais através das fotos."
+      },
+      "features": [
+        {
+          "title": "Colaboração Fácil",
+          "content": "Facilitamos para que todos os seus convidados contribuam com suas fotos em tempo real."
+        },
+        {
+          "title": "Organização Bonita",
+          "content": "Suas fotos são automaticamente classificadas e organizadas para fácil navegação e compartilhamento."
+        },
+        {
+          "title": "Memórias Duradouras",
+          "content": "Garantimos que seus momentos preciosos sejam armazenados com segurança e facilmente acessíveis por muitos anos."
+        }
+      ],
+      "cta": {
+        "title": "Pronto para Capturar Seu Dia Especial?",
+        "button": "Comece com a Memora"
       }
     }
   }
