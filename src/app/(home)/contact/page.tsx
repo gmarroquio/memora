@@ -5,9 +5,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Contact Us | WeddingSnap",
-  description:
-    "Get in touch with the WeddingSnap team for support or inquiries.",
+  title: "Contact Us | Memora",
+  description: "Get in touch with the Memora team for support or inquiries.",
 };
 
 export default function ContactPage() {
@@ -19,8 +18,8 @@ export default function ContactPage() {
         <div>
           <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
           <p className="mb-6 text-balance">
-            Have questions about WeddingSnap or need assistance with your
-            wedding album? We&apos;re here to help! Fill out the form below, and
+            Have questions about Memora or need assistance with your wedding
+            album? We&apos;re here to help! Fill out the form below, and
             we&apos;ll get back to you as soon as possible.
           </p>
           <form className="flex flex-col gap-4">
@@ -38,7 +37,7 @@ export default function ContactPage() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <Mail className="size-5" />
-              <span>support@weddingsnap.com</span>
+              <span>support@memora.party</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone className="size-5" />

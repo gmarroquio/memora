@@ -71,7 +71,7 @@ export default function Page() {
         <Link href="/" className="flex items-center gap-2">
           <Heart className="md:h-9 md:w-9 text-primary" />
           <span className="md:text-4xl font-semibold tracking-tight">
-            WeddingSnap
+            Memora
           </span>
         </Link>
       </header>

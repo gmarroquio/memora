@@ -37,6 +37,8 @@
 - [x] Check code expiration date when page load
   - [x] Show invalid code page
 - [ ] On upload generate 3 images with lower quality for preview
+- [ ] Add comments to media upload
+- [ ] Add toast to cofirm upload
 
 ### Pre launch
 
@@ -46,20 +48,28 @@
 - [ ] Nome
 - [ ] Cores
 - [ ] Social media
+- [ ] Contact page
 
 ### Post launch
 
+- [ ] FAQ page
+- [ ] Add a feature request page
+- [ ] Do a fingerprinting to save the photo sender
+- [ ] Show active codes
 - [ ] Album list without useEffect on load
 - [ ] Add a subscription table
 - [ ] App
 - [ ] Add posthog
-- [ ] Upload video
+- [ ] How to add a crash analytics
+- [ ] Upload video (more expensive)
+  - [ ] Limit video duration to 10s
 - [ ] Photo limit (quantity)
 - [ ] Add presentation slide for the guests
 - [ ] Create a demo account, photo limit, time limit, quality limit, 2 guest per album
 - [ ] Fotos acima do limite com marca dagua e com tempo de uma semana
 - [ ] Adicionar limite de fotos no album
 - [ ] Add presentation slide for the guests
+- [ ] Rate limit
 - [ ] Cronjob checking photo expiration date
   - [ ] delete from UT
   - [ ] set on db as deleted

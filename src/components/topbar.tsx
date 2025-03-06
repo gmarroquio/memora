@@ -5,6 +5,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Heart, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import text from "@/constants/texts.json";
 
 export const TopBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +16,7 @@ export const TopBar = () => {
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Heart className="h-6 w-6 text-primary" />
-            <span className="text-xl font-semibold tracking-tight">
-              WeddingSnap
-            </span>
+            <span className="text-xl font-semibold tracking-tight">Memora</span>
           </Link>
 
           <nav className="hidden md:flex gap-6">
@@ -25,36 +24,36 @@ export const TopBar = () => {
               href="/#features"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              Features
+              {text.pt.top_bar.features}
             </Link>
             <Link
               href="/#how-it-works"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              How It Works
+              {text.pt.top_bar.how_it_works}
             </Link>
             <Link
               href="/#testimonials"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              Testimonials
+              {text.pt.top_bar.testimonials}
             </Link>
             <Link
               href="/#pricing"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              Pricing
+              {text.pt.top_bar.price}
             </Link>
           </nav>
 
           <SignedIn>
             <Link href="/dashboard" className="hidden md:flex">
-              <Button>Dashboard</Button>
+              <Button>{text.pt.top_bar.dashboard}</Button>
             </Link>
           </SignedIn>
           <SignedOut>
             <Link href="/login" className="hidden md:flex">
-              <Button>Get Started</Button>
+              <Button>{text.pt.top_bar.get_start}</Button>
             </Link>
           </SignedOut>
 
@@ -80,37 +79,37 @@ export const TopBar = () => {
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              Features
+              {text.pt.top_bar.features}
             </Link>
             <Link
               href="#how-it-works"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              How It Works
+              {text.pt.top_bar.how_it_works}
             </Link>
             <Link
               href="#testimonials"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              Testimonials
+              {text.pt.top_bar.testimonials}
             </Link>
             <Link
               href="#pricing"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              Pricing
+              {text.pt.top_bar.price}
             </Link>
             <SignedOut>
               <Link href="/login" className="flex flex-col gap-2 mt-4">
-                <Button>Sign In</Button>
+                <Button>{text.pt.top_bar.get_start}</Button>
               </Link>
             </SignedOut>
             <SignedIn>
               <Link href="/dashboard" className="flex flex-col gap-2 mt-4">
-                <Button>Dashboard</Button>
+                <Button>{text.pt.top_bar.dashboard}</Button>
               </Link>
             </SignedIn>
           </div>

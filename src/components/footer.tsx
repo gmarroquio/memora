@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Heart } from "lucide-react";
 import Link from "next/link";
+import texts from "@/constants/texts.json";
 
 export const Footer = () => {
   return (
@@ -12,23 +13,22 @@ export const Footer = () => {
             <div className="flex items-center gap-2">
               <Heart className="h-6 w-6 text-primary" />
               <span className="text-xl font-semibold tracking-tight">
-                WeddingSnap
+                Memora
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Capture, collect, and cherish every moment of your special day
-              with our collaborative wedding photo album app.
+              {texts.pt.footer.subtitle}
             </p>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">Product</h4>
+            <h4 className="font-medium">{texts.pt.footer.product.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="#features"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Features
+                  {texts.pt.footer.product.links.features}
                 </Link>
               </li>
               <li>
@@ -36,7 +36,7 @@ export const Footer = () => {
                   href="#how-it-works"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  How It Works
+                  {texts.pt.footer.product.links.how_it_works}
                 </Link>
               </li>
               <li>
@@ -44,7 +44,7 @@ export const Footer = () => {
                   href="#pricing"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Pricing
+                  {texts.pt.footer.product.links.pricing}
                 </Link>
               </li>
               <li>
@@ -52,20 +52,20 @@ export const Footer = () => {
                   href="#"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  FAQ
+                  {texts.pt.footer.product.links.faq}
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">Company</h4>
+            <h4 className="font-medium">{texts.pt.footer.company.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/about"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  About Us
+                  {texts.pt.footer.company.links.about}
                 </Link>
               </li>
               <li>
@@ -73,7 +73,7 @@ export const Footer = () => {
                   href="/blog"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Blog
+                  {texts.pt.footer.company.links.blog}
                 </Link>
               </li>
               <li>
@@ -81,13 +81,13 @@ export const Footer = () => {
                   href="/contact"
                   className="text-muted-foreground hover:text-foreground"
                 >
-                  Contact
+                  {texts.pt.footer.company.links.contact}
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">Stay Updated</h4>
+            <h4 className="font-medium">{texts.pt.footer.news.title}</h4>
             <form className="flex flex-col gap-2 sm:flex-row">
               <Input
                 type="email"
@@ -95,25 +95,17 @@ export const Footer = () => {
                 className="max-w-lg flex-1"
               />
               <Button type="submit" className="bg-primary hover:bg-primary/90">
-                Subscribe
+                {texts.pt.footer.news.subscribe}
               </Button>
             </form>
             <p className="text-xs text-muted-foreground">
-              By subscribing, you agree to our{" "}
-              <Link href="#" className="underline underline-offset-2">
-                Terms
-              </Link>{" "}
-              and{" "}
-              <Link href="#" className="underline underline-offset-2">
-                Privacy Policy
-              </Link>
-              .
+              {texts.pt.footer.news.warning}
             </p>
           </div>
         </div>
         <div className="mt-8 border-t pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} WeddingSnap. All rights reserved.
+            &copy; {new Date().getFullYear()} Memora. All rights reserved.
           </p>
           <div className="flex gap-4 mt-4 sm:mt-0">
             <Link

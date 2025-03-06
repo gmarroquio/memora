@@ -4,24 +4,24 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us | WeddingSnap",
+  title: "About Us | Memora",
   description:
-    "Learn about the team behind WeddingSnap and our mission to capture every special moment.",
+    "Learn about the team behind Memora and our mission to capture every special moment.",
 };
 
 export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-12 md:py-24">
-      <h1 className="text-4xl font-bold mb-8 text-center">About WeddingSnap</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">About Memora</h1>
 
       <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
         <div>
           <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
           <p className="text-lg mb-4 text-balance">
-            WeddingSnap was born from a simple idea: to make sure no precious
-            moment goes uncaptured on your big day. Founded by a team of
-            photographers and tech enthusiasts, we set out to create a platform
-            that brings together the perspectives of all your guests, creating a
+            Memora was born from a simple idea: to make sure no precious moment
+            goes uncaptured on your big day. Founded by a team of photographers
+            and tech enthusiasts, we set out to create a platform that brings
+            together the perspectives of all your guests, creating a
             comprehensive and heartwarming collection of memories.
           </p>
           <p className="text-lg text-balance">
@@ -33,7 +33,7 @@ export default function AboutPage() {
         <div className="relative h-[400px] rounded-lg overflow-hidden">
           <Image
             src="/placeholder.svg?height=400&width=600"
-            alt="WeddingSnap team"
+            alt="Memora team"
             layout="fill"
             objectFit="cover"
           />
@@ -43,10 +43,10 @@ export default function AboutPage() {
       <div className="mb-16">
         <h2 className="text-2xl font-semibold mb-4 text-center">Our Mission</h2>
         <p className="text-lg text-center max-w-2xl mx-auto text-balance">
-          At WeddingSnap, our mission is to ensure that every couple has a
-          complete, beautiful, and easily accessible collection of their wedding
-          memories. We believe in the power of shared experiences and the joy
-          that comes from reliving those special moments through photos.
+          At Memora, our mission is to ensure that every couple has a complete,
+          beautiful, and easily accessible collection of their wedding memories.
+          We believe in the power of shared experiences and the joy that comes
+          from reliving those special moments through photos.
         </p>
       </div>
 
@@ -79,7 +79,7 @@ export default function AboutPage() {
           Ready to Capture Your Special Day?
         </h2>
         <Button asChild size="lg">
-          <Link href="/signup">Get Started with WeddingSnap</Link>
+          <Link href="/signup">Get Started with Memora</Link>
         </Button>
       </div>
     </div>

@@ -15,9 +15,7 @@ export default function DashboardHeader() {
       <div className="flex flex-col items-center py-8 px-4 space-y-8 pb-20">
         <Link href="/" className="flex items-center gap-2">
           <Heart className="h-6 w-6 text-primary" />
-          <span className="text-xl font-semibold tracking-tight">
-            WeddingSnap
-          </span>
+          <span className="text-xl font-semibold tracking-tight">Memora</span>
         </Link>
         <nav className="flex flex-col items-center space-y-4 lg:space-y-6 my-6">
           <Link

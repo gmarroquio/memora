@@ -12,7 +12,7 @@ export default function LoginPage() {
       <main className="flex-1 flex items-center justify-center">
         <div className="w-full max-w-md p-6">
           <h1 className="text-2xl font-bold text-center mb-6">
-            Welcome to WeddingSnap
+            Welcome to Memora
           </h1>
           <Tabs
             value={activeTab}

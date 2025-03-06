@@ -1,0 +1,364 @@
+{
+  "en": {
+    "top_bar": {
+      "features": "Features",
+      "how_it_works": "How It Works",
+      "testimonials": "Testimonials",
+      "price": "Price",
+      "get_start": "Get Started"
+    },
+    "footer": {
+      "subtitle": "Capture, collect, and cherish every moment of your special party with our collaborative photo album app.",
+      "product": {
+        "title": "Product",
+        "links": {
+          "features": "Features",
+          "how_it_works": "How It Works",
+          "pricing": "Pricing",
+          "faq": "FAQ"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "about": "About Us",
+          "blog": "Blog",
+          "contact": "Contact"
+        }
+      },
+      "news": {
+        "title": "Stay Updated",
+        "subscribe": "Subscribe",
+        "warning": "By subscribing, you agree to our Terms and Privacy Policy."
+      }
+    },
+    "home": {
+      "hero": {
+        "title": "Capture Every Moment of Your Special Party",
+        "subtitle": "Let your guests contribute to your party memories with our collaborative photo album app.",
+        "create_your_album": "Create Your Album",
+        "see_how_it_works": "See How It Works",
+        "over": "Over 1 million memories captured"
+      },
+      "features": {
+        "category": "Features",
+        "title": "Everything You Need for Your Party Photos",
+        "subtitle": "Our app makes it easy to collect, organize, and share all your party photos in one place.",
+        "features": [
+          {
+            "title": "Guest Contributions",
+            "subtitle": "Let your guests upload their photos directly to your album with a simple link or QR code."
+          },
+          {
+            "title": "Easy Sharing",
+            "subtitle": "Share your album with friends and family who couldn't make it to the celebration."
+          },
+          {
+            "title": "Download & Print",
+            "subtitle": "Download high-resolution photos for printing or create custom photo books."
+          },
+          {
+            "title": "Private & Secure",
+            "subtitle": "Keep your memories private with password protection and controlled access."
+          },
+          {
+            "title": "Favorites & Comments",
+            "subtitle": "Mark your favorite photos and leave comments to relive the special moments."
+          },
+          {
+            "title": "Unlimited Storage",
+            "subtitle": "Store all your party photos without worrying about running out of space."
+          }
+        ]
+      },
+      "how_it_works": {
+        "category": "How It Works",
+        "title": "Simple Steps to Collect All Your Event Photos",
+        "subtitle": "Getting started is easy. Follow these simple steps to create your collaborative party album.",
+        "cta": "Create Your Album Now",
+        "steps": [
+          {
+            "title": "Create Your Album",
+            "subtitle": "Sign up and create a personalized party album with your theme and date."
+          },
+          {
+            "title": "Share With Guests",
+            "subtitle": "Share your unique album link or QR code with your party guests through invitations or at the venue."
+          },
+          {
+            "title": "Collect & Enjoy",
+            "subtitle": "Guests upload photos during and after the party, creating a complete collection of memories."
+          }
+        ]
+      },
+      "app_preview": {
+        "category": "App Preview",
+        "title": "Beautiful, Intuitive, and Easy to Use",
+        "subtitle": "Our app is designed to be simple for guests of all ages. No downloads required - just open the link and start uploading.",
+        "comment": "So easy to use! All our guests loved it!",
+        "bullet_points": [
+          "No app download required",
+          "Works on any device",
+          "Simple one-tap upload",
+          "Real-time updates"
+        ]
+      },
+      "testimonials": {
+        "category": "Testimonial",
+        "title": "Loved by Guests",
+        "subtitle": "Hear what guests have to say about their experience with our party photo album app.",
+        "testimonials": [
+          {
+            "comment": "We received so many amazing photos that we wouldn't have gotten just with our photographer. Our guests captured moments we would have missed!",
+            "names": "Sarah & Michael",
+            "date": "Party in June 2023",
+            "rating": 5
+          },
+          {
+            "comment": "So easy to set up! We included the QR code on the tables and everyone loved adding their photos during the party.",
+            "names": "David & Emma",
+            "date": "Party in August 2023",
+            "rating": 5
+          },
+          {
+            "comment": "Our friends who couldn't travel for the party loved being able to see all the photos in real-time. Best decision we made!",
+            "names": "Jessica & Thomas",
+            "date": "Party in October 2023",
+            "rating": 5
+          }
+        ]
+      },
+      "pricing": {
+        "category": "Pricing",
+        "title": "Simple, Transparent Pricing",
+        "subtitle": "Choose the perfect plan for your special party. No hidden fees or surprises.",
+        "cta": "Get Started",
+        "one_time": "one-time",
+        "prices": [
+          {
+            "name": "Basic",
+            "currency": "U$",
+            "price": 49,
+            "perks": [
+              "Up to 500 photos",
+              "6 months of storage",
+              "Custom album link",
+              "Download all photos"
+            ]
+          },
+          {
+            "name": "Premium",
+            "currency": "U$",
+            "price": 99,
+            "perks": [
+              "Unlimited photos",
+              "1 year of storage",
+              "Custom album link & QR code",
+              "Download all photos",
+              "Photo editing tools (coming soon)"
+            ]
+          },
+          {
+            "name": "Forever",
+            "currency": "U$",
+            "price": 149,
+            "perks": [
+              "Unlimited photos",
+              "Lifetime storage",
+              "Custom album link & QR code",
+              "Download all photos",
+              "Photo editing tools (coming soon)",
+              "Photo book creation (coming soon)"
+            ]
+          }
+        ]
+      },
+      "cta": {
+        "title": "Start Collecting Your Party Memories Today",
+        "subtitle": "Don't miss a single moment from your special party. Create your party album in minutes.",
+        "button": "Create Your Album",
+        "learn_more": "Learn More"
+      }
+    }
+  },
+  "pt": {
+    "top_bar": {
+      "features": "Recursos",
+      "how_it_works": "Como Funciona",
+      "testimonials": "Depoimentos",
+      "price": "Preço",
+      "get_start": "Comece Agora"
+    },
+    "footer": {
+      "subtitle": "Capture, colete e valorize cada momento da sua festa especial com nosso aplicativo colaborativo de álbum de fotos.",
+      "product": {
+        "title": "Produto",
+        "links": {
+          "features": "Recursos",
+          "how_it_works": "Como Funciona",
+          "pricing": "Preços",
+          "faq": "FAQ"
+        }
+      },
+      "company": {
+        "title": "Empresa",
+        "links": {
+          "about": "Sobre Nós",
+          "blog": "Blog",
+          "contact": "Contato"
+        }
+      },
+      "news": {
+        "title": "Fique Atualizado",
+        "subscribe": "Inscrever-se",
+        "warning": "Ao se inscrever, você concorda com nossos Termos e Política de Privacidade."
+      }
+    },
+    "home": {
+      "hero": {
+        "title": "Capture Cada Momento da Sua Festa Especial",
+        "subtitle": "Deixe seus convidados contribuírem para suas memórias de festa com nosso aplicativo colaborativo de álbum de fotos.",
+        "create_your_album": "Crie Seu Álbum",
+        "see_how_it_works": "Veja Como Funciona",
+        "over": "Mais de 1 milhão de memórias capturadas"
+      },
+      "features": {
+        "category": "Recursos",
+        "title": "Tudo o Que Você Precisa para Suas Fotos de Festa",
+        "subtitle": "Nosso aplicativo facilita a coleta, organização e compartilhamento de todas as suas fotos de festa em um só lugar.",
+        "features": [
+          {
+            "title": "Contribuições dos Convidados",
+            "subtitle": "Deixe seus convidados enviarem suas fotos diretamente para seu álbum com um link simples ou código QR."
+          },
+          {
+            "title": "Compartilhamento Fácil",
+            "subtitle": "Compartilhe seu álbum com amigos e familiares que não puderam comparecer à celebração."
+          },
+          {
+            "title": "Baixar e Imprimir",
+            "subtitle": "Baixe fotos em alta resolução para impressão ou crie livros de fotos personalizados."
+          },
+          {
+            "title": "Privado e Seguro",
+            "subtitle": "Mantenha suas memórias privadas com proteção por senha e acesso controlado."
+          },
+          {
+            "title": "Favoritos e Comentários",
+            "subtitle": "Marque suas fotos favoritas e deixe comentários para reviver os momentos especiais."
+          },
+          {
+            "title": "Armazenamento Ilimitado",
+            "subtitle": "Armazene todas as suas fotos de festa sem se preocupar com falta de espaço."
+          }
+        ]
+      },
+      "how_it_works": {
+        "category": "Como Funciona",
+        "title": "Passos Simples para Coletar Todas as Suas Fotos do Evento",
+        "subtitle": "Começar é fácil. Siga estes passos simples para criar seu álbum colaborativo de festa.",
+        "cta": "Crie Seu Álbum Agora",
+        "steps": [
+          {
+            "title": "Crie Seu Álbum",
+            "subtitle": "Inscreva-se e crie um álbum de festa personalizado com seu tema e data."
+          },
+          {
+            "title": "Compartilhe com os Convidados",
+            "subtitle": "Compartilhe seu link único do álbum ou código QR com seus convidados através de convites ou no local."
+          },
+          {
+            "title": "Colete e Aproveite",
+            "subtitle": "Os convidados enviam fotos durante e após a festa, criando uma coleção completa de memórias."
+          }
+        ]
+      },
+      "app_preview": {
+        "category": "Prévia do App",
+        "title": "Bonito, Intuitivo e Fácil de Usar",
+        "subtitle": "Nosso aplicativo é projetado para ser simples para convidados de todas as idades. Sem downloads necessários - basta abrir o link e começar a enviar.",
+        "comment": "Tão fácil de usar! Todos os nossos convidados adoraram!",
+        "bullet_points": [
+          "Sem necessidade de download do aplicativo",
+          "Funciona em qualquer dispositivo",
+          "Envio simples com um toque",
+          "Atualizações em tempo real"
+        ]
+      },
+      "testimonials": {
+        "category": "Depoimento",
+        "title": "Amado pelos Convidados",
+        "subtitle": "Ouça o que os convidados têm a dizer sobre sua experiência com nosso aplicativo de álbum de fotos de festa.",
+        "testimonials": [
+          {
+            "comment": "Recebemos tantas fotos incríveis que não teríamos conseguido apenas com nosso fotógrafo. Nossos convidados capturaram momentos que teríamos perdido!",
+            "names": "Sarah & Michael",
+            "date": "Festa em Junho de 2023",
+            "rating": 5
+          },
+          {
+            "comment": "Tão fácil de configurar! Incluímos o código QR nas mesas e todos adoraram adicionar suas fotos durante a festa.",
+            "names": "David & Emma",
+            "date": "Festa em Agosto de 2023",
+            "rating": 5
+          },
+          {
+            "comment": "Nossos amigos que não puderam viajar para a festa adoraram poder ver todas as fotos em tempo real. Melhor decisão que tomamos!",
+            "names": "Jessica & Thomas",
+            "date": "Festa em Outubro de 2023",
+            "rating": 5
+          }
+        ]
+      },
+      "pricing": {
+        "category": "Preços",
+        "title": "Preços Simples e Transparentes",
+        "subtitle": "Escolha o plano perfeito para a sua festa especial. Sem taxas ocultas ou surpresas.",
+        "cta": "Comece Agora",
+        "one_time": "uma vez",
+        "most_popular": "Mais Vendido",
+        "prices": [
+          {
+            "name": "Básico",
+            "currency": "U$",
+            "price": 49,
+            "perks": [
+              "Até 500 fotos",
+              "6 meses de armazenamento",
+              "Link personalizado do álbum",
+              "Baixar todas as fotos"
+            ]
+          },
+          {
+            "name": "Premium",
+            "currency": "U$",
+            "price": 99,
+            "perks": [
+              "Tudo do Básico +",
+              "Fotos ilimitadas",
+              "1 ano de armazenamento",
+              "Código QR para album",
+              "Ferramentas de edição de fotos"
+            ]
+          },
+          {
+            "name": "Para Sempre",
+            "currency": "U$",
+            "price": 149,
+            "perks": [
+              "Tudo do Premium +",
+              "Armazenamento vitalício",
+              "Criação de livro de fotos (em breve)"
+            ]
+          }
+        ]
+      },
+      "cta": {
+        "title": "Comece a Coletar Suas Memórias de Festa Hoje",
+        "subtitle": "Não perca um único momento da sua festa especial. Crie seu álbum de festa em minutos.",
+        "button": "Crie Seu Álbum",
+        "learn_more": "Saiba Mais"
+      }
+    }
+  }
+}

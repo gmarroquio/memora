@@ -4,10 +4,10 @@ import DashboardHeader from "@/components/dashboard/dashboard-header";
 
 export const metadata: Metadata = {
   title: {
-    default: "Dashboard | WeddingSnap",
-    template: "%s | WeddingSnap Dashboard",
+    default: "Dashboard | Memora",
+    template: "%s | Memora Dashboard",
   },
-  description: "Manage your wedding photos and albums",
+  description: "Manage your event photos and albums",
 };
 
 export default function DashboardLayout({

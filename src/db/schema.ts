@@ -7,6 +7,7 @@ export const usersTable = sqliteTable("users", {
   name: text("name").notNull(),
   email: text("email").unique().notNull(),
   phoneNumber: text("phone_number"),
+  stripeId: text("stripe_id"),
   photoLimit: integer("photo_limit").default(10),
   subscription: text("subscription", {
     enum: ["free", "tier1", "tier2", "tier3"],
@@ -28,10 +29,11 @@ export const mediasTable = sqliteTable("medias", {
   id: integer("id").primaryKey(),
   url: text("url").notNull(),
   status: text("status", { enum: ["active", "deleted"] }).default("active"),
+  uploader: text("uploader"),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),
-  userId: integer("user_id")
+  ownerId: integer("owner_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
