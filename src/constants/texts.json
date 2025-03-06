@@ -5,7 +5,8 @@
       "how_it_works": "How It Works",
       "testimonials": "Testimonials",
       "price": "Price",
-      "get_start": "Get Started"
+      "get_start": "Get Started",
+      "dashboard": "Dashboard"
     },
     "footer": {
       "subtitle": "Capture, collect, and cherish every moment of your special party with our collaborative photo album app.",
@@ -353,7 +354,8 @@
       "how_it_works": "Como Funciona",
       "testimonials": "Depoimentos",
       "price": "Preço",
-      "get_start": "Comece Agora"
+      "get_start": "Comece Agora",
+      "dashboard": "Dashboard"
     },
     "footer": {
       "subtitle": "Capture, colete e valorize cada momento da sua festa especial com nosso aplicativo colaborativo de álbum de fotos.",
@@ -485,7 +487,7 @@
         "prices": [
           {
             "name": "Básico",
-            "currency": "U$",
+            "currency": "R$",
             "price": 49,
             "perks": [
               "Até 500 fotos",
@@ -496,7 +498,7 @@
           },
           {
             "name": "Premium",
-            "currency": "U$",
+            "currency": "R$",
             "price": 99,
             "perks": [
               "Fotos ilimitadas",
@@ -508,7 +510,7 @@
           },
           {
             "name": "Para Sempre",
-            "currency": "U$",
+            "currency": "R$",
             "price": 149,
             "perks": [
               "Fotos ilimitadas",
