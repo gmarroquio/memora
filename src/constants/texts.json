@@ -255,6 +255,96 @@
         "signup": "Sign Up"
       },
       "fallback_redirect_url": "/dashboard"
+    },
+    "add_photo": {
+      "header": {
+        "title": "Memora"
+      },
+      "error": "Error searching for album",
+      "form": {
+        "album_code": {
+          "label": "Album Code",
+          "description": "Please enter the album code"
+        },
+        "button": {
+          "label": "Go to Album"
+        }
+      }
+    },
+    "dashboard": {
+      "home": {
+        "title": "Your Memora Photos"
+      },
+      "albums": {
+        "title": "Your Albums",
+        "create_album": {
+          "title": "Create New Album",
+          "album_name": {
+            "label": "Album Name",
+            "placeholder": "Enter album name"
+          },
+          "cover_image": {
+            "label": "Cover Image",
+            "description": "Upload a cover image for your album (optional)",
+            "upload_prompt": "Click to upload",
+            "file_types": "JPG, PNG or WebP (max. 5MB)",
+            "select_file": "Select file"
+          },
+          "button": {
+            "create": "Create Album"
+          }
+        },
+        "albums_list": {
+          "no_albums": "You don't have any album",
+          "preview": "Preview",
+          "view_album": "View Album",
+          "photos_count": "{count} photos in this album"
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "guest_code_generator": {
+          "title": "Generate Guest Code",
+          "description": "Create a code for guests to add photos to a specific album.",
+          "album": {
+            "label": "Album",
+            "description": "Choose the album you want guests to add photos to.",
+            "placeholder": "Select an album"
+          },
+          "expiration": {
+            "label": "Expiration (days)",
+            "description": "Set how many days the code will be valid for (1-30 days)."
+          },
+          "generate_code": "Generate Code",
+          "generated_code": "Generated Code:",
+          "share_link": "Share this link with your guests:",
+          "link_placeholder": "Link will be generated here"
+        },
+        "account_settings": {
+          "title": "Account Settings",
+          "description": "Manage your account details and preferences.",
+          "name": {
+            "label": "Name",
+            "placeholder": "Enter your name"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "Enter your email"
+          },
+          "button": {
+            "save": "Save Changes"
+          }
+        }
+      },
+      "sidebar": {
+        "title": "Memora",
+        "nav": {
+          "gallery": "Gallery",
+          "albums": "Albums",
+          "settings": "Settings"
+        },
+        "logout": "Log out"
+      }
     }
   },
   "pt": {
@@ -513,6 +603,96 @@
         "signup": "Cadastrar"
       },
       "fallback_redirect_url": "/dashboard"
+    },
+    "add_photo": {
+      "header": {
+        "title": "Memora"
+      },
+      "error": "Álbum não encontrado",
+      "form": {
+        "album_code": {
+          "label": "Código do Álbum",
+          "description": "Por favor, insira o código do álbum"
+        },
+        "button": {
+          "label": "Ir para o Álbum"
+        }
+      }
+    },
+    "dashboard": {
+      "home": {
+        "title": "Suas Memória"
+      },
+      "albums": {
+        "title": "Seus Álbums",
+        "create_album": {
+          "title": "Criar Novo Álbum",
+          "album_name": {
+            "label": "Nome do Álbum",
+            "placeholder": "Digite o nome do álbum"
+          },
+          "cover_image": {
+            "label": "Imagem de Capa",
+            "description": "Envie uma imagem de capa para seu álbum (opcional)",
+            "upload_prompt": "Clique para enviar",
+            "file_types": "JPG, PNG ou WebP (máx. 5MB)",
+            "select_file": "Selecionar arquivo"
+          },
+          "button": {
+            "create": "Criar Álbum"
+          }
+        },
+        "albums_list": {
+          "no_albums": "Você não tem nenhum álbum",
+          "preview": "Visualizar",
+          "view_album": "Ver Álbum",
+          "photos_count": "{count} fotos neste álbum"
+        }
+      },
+      "settings": {
+        "title": "Configutações",
+        "guest_code_generator": {
+          "title": "Gerar Código de Convidado",
+          "description": "Crie um código para que os convidados adicionem fotos a um álbum específico.",
+          "album": {
+            "label": "Álbum",
+            "description": "Escolha o álbum ao qual os convidados devem adicionar fotos.",
+            "placeholder": "Selecione um álbum"
+          },
+          "expiration": {
+            "label": "Validade (dias)",
+            "description": "Defina quantos dias o código será válido (1-30 dias)."
+          },
+          "generate_code": "Gerar Código",
+          "generated_code": "Código Gerado:",
+          "share_link": "Compartilhe este link com seus convidados:",
+          "link_placeholder": "O link será gerado aqui"
+        },
+        "account_settings": {
+          "title": "Configurações da Conta",
+          "description": "Gerencie os detalhes e preferências da sua conta.",
+          "name": {
+            "label": "Nome",
+            "placeholder": "Digite seu nome"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "Digite seu email"
+          },
+          "button": {
+            "save": "Salvar Alterações"
+          }
+        }
+      },
+      "sidebar": {
+        "title": "Memora",
+        "nav": {
+          "gallery": "Galeria",
+          "albums": "Álbuns",
+          "settings": "Configurações"
+        },
+        "logout": "Sair"
+      }
     }
   }
 }

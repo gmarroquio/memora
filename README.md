@@ -39,6 +39,7 @@
 - [ ] On upload generate 3 images with lower quality for preview
 - [ ] Add comments to media upload
 - [ ] Add toast to cofirm upload
+- [ ] Account config
 
 ### Pre launch
 

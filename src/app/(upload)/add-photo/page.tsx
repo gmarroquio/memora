@@ -24,6 +24,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect } from "react";
 import { baseUrl } from "@/lib/utils";
+import text from "@/constants/texts.json";
 
 const searchAlbum = z.object({
   code: z
@@ -71,7 +72,7 @@ export default function Page() {
         <Link href="/" className="flex items-center gap-2">
           <Heart className="md:h-9 md:w-9 text-primary" />
           <span className="md:text-4xl font-semibold tracking-tight">
-            Memora
+            {text.pt.add_photo.header.title}
           </span>
         </Link>
       </header>
@@ -86,7 +87,9 @@ export default function Page() {
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Album Code</FormLabel>
+                  <FormLabel>
+                    {text.pt.add_photo.form.album_code.label}
+                  </FormLabel>
                   <FormControl>
                     <InputOTP maxLength={6} {...field} inputMode="text">
                       <InputOTPGroup>
@@ -117,7 +120,9 @@ export default function Page() {
                       </InputOTPGroup>
                     </InputOTP>
                   </FormControl>
-                  <FormDescription>Please enter the album code</FormDescription>
+                  <FormDescription>
+                    {text.pt.add_photo.form.album_code.description}
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -125,7 +130,7 @@ export default function Page() {
 
             <Button type="submit">
               <Camera />
-              Go to Album
+              {text.pt.add_photo.form.button.label}
             </Button>
           </form>
         </Form>

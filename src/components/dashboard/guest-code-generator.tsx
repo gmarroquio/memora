@@ -34,6 +34,7 @@ import { toast } from "sonner";
 import { Copy, Check } from "lucide-react";
 import { Album } from "./album-list";
 import { baseUrl } from "@/lib/utils";
+import text from "@/constants/texts.json"; // Adjust the import path accordingly
 
 const guestCodeSchema = z.object({
   albumId: z.string({
@@ -98,9 +99,11 @@ export default function GuestCodeGenerator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Generate Guest Code</CardTitle>
+        <CardTitle>
+          {text.pt.dashboard.settings.guest_code_generator.title}
+        </CardTitle>
         <CardDescription>
-          Create a code for guests to add photos to a specific album.
+          {text.pt.dashboard.settings.guest_code_generator.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -111,14 +114,24 @@ export default function GuestCodeGenerator() {
               name="albumId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Album</FormLabel>
+                  <FormLabel>
+                    {
+                      text.pt.dashboard.settings.guest_code_generator.album
+                        .label
+                    }
+                  </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select an album" />
+                        <SelectValue
+                          placeholder={
+                            text.pt.dashboard.settings.guest_code_generator
+                              .album.placeholder
+                          }
+                        />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -130,7 +143,10 @@ export default function GuestCodeGenerator() {
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Choose the album you want guests to add photos to.
+                    {
+                      text.pt.dashboard.settings.guest_code_generator.album
+                        .description
+                    }
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +157,12 @@ export default function GuestCodeGenerator() {
               name="expirationDays"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Expiration (days)</FormLabel>
+                  <FormLabel>
+                    {
+                      text.pt.dashboard.settings.guest_code_generator.expiration
+                        .label
+                    }
+                  </FormLabel>
                   <FormControl>
                     <Input
                       type="number"
@@ -152,20 +173,30 @@ export default function GuestCodeGenerator() {
                     />
                   </FormControl>
                   <FormDescription>
-                    Set how many days the code will be valid for (1-30 days).
+                    {
+                      text.pt.dashboard.settings.guest_code_generator.expiration
+                        .description
+                    }
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit">Generate Code</Button>
+            <Button type="submit">
+              {text.pt.dashboard.settings.guest_code_generator.generate_code}
+            </Button>
           </form>
         </Form>
         {generatedCode && (
           <div className="mt-4 p-4 bg-muted rounded-md space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-semibold">Generated Code:</p>
+                <p className="font-semibold">
+                  {
+                    text.pt.dashboard.settings.guest_code_generator
+                      .generated_code
+                  }
+                </p>
                 <p className="text-2xl font-bold">{generatedCode}</p>
               </div>
               <Button
@@ -184,7 +215,7 @@ export default function GuestCodeGenerator() {
             </div>
             <div>
               <p className="font-semibold mb-2">
-                Share this link with your guests:
+                {text.pt.dashboard.settings.guest_code_generator.share_link}
               </p>
               <div className="flex gap-2">
                 <Input value={`${window.location.origin}/add-photo`} readOnly />

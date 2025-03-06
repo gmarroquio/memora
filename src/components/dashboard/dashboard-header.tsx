@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { AlbumIcon, CogIcon, Heart, ImagesIcon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
+import text from "@/constants/texts.json";
 
 export default function DashboardHeader() {
   const pathname = usePathname();
@@ -15,7 +16,9 @@ export default function DashboardHeader() {
       <div className="flex flex-col items-center py-8 px-4 space-y-8 pb-20">
         <Link href="/" className="flex items-center gap-2">
           <Heart className="h-6 w-6 text-primary" />
-          <span className="text-xl font-semibold tracking-tight">Memora</span>
+          <span className="text-xl font-semibold tracking-tight">
+            {text.pt.dashboard.sidebar.title}
+          </span>
         </Link>
         <nav className="flex flex-col items-center space-y-4 lg:space-y-6 my-6">
           <Link
@@ -28,7 +31,7 @@ export default function DashboardHeader() {
             )}
           >
             <ImagesIcon />
-            <span>Gallery</span>
+            <span>{text.pt.dashboard.sidebar.nav.gallery}</span>
           </Link>
           <Link
             href="/dashboard/albums"
@@ -40,7 +43,7 @@ export default function DashboardHeader() {
             )}
           >
             <AlbumIcon />
-            <span>Albums</span>
+            <span>{text.pt.dashboard.sidebar.nav.albums}</span>
           </Link>
           <Link
             href="/dashboard/settings"
@@ -52,14 +55,14 @@ export default function DashboardHeader() {
             )}
           >
             <CogIcon />
-            <span>Settings</span>
+            <span>{text.pt.dashboard.sidebar.nav.settings}</span>
           </Link>
         </nav>
         <div className="mt-auto flex items-center space-x-4">
           <SignOutButton>
             <Button variant="ghost">
               <LogOut className="h-4 w-4" />
-              <span>Log out</span>
+              <span>{text.pt.dashboard.sidebar.logout}</span>
             </Button>
           </SignOutButton>
         </div>
