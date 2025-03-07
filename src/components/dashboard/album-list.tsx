@@ -42,14 +42,14 @@ export default function AlbumsList() {
       }).then((response) => {
         if (response.ok) {
           response.json().then(setAlbums);
+          setLoading(false);
         }
-        setLoading(false);
       });
   }, [isLoaded, userId]);
 
-  if (loading && !isLoaded) {
+  if (loading || !isLoaded) {
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-40 flex items-center justify-center">
         <Loader className="animate-spin h-10 w-10" />
       </div>
     );

@@ -45,16 +45,17 @@ export const TopBar = () => {
             </Link>
           </nav>
 
-          <SignedIn>
-            <Link href="/dashboard" className="hidden md:flex">
-              <Button>{text.pt.top_bar.dashboard}</Button>
-            </Link>
-          </SignedIn>
-          <SignedOut>
-            <Link href="/login" className="hidden md:flex">
-              <Button>{text.pt.top_bar.get_start}</Button>
-            </Link>
-          </SignedOut>
+          <div>
+            <SignedIn>
+              <Link href="/dashboard" className="hidden md:flex">
+                <Button>{text.pt.top_bar.dashboard}</Button>
+              </Link>
+            </SignedIn>
+            <SignedOut>
+              <Button disabled>{text.pt.top_bar.get_start}</Button>
+              <Link href="/login" className="hidden md:flex"></Link>
+            </SignedOut>
+          </div>
 
           <Button
             variant="ghost"

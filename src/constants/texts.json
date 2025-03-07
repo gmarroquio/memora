@@ -356,7 +356,7 @@
       "how_it_works": "Como Funciona",
       "testimonials": "Depoimentos",
       "price": "Preço",
-      "get_start": "Comece Agora",
+      "get_start": "Em breve",
       "dashboard": "Dashboard"
     },
     "footer": {
@@ -427,7 +427,7 @@
         "category": "Como Funciona",
         "title": "Passos Simples para Coletar Todas as Suas Fotos do Evento",
         "subtitle": "Começar é fácil. Siga estes passos simples para criar seu álbum colaborativo de festa.",
-        "cta": "Crie Seu Álbum Agora",
+        "cta": "Em Breve",
         "steps": [
           {
             "title": "Crie Seu Álbum",
@@ -484,7 +484,7 @@
         "category": "Preços",
         "title": "Preços Simples e Transparentes",
         "subtitle": "Escolha o plano perfeito para a sua festa. Sem taxas ocultas ou surpresas.",
-        "cta": "Comece Agora",
+        "cta": "Em Breve",
         "one_time": "uma vez",
         "most_popular": "Mais Vendido",
         "prices": [

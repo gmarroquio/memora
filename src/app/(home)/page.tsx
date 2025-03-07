@@ -28,10 +28,14 @@ export default function Page() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" className="bg-primary hover:bg-primary/90">
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90"
+                    disabled
+                  >
                     {text.pt.home.hero.create_your_album}
                   </Button>
-                  <Button size="lg" variant="outline">
+                  <Button size="lg" variant="outline" disabled>
                     {text.pt.home.hero.see_how_it_works}
                   </Button>
                 </div>
@@ -195,7 +199,11 @@ export default function Page() {
               ))}
             </div>
             <div className="flex justify-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90"
+                disabled
+              >
                 {text.pt.home.how_it_works.cta}
               </Button>
             </div>
@@ -363,7 +371,10 @@ export default function Page() {
                       ))}
                     </ul>
                   </div>
-                  <Button className="mt-8 bg-primary hover:bg-primary/90">
+                  <Button
+                    className="mt-8 bg-primary hover:bg-primary/90"
+                    disabled
+                  >
                     {text.pt.home.pricing.cta}
                   </Button>
                 </div>
@@ -388,12 +399,14 @@ export default function Page() {
                 <Button
                   size="lg"
                   className="bg-background text-primary hover:bg-background/90"
+                  disabled
                 >
                   {text.pt.home.cta.button}
                 </Button>
                 <Button
                   size="lg"
                   className="bg-background text-primary hover:bg-background/90"
+                  disabled
                 >
                   {text.pt.home.cta.learn_more}
                 </Button>
