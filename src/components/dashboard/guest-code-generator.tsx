@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -30,8 +30,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { QRCodeCanvas } from "qrcode.react";
 import { toast } from "sonner";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, Download } from "lucide-react";
 import { Album } from "./album-list";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
@@ -50,6 +51,7 @@ export default function GuestCodeGenerator() {
   const [isCopied, setIsCopied] = useState(false);
   const [albums, setAlbums] = useState<Album[]>([]);
   const { isLoaded, userId } = useAuth();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({
     resolver: zodResolver(guestCodeSchema),
@@ -87,6 +89,24 @@ export default function GuestCodeGenerator() {
       });
     }
   };
+
+  function downloadStringAsFile(data: string, filename: string) {
+    let a = document.createElement("a");
+    a.download = filename;
+    a.href = data;
+    a.click();
+  }
+
+  function onCanvasButtonClick(code: string) {
+    const node = canvasRef.current;
+    if (node == null) {
+      return;
+    }
+    // For canvas, we just extract the image data and send that directly.
+    const dataURI = node.toDataURL("image/png");
+
+    downloadStringAsFile(dataURI, `${code}-qrcode.png`);
+  }
 
   useEffect(() => {
     if (userId)
@@ -217,16 +237,43 @@ export default function GuestCodeGenerator() {
               </Button>
             </div>
             <div>
-              <p className="font-semibold mb-2">
-                {text.pt.dashboard.settings.guest_code_generator.share_link}
-              </p>
-              <div className="flex gap-2">
-                <Input value={`${window.location.origin}/add-photo`} readOnly />
+              <p className="font-semibold mb-2">QR Code</p>
+              <div className="flex items-center justify-between">
+                <QRCodeCanvas
+                  ref={canvasRef}
+                  size={256}
+                  value={`${window.location.origin}/add-photo?code=${generatedCode}`}
+                />
                 <Button
                   variant="outline"
                   size="icon"
                   onClick={() => {
-                    copy(`${window.location.origin}/add-photo`);
+                    onCanvasButtonClick(generatedCode);
+                    toast("QR code downloaded", {
+                      description: "The qr code was downloaded",
+                    });
+                  }}
+                >
+                  <Download className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+            <div>
+              <p className="font-semibold mb-2">
+                {text.pt.dashboard.settings.guest_code_generator.share_link}
+              </p>
+              <div className="flex gap-2">
+                <Input
+                  value={`${window.location.origin}/add-photo?code=${generatedCode}`}
+                  readOnly
+                />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => {
+                    copy(
+                      `${window.location.origin}/add-photo?code=${generatedCode}`
+                    );
                     toast("Link copied", {
                       description:
                         "The photo upload link has been copied to your clipboard.",

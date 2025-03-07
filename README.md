@@ -27,7 +27,7 @@
 - [x] Add user on header
 - [x] Fix dashboard sidebar on mobile
 - [x] create user on database
-- [ ] Generate QR code to album - site.com/album/add-photo/${CODE}
+- [x] Generate QR code to album - site.com/album/add-photo/${CODE}
 - [ ] add code on search params after generate code
 - [ ] Code expiration time (test)
 - [x] Check code expiration date when page load
@@ -47,9 +47,12 @@
 - [ ] Cores
 - [ ] Social media
 - [ ] Contact page
+- [ ] Connect stripe
 
 ### Post launch
 
+- [ ] Add logo to qrcode
+- [ ] Dev env
 - [ ] if db failed -> Delete photo
 - [ ] Delete photo
 - [ ] Delete cover when create album fails
