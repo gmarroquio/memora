@@ -256,7 +256,8 @@
         "login": "Login",
         "signup": "Sign Up"
       },
-      "fallback_redirect_url": "/dashboard"
+      "login_redirect_url": "/dashboard",
+      "signup_redirect_url": "/signup"
     },
     "add_photo": {
       "header": {
@@ -606,7 +607,8 @@
         "login": "Entrar",
         "signup": "Cadastrar"
       },
-      "fallback_redirect_url": "/dashboard"
+      "login_redirect_url": "/dashboard",
+      "signup_redirect_url": "/signup"
     },
     "add_photo": {
       "header": {

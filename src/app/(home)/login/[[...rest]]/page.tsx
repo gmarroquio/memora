@@ -29,12 +29,12 @@ export default function LoginPage() {
             </TabsList>
             <TabsContent value="login">
               <SignIn
-                fallbackRedirectUrl={text.pt.login_page.fallback_redirect_url}
+                fallbackRedirectUrl={text.pt.login_page.login_redirect_url}
               />
             </TabsContent>
             <TabsContent value="signup">
               <SignUp
-                fallbackRedirectUrl={text.pt.login_page.fallback_redirect_url}
+                fallbackRedirectUrl={text.pt.login_page.signup_redirect_url}
               />
             </TabsContent>
           </Tabs>

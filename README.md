@@ -26,6 +26,7 @@
 - [x] On open upload check id code is valid
 - [x] Add user on header
 - [x] Fix dashboard sidebar on mobile
+- [x] create user on database
 - [ ] Generate QR code to album - site.com/album/add-photo/${CODE}
 - [ ] add code on search params after generate code
 - [ ] Code expiration time (test)
