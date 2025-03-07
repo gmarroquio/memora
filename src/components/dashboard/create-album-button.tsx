@@ -30,7 +30,6 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { baseUrl, renameFile } from "@/lib/utils";
 import { toast } from "sonner";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
-import { currentUser } from "@clerk/nextjs/server";
 import { useAuth } from "@clerk/nextjs";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -60,6 +59,7 @@ const createAlbumSchema = z.object({
 type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
+  //eslint-disable-next-line
   const { isLoaded, userId } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);

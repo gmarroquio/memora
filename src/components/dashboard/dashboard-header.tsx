@@ -3,15 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  AlbumIcon,
-  CogIcon,
-  Heart,
-  ImagesIcon,
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react";
+import { AlbumIcon, CogIcon, ImagesIcon, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import text from "@/constants/texts.json";

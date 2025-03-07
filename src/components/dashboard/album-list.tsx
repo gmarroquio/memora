@@ -36,7 +36,7 @@ export default function AlbumsList() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (userId)
+    if (userId && isLoaded)
       fetch(baseUrl({ path: "/api/albums" }), {
         headers: { userId },
       }).then((response) => {
@@ -45,7 +45,7 @@ export default function AlbumsList() {
         }
         setLoading(false);
       });
-  }, [isLoaded]);
+  }, [isLoaded, userId]);
 
   if (loading && !isLoaded) return <div>Loading</div>;
 

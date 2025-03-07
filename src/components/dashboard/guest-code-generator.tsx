@@ -97,7 +97,7 @@ export default function GuestCodeGenerator() {
           response.json().then(setAlbums);
         }
       });
-  }, [isLoaded]);
+  }, [isLoaded, userId]);
 
   return (
     <Card>

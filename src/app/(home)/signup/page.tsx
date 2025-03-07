@@ -25,7 +25,7 @@ export default function Page() {
         else toast.error("Não foi possível terminar seu cadastro");
       });
     }
-  }, [isLoaded]);
+  }, [isLoaded, user]);
 
   return (
     <div className="grid items-center justify-center p-10 h-[50vh]">
