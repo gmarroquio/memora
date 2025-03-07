@@ -44,17 +44,20 @@
 - [ ] Gerar fotos para o site
 - [x] Nome
 - [ ] Cores
-- [ ] Social media
-- [ ] Contact page
+- [x] Social media
+  - trymemora
+- [x] Contact page
 - [ ] Connect stripe
 
 ### Post launch
 
+- [ ] Show photo limit
 - [ ] Paginate gallery
 - [ ] On upload generate 3 images with lower quality for preview
+- [ ] Improve login/signup
 - [ ] Add logo to qrcode
 - [ ] Account config
-- [ ] Dev env
+- [x] Dev env
 - [ ] if db failed -> Delete photo
 - [ ] Delete photo
 - [ ] Delete cover when create album fails
@@ -69,6 +72,8 @@
 - [ ] Add a subscription table
 - [ ] App
 - [ ] Add posthog
+- [ ] Public album
+- [ ] Big events subscription tir
 - [ ] How to add a crash analytics
 - [ ] Upload video (more expensive)
   - [ ] Limit video duration to 10s

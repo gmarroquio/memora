@@ -161,16 +161,15 @@
             ]
           },
           {
-            "name": "Forever",
-            "currency": "U$",
-            "price": 149,
+            "name": "Big Events",
+            "cta": "Get in touch",
             "perks": [
-              "Unlimited photos",
-              "Lifetime storage",
+              "Tailored for your event",
+              "Public albums",
               "Custom album link & QR code",
               "Download all photos",
-              "Photo editing tools (coming soon)",
-              "Photo book creation (coming soon)"
+              "Real time feed",
+              "Photo editing tools (coming soon)"
             ]
           }
         ]
@@ -512,16 +511,15 @@
             ]
           },
           {
-            "name": "Para Sempre",
-            "currency": "R$",
-            "price": 149,
+            "name": "Grandes Eventos",
+            "cta": "Entre em contato",
             "perks": [
-              "Fotos ilimitadas",
-              "Armazenamento vitalício",
+              "Personalizado para o seu evento",
+              "Albums públicos",
               "Link personalizado do álbum e código QR",
               "Baixar todas as fotos",
-              "Ferramentas de edição de fotos (em breve)",
-              "Criação de livro de fotos (em breve)"
+              "Vizualização em tempo real",
+              "Ferramentas de edição de fotos (em breve)"
             ]
           }
         ]
@@ -581,12 +579,12 @@
       "contact_information": {
         "title": "Informações de Contato",
         "email": "support@memora.party",
-        "phone": "+1 (555) 123-4567",
-        "address": "123 Wedding Lane, Photo City, PC 12345",
+        "phone": "+55 (99) 99999-9999",
+        "address": "123 Memory Lane, Photo City, PC 12345",
         "office_hours": {
           "title": "Horário de Atendimento",
           "hours": [
-            "Segunda - Sexta: 9:00 AM - 5:00 PM (EST)",
+            "Segunda - Sexta: 9:00 AM - 5:00 PM (GMT-3)",
             "Sábado - Domingo: Fechado"
           ]
         },
@@ -695,6 +693,7 @@
         "nav": {
           "gallery": "Galeria",
           "albums": "Álbuns",
+          "payments": "Pagamentos",
           "settings": "Configurações"
         },
         "logout": "Sair"

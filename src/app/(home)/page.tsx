@@ -357,10 +357,14 @@ export default function Page() {
                   <div>
                     <h3 className="text-2xl font-bold">{price.name}</h3>
                     <div className="mt-4 flex items-baseline">
-                      <span className="text-3xl font-bold">{`${price.currency}${price.price}`}</span>
-                      <span className="ml-1 text-muted-foreground">
-                        {text.pt.home.pricing.one_time}
-                      </span>
+                      {price.price && (
+                        <>
+                          <span className="text-3xl font-bold">{`${price.currency}${price.price}`}</span>
+                          <span className="ml-1 text-muted-foreground">
+                            {text.pt.home.pricing.one_time}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <ul className="mt-6 space-y-4">
                       {price.perks.map((perk, perkIndex) => (
@@ -375,7 +379,7 @@ export default function Page() {
                     className="mt-8 bg-primary hover:bg-primary/90"
                     disabled
                   >
-                    {text.pt.home.pricing.cta}
+                    {price.cta ?? text.pt.home.pricing.cta}
                   </Button>
                 </div>
               ))}
