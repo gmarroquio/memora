@@ -35,7 +35,7 @@
 - [x] Add comments to media upload
 - [x] Add toast to cofirm upload
 - [x] Loading pages
-- [ ] Gallery page
+- [x] Gallery page
 
 ### Pre launch
 
@@ -50,6 +50,7 @@
 
 ### Post launch
 
+- [ ] Paginate gallery
 - [ ] On upload generate 3 images with lower quality for preview
 - [ ] Add logo to qrcode
 - [ ] Account config
