@@ -134,9 +134,11 @@ export default function CreateAlbumButton() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />{" "}
-          {text.pt.dashboard.albums.create_album.button.create}
+        <Button size="icon">
+          <Plus className="md:mr-2 h-4 w-4" />
+          <span className="hidden md:block">
+            {text.pt.dashboard.albums.create_album.button.create}
+          </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

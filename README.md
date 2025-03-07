@@ -37,16 +37,17 @@
 - [x] Check code expiration date when page load
   - [x] Show invalid code page
 - [ ] On upload generate 3 images with lower quality for preview
-- [ ] Add comments to media upload
-- [ ] Add toast to cofirm upload
+- [x] Add comments to media upload
+- [x] Add toast to cofirm upload
 - [ ] Account config
+- [ ] Loading pages
 
 ### Pre launch
 
 - [x] Change all localhost
-- [ ] Ajustar site para eventos e em português
+- [x] Ajustar site para eventos e em português
 - [ ] Gerar fotos para o site
-- [ ] Nome
+- [x] Nome
 - [ ] Cores
 - [ ] Social media
 - [ ] Contact page

@@ -14,7 +14,7 @@ export async function GET(
     .select()
     .from(codesTable)
     .limit(1)
-    .where(eq(codesTable.code, incomeCode));
+    .where(eq(codesTable.code, incomeCode.toUpperCase()));
 
   if (isAfter(new Date(), new Date(code.expireAt))) {
     return NextResponse.json({ message: "Invalid code" }, { status: 401 });

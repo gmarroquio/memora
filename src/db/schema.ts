@@ -30,6 +30,7 @@ export const mediasTable = sqliteTable("medias", {
   url: text("url").notNull(),
   status: text("status", { enum: ["active", "deleted"] }).default("active"),
   uploader: text("uploader"),
+  comment: text("comment"),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),

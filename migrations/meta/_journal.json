@@ -43,6 +43,13 @@
       "when": 1741256723280,
       "tag": "0005_gifted_serpent_society",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1741259640337,
+      "tag": "0006_luxuriant_saracen",
+      "breakpoints": true
     }
   ]
 }

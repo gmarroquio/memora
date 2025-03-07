@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart } from "lucide-react";
 import Link from "next/link";
 import texts from "@/constants/texts.json";
 
@@ -11,7 +10,6 @@ export const Footer = () => {
         <div className="grid gap-8 lg:grid-cols-4">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Heart className="h-6 w-6 text-primary" />
               <span className="text-xl font-semibold tracking-tight">
                 Memora
               </span>

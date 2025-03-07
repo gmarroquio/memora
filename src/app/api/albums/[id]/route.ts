@@ -49,7 +49,13 @@ export const POST = async (
 
   await db
     .insert(mediasTable)
-    .values({ albumId, ownerId: album.userId, url: body.url, uploader: "" });
+    .values({
+      albumId,
+      ownerId: album.userId,
+      url: body.url,
+      uploader: "",
+      comment: body.comment,
+    });
 
   return NextResponse.json({ done: true });
 };

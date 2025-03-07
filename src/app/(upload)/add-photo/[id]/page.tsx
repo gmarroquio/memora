@@ -12,15 +12,18 @@ import Image from "next/image";
 import { toast } from "sonner";
 import { baseUrl, cn } from "@/lib/utils";
 import { Album } from "@/components/dashboard/album-list";
+import { Input } from "@/components/ui/input";
 
 export default function AddPhotoPage() {
   const path = usePathname();
   const albumId = path.split("/").at(-1);
   const [album, setAlbum] = useState<Album | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
-  const { startUpload, isUploading } = useUploadThing("imageUploader");
+  const [comment, setComment] = useState<string>("");
+  const { startUpload } = useUploadThing("imageUploader");
 
   const handleCapture = (imageData: File[]) => {
     setCapturedImage(imageData);
@@ -29,6 +32,7 @@ export default function AddPhotoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsUploading(true);
     if (!capturedImage || !imagePreview) return;
 
     try {
@@ -37,10 +41,11 @@ export default function AddPhotoPage() {
         if (image) {
           await fetch(baseUrl({ path: `/api/albums/${albumId}/` }), {
             method: "POST",
-            body: JSON.stringify({ url: image[0].ufsUrl }),
+            body: JSON.stringify({ url: image[0].ufsUrl, comment }),
           });
           setImagePreview(null);
           setCapturedImage(null);
+          toast("Upload Success");
         } else {
           throw new Error();
         }
@@ -48,6 +53,7 @@ export default function AddPhotoPage() {
     } catch {
       toast.error("Error uploading image");
     }
+    setIsUploading(false);
   };
 
   useEffect(() => {
@@ -74,7 +80,7 @@ export default function AddPhotoPage() {
           />
         </>
       )}
-      <h1 className="text-3xl text-center font-bold mb-6">{album?.title}</h1>
+      <h1 className="text-3xl text-center font-bold">{album?.title}</h1>
 
       <div
         className={cn(
@@ -100,6 +106,11 @@ export default function AddPhotoPage() {
             className="md:hidden mx-auto w-auto rounded-lg object-cover"
             width={500}
             height={450}
+          />
+          <Input
+            placeholder="Legenda (opcional)"
+            defaultValue={comment}
+            onChange={(e) => setComment(e.target.value)}
           />
 
           <Button

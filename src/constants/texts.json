@@ -9,7 +9,7 @@
       "dashboard": "Dashboard"
     },
     "footer": {
-      "subtitle": "Capture, collect, and cherish every moment of your special party with our collaborative photo album app.",
+      "subtitle": "Capture, collect, and cherish every moment of your party with our collaborative photo album app.",
       "product": {
         "title": "Product",
         "links": {
@@ -35,7 +35,7 @@
     },
     "home": {
       "hero": {
-        "title": "Capture Every Moment of Your Special Party",
+        "title": "Capture Every Moment of Your Party",
         "subtitle": "Let your guests contribute to your party memories with our collaborative photo album app.",
         "create_your_album": "Create Your Album",
         "see_how_it_works": "See How It Works",
@@ -64,7 +64,7 @@
           },
           {
             "title": "Favorites & Comments",
-            "subtitle": "Mark your favorite photos and leave comments to relive the special moments."
+            "subtitle": "Mark your favorite photos and leave comments to relive the moments."
           },
           {
             "title": "Unlimited Storage",
@@ -132,7 +132,7 @@
       "pricing": {
         "category": "Pricing",
         "title": "Simple, Transparent Pricing",
-        "subtitle": "Choose the perfect plan for your special party. No hidden fees or surprises.",
+        "subtitle": "Choose the perfect plan for your party. No hidden fees or surprises.",
         "cta": "Get Started",
         "most_popular": "Most Popular",
         "one_time": "one-time",
@@ -177,7 +177,7 @@
       },
       "cta": {
         "title": "Start Collecting Your Party Memories Today",
-        "subtitle": "Don't miss a single moment from your special party. Create your party album in minutes.",
+        "subtitle": "Don't miss a single moment from your party. Create your party album in minutes.",
         "button": "Create Your Album",
         "learn_more": "Learn More"
       }
@@ -187,13 +187,13 @@
       "our_story": {
         "title": "Our Story",
         "content": [
-          "Memora was born from a simple idea: to make sure no precious moment goes uncaptured at your special party. Founded by a team of photographers and tech enthusiasts, we set out to create a platform that brings together the perspectives of all your guests, creating a comprehensive and heartwarming collection of memories.",
+          "Memora was born from a simple idea: to make sure no precious moment goes uncaptured at your party. Founded by a team of photographers and tech enthusiasts, we set out to create a platform that brings together the perspectives of all your guests, creating a comprehensive and heartwarming collection of memories.",
           "Since our launch, we've helped thousands of hosts around the world collect, organize, and cherish their party photos in a whole new way."
         ]
       },
       "our_mission": {
         "title": "Our Mission",
-        "content": "At Memora, our mission is to ensure that every host has a complete, beautiful, and easily accessible collection of their party memories. We believe in the power of shared experiences and the joy that comes from reliving those special moments through photos."
+        "content": "At Memora, our mission is to ensure that every host has a complete, beautiful, and easily accessible collection of their party memories. We believe in the power of shared experiences and the joy that comes from reliving those moments through photos."
       },
       "features": [
         {
@@ -210,7 +210,7 @@
         }
       ],
       "cta": {
-        "title": "Ready to Capture Your Special Day?",
+        "title": "Ready to Capture Your Party?",
         "button": "Get Started with Memora"
       }
     },
@@ -359,7 +359,7 @@
       "dashboard": "Dashboard"
     },
     "footer": {
-      "subtitle": "Capture, colete e valorize cada momento da sua festa especial com nosso aplicativo colaborativo de álbum de fotos.",
+      "subtitle": "Capture, colete e valorize cada momento da sua festa com nosso aplicativo colaborativo de álbum de fotos.",
       "product": {
         "title": "Produto",
         "links": {
@@ -385,7 +385,7 @@
     },
     "home": {
       "hero": {
-        "title": "Capture Cada Momento da Sua Festa Especial",
+        "title": "Capture Cada Momento da Sua Festa",
         "subtitle": "Deixe seus convidados contribuírem para suas memórias de festa com nosso aplicativo colaborativo de álbum de fotos.",
         "create_your_album": "Crie Seu Álbum",
         "see_how_it_works": "Veja Como Funciona",
@@ -482,7 +482,7 @@
       "pricing": {
         "category": "Preços",
         "title": "Preços Simples e Transparentes",
-        "subtitle": "Escolha o plano perfeito para a sua festa especial. Sem taxas ocultas ou surpresas.",
+        "subtitle": "Escolha o plano perfeito para a sua festa. Sem taxas ocultas ou surpresas.",
         "cta": "Comece Agora",
         "one_time": "uma vez",
         "most_popular": "Mais Vendido",
@@ -527,7 +527,7 @@
       },
       "cta": {
         "title": "Comece a Coletar Suas Memórias de Festa Hoje",
-        "subtitle": "Não perca um único momento da sua festa especial. Crie seu álbum de festa em minutos.",
+        "subtitle": "Não perca um único momento da sua festa. Crie seu álbum de festa em minutos.",
         "button": "Crie Seu Álbum",
         "learn_more": "Saiba Mais"
       }
@@ -537,7 +537,7 @@
       "our_story": {
         "title": "Nossa História",
         "content": [
-          "A Memora nasceu de uma ideia simples: garantir que nenhum momento precioso passe despercebido na sua festa especial. Fundada por uma equipe de fotógrafos e entusiastas de tecnologia, nos propusemos a criar uma plataforma que reúne as perspectivas de todos os seus convidados, criando uma coleção abrangente e emocionante de memórias.",
+          "A Memora nasceu de uma ideia simples: garantir que nenhum momento precioso passe despercebido na sua festa. Fundada por uma equipe de fotógrafos e entusiastas de tecnologia, nos propusemos a criar uma plataforma que reúne as perspectivas de todos os seus convidados, criando uma coleção abrangente e emocionante de memórias.",
           "Desde o nosso lançamento, ajudamos milhares de anfitriões ao redor do mundo a coletar, organizar e valorizar suas fotos de festa de uma maneira totalmente nova."
         ]
       },
@@ -560,7 +560,7 @@
         }
       ],
       "cta": {
-        "title": "Pronto para Capturar Seu Dia Especial?",
+        "title": "Pronto para Capturar Sua Festa?",
         "button": "Comece com a Memora"
       }
     },
