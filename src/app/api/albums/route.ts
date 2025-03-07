@@ -4,8 +4,16 @@ import { albumsTable, mediasTable } from "@/db/schema";
 import { count, eq } from "drizzle-orm";
 
 export const POST = async (req: NextRequest) => {
+  const userId = req.headers.get("userId");
+  if (!userId)
+    return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
+
   const body = await req.json();
-  const [album] = await db.insert(albumsTable).values(body).returning();
+
+  const [album] = await db
+    .insert(albumsTable)
+    .values({ ...body, userId })
+    .returning();
 
   return NextResponse.json(album);
 };
@@ -25,7 +33,7 @@ export const GET = async (req: NextRequest) => {
     .from(albumsTable)
     .leftJoin(mediasTable, eq(albumsTable.id, mediasTable.albumId))
     .groupBy(albumsTable.id)
-    .where(eq(albumsTable.userId, Number(userId)));
+    .where(eq(albumsTable.userId, userId));
 
   return NextResponse.json(album);
 };

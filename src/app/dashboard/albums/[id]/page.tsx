@@ -4,11 +4,13 @@ import AlbumPhotoGallery from "@/components/dashboard/album-photo-gallery";
 import Image from "next/image";
 import { baseUrl } from "@/lib/utils";
 import { headers } from "next/headers";
+import { auth } from "@clerk/nextjs/server";
 
 async function getAlbum(id: string) {
+  const { userId } = await auth();
   const host = (await headers()).get("host");
   const response = await fetch(baseUrl({ path: `/api/albums/${id}`, host }), {
-    headers: { userId: "1" },
+    headers: { userId: userId! },
   });
   if (response.ok) {
     return response.json();

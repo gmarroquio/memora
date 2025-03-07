@@ -1,4 +1,4 @@
-# Wedding photo project (probably event)
+# Event photo project (Memora)
 
 ### Veja seu evento pelo ponto de vista dos seus convidados
 
@@ -24,16 +24,11 @@
 - [x] Codigo do album
   - [x] Validade do codigo
 - [x] On open upload check id code is valid
-- [ ] Add user on header
-- [ ] Fix dashboard sidebar on mobile
+- [x] Add user on header
+- [x] Fix dashboard sidebar on mobile
 - [ ] Generate QR code to album - site.com/album/add-photo/${CODE}
-- [ ] Delete photo
-- [ ] Delete cover when create album fails
-- [ ] Photo expiration time kinda
-  - add to metadata
-  - add to database
+- [ ] add code on search params after generate code
 - [ ] Code expiration time (test)
-- [ ] if db failed -> Delete photo
 - [x] Check code expiration date when page load
   - [x] Show invalid code page
 - [ ] On upload generate 3 images with lower quality for preview
@@ -54,6 +49,12 @@
 
 ### Post launch
 
+- [ ] if db failed -> Delete photo
+- [ ] Delete photo
+- [ ] Delete cover when create album fails
+- [ ] Photo expiration time kinda
+  - add to metadata
+  - add to database
 - [ ] FAQ page
 - [ ] Add a feature request page
 - [ ] Do a fingerprinting to save the photo sender

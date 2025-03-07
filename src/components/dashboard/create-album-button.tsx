@@ -30,6 +30,8 @@ import { useUploadThing } from "@/lib/uploadthing";
 import { baseUrl, renameFile } from "@/lib/utils";
 import { toast } from "sonner";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import { currentUser } from "@clerk/nextjs/server";
+import { useAuth } from "@clerk/nextjs";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -58,6 +60,7 @@ const createAlbumSchema = z.object({
 type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
+  const { isLoaded, userId } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
@@ -106,8 +109,8 @@ export default function CreateAlbumButton() {
         if (!coverUpload) throw new Error();
         response = await fetch(baseUrl({ path: "/api/albums" }), {
           method: "POST",
+          headers: { userId: userId! },
           body: JSON.stringify({
-            userId: 1,
             title: data.name,
             coverUrl: coverUpload[0].ufsUrl,
           }),
@@ -115,8 +118,8 @@ export default function CreateAlbumButton() {
       } else {
         response = await fetch(baseUrl({ path: "/api/albums" }), {
           method: "POST",
+          headers: { userId: userId! },
           body: JSON.stringify({
-            userId: 1,
             title: data.name,
           }),
         });
@@ -134,7 +137,7 @@ export default function CreateAlbumButton() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button size="icon">
+        <Button>
           <Plus className="md:mr-2 h-4 w-4" />
           <span className="hidden md:block">
             {text.pt.dashboard.albums.create_album.button.create}

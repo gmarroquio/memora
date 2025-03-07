@@ -20,6 +20,7 @@ import {
 import { Eye } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import { useAuth } from "@clerk/nextjs";
 
 export type Album = {
   id: string;
@@ -29,22 +30,24 @@ export type Album = {
 };
 
 export default function AlbumsList() {
+  const { isLoaded, userId } = useAuth();
   const [previewAlbum, setPreviewAlbum] = useState<Album | null>(null);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    fetch(baseUrl({ path: "/api/albums" }), {
-      headers: { userId: "1" },
-    }).then((response) => {
-      if (response.ok) {
-        response.json().then(setAlbums);
-      }
-      setLoading(false);
-    });
-  }, []);
+    if (userId)
+      fetch(baseUrl({ path: "/api/albums" }), {
+        headers: { userId },
+      }).then((response) => {
+        if (response.ok) {
+          response.json().then(setAlbums);
+        }
+        setLoading(false);
+      });
+  }, [isLoaded]);
 
-  if (loading) return <div>Loading</div>;
+  if (loading && !isLoaded) return <div>Loading</div>;
 
   return (
     <>

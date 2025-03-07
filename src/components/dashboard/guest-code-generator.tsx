@@ -35,6 +35,7 @@ import { Copy, Check } from "lucide-react";
 import { Album } from "./album-list";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import { useAuth } from "@clerk/nextjs";
 
 const guestCodeSchema = z.object({
   albumId: z.string({
@@ -48,6 +49,7 @@ export default function GuestCodeGenerator() {
   const [, copy] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState(false);
   const [albums, setAlbums] = useState<Album[]>([]);
+  const { isLoaded, userId } = useAuth();
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({
     resolver: zodResolver(guestCodeSchema),
@@ -61,7 +63,7 @@ export default function GuestCodeGenerator() {
       setIsCopied(false);
       const response = await fetch(baseUrl({ path: `/api/code` }), {
         method: "POST",
-        headers: { userId: "1" },
+        headers: { userId: userId! },
         body: JSON.stringify(values),
       });
       if (response.ok) {
@@ -87,14 +89,15 @@ export default function GuestCodeGenerator() {
   };
 
   useEffect(() => {
-    fetch(baseUrl({ path: "/api/albums" }), {
-      headers: { userId: "1" },
-    }).then((response) => {
-      if (response.ok) {
-        response.json().then(setAlbums);
-      }
-    });
-  }, []);
+    if (userId)
+      fetch(baseUrl({ path: "/api/albums" }), {
+        headers: { userId },
+      }).then((response) => {
+        if (response.ok) {
+          response.json().then(setAlbums);
+        }
+      });
+  }, [isLoaded]);
 
   return (
     <Card>
