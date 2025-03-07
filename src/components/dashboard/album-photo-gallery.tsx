@@ -11,7 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { Download, ChevronLeft, ChevronRight } from "lucide-react";
 
-type Media = { url: string; id: number; preview: string };
+export type Media = {
+  url: string;
+  id: number;
+  preview: string;
+  comment: string;
+};
 
 interface AlbumPhotoGalleryProps {
   medias: Media[];
@@ -48,12 +53,13 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
             onClick={() => setSelectedPhoto(photo)}
           >
             <Image
-              src={photo.preview || "/placeholder.svg"}
+              src={photo.url || "/placeholder.svg"}
               alt={photo.url + " preview"}
               width={309}
               height={174}
               className="object-cover rounded-md"
             />
+            <span>{photo.comment}</span>
           </div>
         ))}
       </div>
@@ -72,6 +78,7 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
             height={400}
             className="object-contain mx-auto"
           />
+          <span>{selectedPhoto?.comment}</span>
           <div className="flex justify-between items-center mt-4">
             <Button
               variant="outline"

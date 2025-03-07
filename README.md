@@ -28,15 +28,14 @@
 - [x] Fix dashboard sidebar on mobile
 - [x] create user on database
 - [x] Generate QR code to album - site.com/album/add-photo/${CODE}
-- [ ] add code on search params after generate code
-- [ ] Code expiration time (test)
+- [x] add code on search params after generate code
+- [x] Code expiration time (test)
 - [x] Check code expiration date when page load
   - [x] Show invalid code page
-- [ ] On upload generate 3 images with lower quality for preview
 - [x] Add comments to media upload
 - [x] Add toast to cofirm upload
-- [ ] Account config
-- [ ] Loading pages
+- [x] Loading pages
+- [ ] Gallery page
 
 ### Pre launch
 
@@ -51,7 +50,9 @@
 
 ### Post launch
 
+- [ ] On upload generate 3 images with lower quality for preview
 - [ ] Add logo to qrcode
+- [ ] Account config
 - [ ] Dev env
 - [ ] if db failed -> Delete photo
 - [ ] Delete photo

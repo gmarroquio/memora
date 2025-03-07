@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json";
 
@@ -38,11 +38,13 @@ type SearchAlbum = z.infer<typeof searchAlbum>;
 export default function Page() {
   const searchParams = useSearchParams();
   const toastMessage = searchParams.get("toast");
+  const code = searchParams.get("code");
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const form = useForm<SearchAlbum>({
     resolver: zodResolver(searchAlbum),
     defaultValues: {
-      code: "",
+      code: code ?? "",
     },
   });
 
@@ -51,6 +53,12 @@ export default function Page() {
       toast(toastMessage);
     }
   }, [toastMessage]);
+
+  useEffect(() => {
+    if (code && buttonRef) {
+      buttonRef.current?.click();
+    }
+  }, [buttonRef, code]);
 
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     try {
@@ -128,7 +136,7 @@ export default function Page() {
               )}
             />
 
-            <Button type="submit">
+            <Button ref={buttonRef} type="submit">
               <Camera />
               {text.pt.add_photo.form.button.label}
             </Button>

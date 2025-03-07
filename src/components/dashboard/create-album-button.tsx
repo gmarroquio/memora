@@ -44,7 +44,7 @@ const createAlbumSchema = z.object({
   name: z
     .string()
     .min(1, "Album name is required")
-    .max(50, "Album name must be 50 characters or less"),
+    .max(15, "Album name must be 15 characters or less"),
   coverImage: z
     .any()
     .optional()

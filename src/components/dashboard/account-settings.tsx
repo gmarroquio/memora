@@ -8,9 +8,26 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import text from "@/constants/texts.json";
+import { baseUrl } from "@/lib/utils";
+import { auth } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 
-export default function AccountSettings() {
+async function getData() {
+  const { userId } = await auth();
+  const host = (await headers()).get("host");
+
+  const response = await fetch(baseUrl({ host, path: "/api/user" }), {
+    headers: {
+      userId: userId!,
+    },
+  });
+  if (response.ok) return response.json();
+  else return undefined;
+}
+
+export default async function AccountSettings() {
+  const user = await getData();
   return (
     <Card>
       <CardHeader>
@@ -28,7 +45,8 @@ export default function AccountSettings() {
           </Label>
           <Input
             id="name"
-            defaultValue="John Doe"
+            disabled
+            defaultValue={user.name}
             placeholder={
               text.pt.dashboard.settings.account_settings.name.placeholder
             }
@@ -41,13 +59,14 @@ export default function AccountSettings() {
           <Input
             id="email"
             type="email"
-            defaultValue="john@example.com"
+            disabled
+            defaultValue={user.email}
             placeholder={
               text.pt.dashboard.settings.account_settings.email.placeholder
             }
           />
         </div>
-        <Button>
+        <Button disabled>
           {text.pt.dashboard.settings.account_settings.button.save}
         </Button>
       </CardContent>

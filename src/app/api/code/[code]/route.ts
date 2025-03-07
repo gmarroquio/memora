@@ -17,7 +17,7 @@ export async function GET(
     .where(eq(codesTable.code, incomeCode.toUpperCase()));
 
   if (isAfter(new Date(), new Date(code.expireAt))) {
-    return NextResponse.json({ message: "Invalid code" }, { status: 401 });
+    return NextResponse.json({ message: "Expired code!" }, { status: 401 });
   }
 
   return NextResponse.json({ code });

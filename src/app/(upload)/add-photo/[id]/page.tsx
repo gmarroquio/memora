@@ -5,7 +5,7 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Camera, Upload } from "lucide-react";
+import { Camera, Loader, Upload } from "lucide-react";
 import CameraCapture from "@/components/camera";
 import { useUploadThing } from "@/lib/uploadthing";
 import Image from "next/image";
@@ -33,6 +33,7 @@ export default function AddPhotoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsUploading(true);
+    setIsLoading(true);
     if (!capturedImage || !imagePreview) return;
 
     try {
@@ -45,6 +46,7 @@ export default function AddPhotoPage() {
           });
           setImagePreview(null);
           setCapturedImage(null);
+          setComment("");
           toast("Upload Success");
         } else {
           throw new Error();
@@ -54,6 +56,7 @@ export default function AddPhotoPage() {
       toast.error("Error uploading image");
     }
     setIsUploading(false);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -64,11 +67,15 @@ export default function AddPhotoPage() {
   }, [albumId]);
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader className="animate-spin h-10 w-10" />
+      </div>
+    );
   }
 
   return (
-    <div className="md:w-xl mx-auto pt-4 px-4 space-y-2 flex-1 flex flex-col">
+    <div className="w-full md:w-xl mx-auto pt-4 px-4 space-y-2 flex-1 flex flex-col">
       {album?.coverUrl && (
         <>
           <Image
@@ -80,7 +87,7 @@ export default function AddPhotoPage() {
           />
         </>
       )}
-      <h1 className="text-3xl text-center font-bold">{album?.title}</h1>
+      <h1 className="text-2xl md:text-3xl font-bold">{album?.title}</h1>
 
       <div
         className={cn(

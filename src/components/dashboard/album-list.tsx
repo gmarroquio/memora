@@ -17,7 +17,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Eye } from "lucide-react";
+import { Eye, Loader } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
 import { useAuth } from "@clerk/nextjs";
@@ -47,7 +47,13 @@ export default function AlbumsList() {
       });
   }, [isLoaded, userId]);
 
-  if (loading && !isLoaded) return <div>Loading</div>;
+  if (loading && !isLoaded) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <Loader className="animate-spin h-10 w-10" />
+      </div>
+    );
+  }
 
   return (
     <>
