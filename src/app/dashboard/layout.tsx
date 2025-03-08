@@ -18,7 +18,7 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen">
       <DashboardHeader />
-      <main className="flex-1 mt-6">{children}</main>
+      <main className="flex-1 mt-6 flex">{children}</main>
     </div>
   );
 }
