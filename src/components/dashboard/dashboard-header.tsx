@@ -3,15 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  AlbumIcon,
-  CogIcon,
-  ImagesIcon,
-  LogOut,
-  Menu,
-  Wallet,
-  X,
-} from "lucide-react";
+import { AlbumIcon, CogIcon, ImagesIcon, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import text from "@/constants/texts.json";
@@ -67,18 +59,20 @@ export default function DashboardHeader() {
               <AlbumIcon />
               <span>{text.pt.dashboard.sidebar.nav.albums}</span>
             </Link>
-            <Link
-              href="/dashboard/payments"
-              className={cn(
-                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname === "/dashboard/payments"
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground"
-              )}
-            >
-              <Wallet />
-              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
-            </Link>
+            {
+              // <Link
+              //   href="/dashboard/payments"
+              //   className={cn(
+              //     "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+              //     pathname === "/dashboard/payments"
+              //       ? "text-primary font-bold"
+              //       : "text-muted-foreground"
+              //   )}
+              // >
+              //   <Wallet />
+              //   <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+              // </Link>
+            }
             <Link
               href="/dashboard/settings"
               className={cn(
@@ -129,18 +123,20 @@ export default function DashboardHeader() {
               <AlbumIcon />
               <span>{text.pt.dashboard.sidebar.nav.albums}</span>
             </Link>
-            <Link
-              href="/dashboard/payments"
-              className={cn(
-                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname === "/dashboard/payments"
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground"
-              )}
-            >
-              <Wallet />
-              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
-            </Link>
+            {
+              // <Link
+              //   href="/dashboard/payments"
+              //   className={cn(
+              //     "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+              //     pathname === "/dashboard/payments"
+              //       ? "text-primary font-bold"
+              //       : "text-muted-foreground"
+              //   )}
+              // >
+              //   <Wallet />
+              //   <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+              // </Link>
+            }
             <Link
               href="/dashboard/settings"
               className={cn(
