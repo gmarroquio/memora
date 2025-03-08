@@ -22,6 +22,7 @@ const DataSchema = z.object({
   object: z.string(),
 });
 
+//eslint-disable-next-line
 const EventSchema = z.object({
   data: DataSchema,
   event_attributes: EventAttributesSchema,
@@ -39,6 +40,7 @@ export async function POST(req: NextRequest) {
 
   const sivx = new Webhook(webhookSecret);
 
+  //eslint-disable-next-line
   let msg: any;
 
   try {
@@ -47,7 +49,7 @@ export async function POST(req: NextRequest) {
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
     });
-  } catch (err) {
+  } catch {
     return new NextResponse("Bad Request", { status: 400 });
   }
 
