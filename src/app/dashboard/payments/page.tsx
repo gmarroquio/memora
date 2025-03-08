@@ -18,23 +18,22 @@ export default function Page() {
   );
   const { userId } = useAuth();
 
-  async function getStripeCheckout() {
-    setLoading(true);
-    const response = await fetch(baseUrl({ path: "/api/stripe" }), {
-      headers: { userId: userId! },
-    });
-
-    if (response.ok) {
-      const body = await response.json();
-      setStripeCheckout(body.client_secret);
-    } else {
-      toast.error("Something went wrong!");
-    }
-    setLoading(false);
-  }
   useEffect(() => {
-    getStripeCheckout();
-  }, [getStripeCheckout]);
+    fetch(baseUrl({ path: "/api/stripe" }), {
+      headers: { userId: userId! },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((body) => {
+          setStripeCheckout(body.client_secret);
+          setLoading(false);
+        });
+      } else {
+        toast.error("Something went wrong!");
+        setLoading(false);
+      }
+    });
+    //eslint-disable-next-line
+  }, []);
 
   if (loading) {
     return <div>Loading</div>;
