@@ -28,10 +28,10 @@ export default function LoginPage() {
               </TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-              <SignIn fallbackRedirectUrl="signup" />
+              <SignIn fallbackRedirectUrl="/dashboard" />
             </TabsContent>
             <TabsContent value="signup">
-              <SignUp fallbackRedirectUrl="/signup" />
+              <SignUp fallbackRedirectUrl="/dashboard" />
             </TabsContent>
           </Tabs>
         </div>
