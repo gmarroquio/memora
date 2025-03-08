@@ -6,6 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
+  console.log(body);
   await db.insert(usersTable).values({
     name: body.name,
     id: body.userId,

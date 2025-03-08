@@ -254,9 +254,7 @@
       "tabs": {
         "login": "Login",
         "signup": "Sign Up"
-      },
-      "login_redirect_url": "/dashboard",
-      "signup_redirect_url": "/signup"
+      }
     },
     "add_photo": {
       "header": {
@@ -604,9 +602,7 @@
       "tabs": {
         "login": "Entrar",
         "signup": "Cadastrar"
-      },
-      "login_redirect_url": "/dashboard",
-      "signup_redirect_url": "/signup"
+      }
     },
     "add_photo": {
       "header": {
