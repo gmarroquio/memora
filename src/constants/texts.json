@@ -650,7 +650,7 @@
         }
       },
       "settings": {
-        "title": "Configutações",
+        "title": "Configurações",
         "guest_code_generator": {
           "title": "Gerar Código de Convidado",
           "description": "Crie um código para que os convidados adicionem fotos a um álbum específico.",
