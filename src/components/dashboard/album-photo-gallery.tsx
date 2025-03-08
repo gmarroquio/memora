@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,7 +9,8 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Download, ChevronLeft, ChevronRight } from "lucide-react";
+import { Download, ChevronLeft, ChevronRight, Loader } from "lucide-react";
+import { toast } from "sonner";
 
 export type Media = {
   url: string;
@@ -24,6 +25,8 @@ interface AlbumPhotoGalleryProps {
 
 export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Media | null>(null);
+  const selected = useRef<HTMLImageElement>(null);
+  const [downloading, setDownloading] = useState(false);
 
   const handlePrevious = () => {
     const currentIndex = medias.findIndex(
@@ -42,6 +45,27 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
       setSelectedPhoto(medias[currentIndex + 1]);
     }
   };
+
+  const downloadPhoto = useCallback(async () => {
+    setDownloading(true);
+    if (selectedPhoto) {
+      const response = await fetch(selectedPhoto.url);
+      if (!response.ok) {
+        toast.error("Error downloading image");
+        return;
+      }
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.download = "image.png";
+      a.href = blobUrl;
+      a.click();
+
+      URL.revokeObjectURL(blobUrl);
+    }
+    setDownloading(false);
+  }, [selectedPhoto]);
 
   return (
     <>
@@ -72,6 +96,7 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
           <DialogTitle>Photo</DialogTitle>
           <DialogDescription />
           <Image
+            ref={selected}
             src={selectedPhoto?.url || "/placeholder.svg"}
             alt={"Selected photo"}
             width={400}
@@ -87,8 +112,20 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
             >
               <ChevronLeft className="mr-2 h-4 w-4" /> Previous
             </Button>
-            <Button variant="outline">
-              <Download className="mr-2 h-4 w-4" /> Download
+            <Button
+              variant="outline"
+              onClick={downloadPhoto}
+              disabled={downloading}
+            >
+              {downloading ? (
+                <>
+                  <Loader className="mr-2 h-4 w-4 animate-spin" /> Downloading
+                </>
+              ) : (
+                <>
+                  <Download className="mr-2 h-4 w-4" /> Download
+                </>
+              )}
             </Button>
             <Button
               variant="outline"
