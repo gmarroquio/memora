@@ -45,6 +45,7 @@ export async function GET(req: Request) {
     mode: "payment",
     line_items: [{ price: process.env.PRODUCT_TIER_1, quantity: 1 }],
     ui_mode: "embedded",
+    allow_promotion_codes: true,
   });
 
   return NextResponse.json(checkout);

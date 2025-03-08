@@ -9,9 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const stripePromise = loadStripe(
-  "pk_test_51NWPkUE4vJuSIv12WyAp9V9PBvjTq2FKWdxjfchLcUARGaR78NGcEJ4FdwLrpCmlDPcbhtfcX1wQblxio1qKq33I00czMFFO26"
-);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 export default function Page() {
   const [loading, setLoading] = useState(true);
