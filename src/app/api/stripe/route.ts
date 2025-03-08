@@ -1,10 +1,12 @@
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function GET(req: Request) {
+  const origin = (await headers()).get("origin");
   const userId = req.headers.get("userId");
   if (!userId)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
@@ -39,9 +41,9 @@ export async function GET(req: Request) {
 
   const checkout = await stripe.checkout.sessions.create({
     customer: stripeCustomerId,
-    return_url: "https://memora.party/dashboard",
+    return_url: `${origin ?? "https://memora.party"}/dashboard`,
     mode: "payment",
-    line_items: [{ price: "price_1QzzyqE4vJuSIv12go57EcG9", quantity: 1 }],
+    line_items: [{ price: process.env.PRODUCT_TIER_1, quantity: 1 }],
     ui_mode: "embedded",
   });
 
