@@ -7,7 +7,7 @@ import {
   previewsTable,
   usersTable,
 } from "@/db/schema";
-import { and, eq, count } from "drizzle-orm";
+import { and, eq, count, desc } from "drizzle-orm";
 
 export const GET = async (
   req: NextRequest,
@@ -98,7 +98,9 @@ export const POST = async (
     .from(mediasTable)
     .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
     .leftJoin(anonUsersTable, eq(mediasTable.uploader, anonUsersTable.id))
-    .where(eq(mediasTable.albumId, albumId));
+    .where(eq(mediasTable.albumId, albumId))
+    .orderBy(desc(mediasTable.id))
+    .limit(21);
 
   const [userMedias] = await db
     .select({ count: count() })

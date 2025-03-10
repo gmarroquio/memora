@@ -7,14 +7,15 @@ import {
   previewsTable,
   usersTable,
 } from "@/db/schema";
-import { count, eq } from "drizzle-orm";
+import { and, count, desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAfter } from "date-fns";
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params: _params }: { params: Promise<{ code: string }> }
 ) {
+  const page = Number(new URL(req.url).searchParams.get("page") ?? 1);
   const { code: incomeCode } = await _params;
 
   const [code] = await db
@@ -58,12 +59,20 @@ export async function GET(
     .from(mediasTable)
     .leftJoin(anonUsersTable, eq(anonUsersTable.id, mediasTable.uploader))
     .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
-    .where(eq(mediasTable.albumId, code.albumId));
+    .where(eq(mediasTable.albumId, code.albumId))
+    .orderBy(desc(mediasTable.id))
+    .offset(21 * (page - 1))
+    .limit(21);
 
   const [userMedias] = await db
     .select({ count: count() })
     .from(mediasTable)
-    .where(eq(mediasTable.ownerId, album.userId));
+    .where(
+      and(
+        eq(mediasTable.ownerId, album.userId),
+        eq(mediasTable.albumId, album.id)
+      )
+    );
 
   return NextResponse.json({
     album: { ...album, count: userMedias.count },

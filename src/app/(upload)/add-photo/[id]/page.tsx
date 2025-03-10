@@ -18,6 +18,7 @@ import { Label } from "@/components/ui/label";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
 import { convertImage } from "@/lib/image";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface MediaAlbum extends Media {
   uploaderId: string;
@@ -124,6 +125,21 @@ export default function AddPhotoPage() {
     setIsLoading(false);
   };
 
+  const handleMorePhotos = async (page = 1) => {
+    const resp = await fetch(
+      baseUrl({ path: `/api/code/${code}?page=${page}` })
+    );
+    if (resp.ok) {
+      resp.json().then((body) => {
+        setAlbum(body.album);
+        setMedias([...medias, ...body.medias]);
+      });
+      setIsLoading(false);
+    } else {
+      router.push(`/add-photo/?toast=Error finding album`);
+    }
+  };
+
   useEffect(() => {
     const storageUser = getAnonUser();
     if (!storageUser) {
@@ -168,7 +184,21 @@ export default function AddPhotoPage() {
 
       {!imagePreview && !imageShow && (
         <div className="flex flex-col justify-between flex-1 py-4 h-screen">
-          <div className="grid grid-cols-3 gap-1 overflow-y-auto pb-12">
+          <InfiniteScroll
+            dataLength={album?.count ?? 0} //This is important field to render the next data
+            next={() => {
+              handleMorePhotos(Math.floor(medias.length / 21) + 1);
+            }}
+            hasMore={Number(album?.count) > medias.length}
+            loader={
+              <>
+                <div className="animate-pulse h-31 w-31 md:h-44 md:w-44 bg-gray-200 rounded-md" />
+                <div className="animate-pulse h-31 w-31 md:h-44 md:w-44 bg-gray-200 rounded-md" />
+                <div className="animate-pulse h-31 w-31 md:h-44 md:w-44 bg-gray-200 rounded-md" />
+              </>
+            }
+            className="grid grid-cols-3 gap-1 overflow-y-auto pb-12"
+          >
             {medias.map((media) => (
               <div
                 key={media.id}
@@ -194,7 +224,7 @@ export default function AddPhotoPage() {
                 <Label className="font-bold">{media.comment}</Label>
               </div>
             ))}
-          </div>
+          </InfiniteScroll>
           <div
             className={cn(
               "flex p-2 justify-center fixed bottom-0 right-0 left-0"
