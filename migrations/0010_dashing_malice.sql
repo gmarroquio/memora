@@ -1,0 +1,1 @@
+ALTER TABLE `medias` ADD `ut_id` text DEFAULT 'empty' NOT NULL;

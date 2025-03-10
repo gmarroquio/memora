@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/index";
-import { albumsTable, mediasTable } from "@/db/schema";
+import { albumsTable, anonUsersTable, mediasTable } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 
 export const GET = async (
@@ -34,7 +34,12 @@ export const POST = async (
   { params: _params }: { params: Promise<{ id: string }> }
 ) => {
   const { id: albumId } = await _params;
-  const body = await req.json();
+  const body: {
+    url: string;
+    comment?: string;
+    utId: string;
+    uploader: string;
+  } = await req.json();
 
   const [album] = await db
     .select()
@@ -50,12 +55,19 @@ export const POST = async (
   await db.insert(mediasTable).values({
     albumId,
     ownerId: album.userId,
-    url: body.url,
-    uploader: body.uploader,
-    comment: body.comment,
+    ...body,
   });
 
-  const medias = await db.select().from(mediasTable);
+  const medias = await db
+    .select({
+      id: mediasTable.id,
+      url: mediasTable.url,
+      comment: mediasTable.comment,
+      uploaderId: anonUsersTable.id,
+      uploaderName: anonUsersTable.name,
+    })
+    .from(mediasTable)
+    .leftJoin(anonUsersTable, eq(mediasTable.uploader, anonUsersTable.id));
 
   return NextResponse.json(medias);
 };

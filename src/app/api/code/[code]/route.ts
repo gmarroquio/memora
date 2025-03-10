@@ -43,7 +43,8 @@ export async function GET(
       id: mediasTable.id,
       url: mediasTable.url,
       preview: previewsTable.url,
-      uploader: anonUsersTable.name,
+      uploaderId: anonUsersTable.id,
+      uploaderName: anonUsersTable.name,
       comment: mediasTable.comment,
     })
     .from(mediasTable)

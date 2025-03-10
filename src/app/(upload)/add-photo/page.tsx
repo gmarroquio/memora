@@ -62,7 +62,7 @@ export default function Page() {
   useEffect(() => {
     const user = getAnonUser();
     if (user) {
-      form.setValue("code", user.code);
+      form.setValue("code", code ?? user.code);
       form.setValue("name", user.name);
     }
     //eslint-disable-next-line
