@@ -127,7 +127,7 @@ export default function AddPhotoPage() {
   useEffect(() => {
     const storageUser = getAnonUser();
     if (!storageUser) {
-      router.push(`/add-photo/?toast=Name is required`);
+      router.push(`/add-photo/?toast=Name is required&code=${code}`);
     }
     setUser(storageUser);
     fetch(baseUrl({ path: `/api/code/${code}` })).then((resp) => {
