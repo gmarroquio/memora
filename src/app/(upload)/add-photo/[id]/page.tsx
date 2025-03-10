@@ -278,6 +278,7 @@ export default function AddPhotoPage() {
             className="hidden md:block mx-auto w-auto rounded-lg object-cover"
             width={500}
             height={500}
+            priority
           />
           <Image
             src={imageShow.preview || imageShow.url || "/placeholder.svg"}
@@ -285,6 +286,7 @@ export default function AddPhotoPage() {
             className="md:hidden mx-auto w-auto rounded-lg object-cover"
             width={500}
             height={450}
+            priority
           />
           <Label className="text-lg">{imageShow.comment}</Label>
 
