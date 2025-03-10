@@ -75,7 +75,7 @@ export default function Page() {
       const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
       if (response.ok) {
         const user = getAnonUser();
-        const id = user.id ?? createId();
+        const id = user?.id ?? createId();
         saveAnonUser(data.name, data.code, id);
         await fetch(baseUrl({ path: `/api/user/anon` }), {
           method: "POST",
@@ -87,7 +87,6 @@ export default function Page() {
         throw new Error(error.message);
       }
     } catch (e) {
-      console.log(e);
       toast.error("Error searching for album");
       setLoading(false);
     }
