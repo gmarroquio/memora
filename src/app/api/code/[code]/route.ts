@@ -33,7 +33,11 @@ export async function GET(
   }
 
   const [album] = await db
-    .select()
+    .select({
+      id: albumsTable.id,
+      title: albumsTable.title,
+      coverUrl: albumsTable.coverUrl,
+    })
     .from(albumsTable)
     .limit(1)
     .where(eq(albumsTable.id, code.albumId));

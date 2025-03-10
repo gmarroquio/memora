@@ -86,7 +86,8 @@ export default function Page() {
         const error = await response.json();
         throw new Error(error.message);
       }
-    } catch {
+    } catch (e) {
+      console.log(e);
       toast.error("Error searching for album");
       setLoading(false);
     }
