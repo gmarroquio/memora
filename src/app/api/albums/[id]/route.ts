@@ -97,7 +97,8 @@ export const POST = async (
     })
     .from(mediasTable)
     .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
-    .leftJoin(anonUsersTable, eq(mediasTable.uploader, anonUsersTable.id));
+    .leftJoin(anonUsersTable, eq(mediasTable.uploader, anonUsersTable.id))
+    .where(eq(mediasTable.albumId, albumId));
 
   const [userMedias] = await db
     .select({ count: count() })

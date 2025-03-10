@@ -19,7 +19,7 @@ export async function convertImage(file: File) {
         (blob) => {
           if (blob) {
             res(
-              new File([blob], "preview-" + file.name + ".webp", {
+              new File([blob], file.name + "-preview" + ".webp", {
                 type: blob.type,
               })
             );

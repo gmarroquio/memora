@@ -77,11 +77,12 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
             onClick={() => setSelectedPhoto(photo)}
           >
             <Image
-              src={photo.url || "/placeholder.svg"}
-              alt={photo.url + " preview"}
+              src={photo.preview ?? photo.url ?? "/placeholder.svg"}
+              alt={photo.comment + " preview"}
               width={309}
               height={174}
               className="object-cover rounded-md"
+              priority
             />
             <span>{photo.comment}</span>
           </div>
@@ -97,11 +98,14 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
           <DialogDescription />
           <Image
             ref={selected}
-            src={selectedPhoto?.url || "/placeholder.svg"}
+            src={
+              selectedPhoto?.preview ?? selectedPhoto?.url ?? "/placeholder.svg"
+            }
             alt={"Selected photo"}
             width={400}
             height={400}
             className="object-contain mx-auto"
+            priority
           />
           <span>{selectedPhoto?.comment}</span>
           <div className="flex justify-between items-center mt-4">

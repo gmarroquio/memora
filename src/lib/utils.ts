@@ -33,7 +33,7 @@ export function stringHash(str: string) {
 
 export function renameFile(file: File, name?: string) {
   const blob = file.slice(0, file.size, file.type);
-  const dev = Number(process.env.VERCEL) !== 1;
+  const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
   const newFile = new File(
     [blob],
     (dev ? "dev-" : "") +

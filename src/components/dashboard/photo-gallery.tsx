@@ -65,6 +65,7 @@ export default function PhotoGallery() {
               width={300}
               height={300}
               className="rounded-lg object-cover w-full h-[300px]"
+              priority
             />
             <div className="absolute top-2 left-2">
               <Checkbox
