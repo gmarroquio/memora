@@ -72,7 +72,13 @@ export default function Page() {
     try {
       const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
       if (response.ok) {
-        saveAnonUser(data.name, data.code, createId());
+        const user = getAnonUser();
+        const id = user.id ?? createId();
+        saveAnonUser(data.name, data.code, id);
+        await fetch(baseUrl({ path: `/api/user/anon` }), {
+          method: "POST",
+          body: JSON.stringify({ name: data.name, id }),
+        });
         router.push(`/add-photo/${data.code}`);
       } else {
         const error = await response.json();

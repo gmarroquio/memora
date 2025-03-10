@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { anonUsersTable } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -10,6 +11,14 @@ export async function POST(req: NextRequest) {
         { message: "Name and id required" },
         { status: 400 }
       );
+
+    const [exists] = await db
+      .select()
+      .from(anonUsersTable)
+      .where(eq(anonUsersTable.id, body.id));
+
+    if (exists)
+      return NextResponse.json({ message: "Anon user already exists!" });
 
     await db.insert(anonUsersTable).values({ id: body.id, name: body.name });
     return NextResponse.json({ message: "Anon user created!" });

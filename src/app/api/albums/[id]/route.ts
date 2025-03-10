@@ -43,7 +43,7 @@ export const POST = async (
 
   if (!album) {
     return NextResponse.redirect(
-      "https://localhost:3000/add-photo?toast=Album%20not%20found"
+      "https://memora.party/add-photo?toast=Album%20not%20found"
     );
   }
 
@@ -51,7 +51,7 @@ export const POST = async (
     albumId,
     ownerId: album.userId,
     url: body.url,
-    uploader: "",
+    uploader: body.uploader,
     comment: body.comment,
   });
 
