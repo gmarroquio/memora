@@ -55,5 +55,7 @@ export const POST = async (
     comment: body.comment,
   });
 
-  return NextResponse.json({ done: true });
+  const medias = await db.select().from(mediasTable);
+
+  return NextResponse.json(medias);
 };

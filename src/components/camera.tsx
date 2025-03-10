@@ -8,9 +8,13 @@ import { renameFile } from "@/lib/utils";
 
 interface CameraCaptureProps {
   onCapture: (imageData: File[]) => void;
+  title?: string;
 }
 
-export default function CameraCapture({ onCapture }: CameraCaptureProps) {
+export default function CameraCapture({
+  onCapture,
+  title,
+}: CameraCaptureProps) {
   const ref = useRef<HTMLInputElement>(null);
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -33,7 +37,7 @@ export default function CameraCapture({ onCapture }: CameraCaptureProps) {
         }}
       >
         <Camera className="mr-2 h-4 w-4" />
-        Capture
+        {title ?? "Capture"}
       </Button>
       <Input
         ref={ref}

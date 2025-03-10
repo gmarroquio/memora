@@ -13,16 +13,22 @@ import { toast } from "sonner";
 import { baseUrl, cn } from "@/lib/utils";
 import { Album } from "@/components/dashboard/album-list";
 import { Input } from "@/components/ui/input";
+import { Media } from "@/components/dashboard/album-photo-gallery";
+import { Label } from "@/components/ui/label";
+import { getAnonUser } from "@/lib/anonUser";
+import { useRouter } from "next/navigation";
 
 export default function AddPhotoPage() {
   const path = usePathname();
-  const albumId = path.split("/").at(-1);
+  const code = path.split("/").at(-1);
   const [album, setAlbum] = useState<Album | null>(null);
+  const [medias, setMedias] = useState<Media[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
   const [comment, setComment] = useState<string>("");
+  const router = useRouter();
   const { startUpload } = useUploadThing("imageUploader");
 
   const handleCapture = (imageData: File[]) => {
@@ -30,24 +36,40 @@ export default function AddPhotoPage() {
     if (imageData) setImagePreview(URL.createObjectURL(imageData[0]));
   };
 
+  const cleanPhoto = () => {
+    setImagePreview(null);
+    setCapturedImage(null);
+    setComment("");
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsUploading(true);
     setIsLoading(true);
-    if (!capturedImage || !imagePreview) return;
+    const user = getAnonUser();
+    if (!capturedImage || !imagePreview || !user) return;
 
     try {
-      if (capturedImage) {
+      if (capturedImage && album) {
         const image = await startUpload([capturedImage[0]]);
         if (image) {
-          await fetch(baseUrl({ path: `/api/albums/${albumId}/` }), {
-            method: "POST",
-            body: JSON.stringify({ url: image[0].ufsUrl, comment }),
-          });
-          setImagePreview(null);
-          setCapturedImage(null);
-          setComment("");
-          toast("Upload Success");
+          const response = await fetch(
+            baseUrl({ path: `/api/albums/${album.id}/` }),
+            {
+              method: "POST",
+              body: JSON.stringify({
+                url: image[0].ufsUrl,
+                comment,
+                uploader: user.id,
+              }),
+            }
+          );
+          if (response.ok) {
+            const medias = await response.json();
+            setMedias(medias);
+            cleanPhoto();
+            toast("Upload Success");
+          } else throw new Error();
         } else {
           throw new Error();
         }
@@ -60,11 +82,19 @@ export default function AddPhotoPage() {
   };
 
   useEffect(() => {
-    fetch(baseUrl({ path: `/api/albums/${albumId}` })).then((resp) => {
-      resp.json().then(setAlbum);
+    const user = getAnonUser();
+    if (!user) {
+      router.push(`/add-photo/?toast=`);
+    }
+    fetch(baseUrl({ path: `/api/code/${code}` })).then((resp) => {
+      resp.json().then((body) => {
+        setAlbum(body.album);
+        console.log(body.medias);
+        setMedias(body.medias);
+      });
       setIsLoading(false);
     });
-  }, [albumId]);
+  }, [code, router]);
 
   if (isLoading) {
     return (
@@ -75,7 +105,7 @@ export default function AddPhotoPage() {
   }
 
   return (
-    <div className="w-full md:w-xl mx-auto pt-4 px-4 space-y-2 flex-1 flex flex-col">
+    <div className="w-full md:w-xl mx-auto pt-4 px-2 space-y-2 flex-1 flex flex-col">
       {album?.coverUrl && (
         <>
           <Image
@@ -89,14 +119,34 @@ export default function AddPhotoPage() {
       )}
       <h1 className="text-2xl md:text-3xl font-bold">{album?.title}</h1>
 
-      <div
-        className={cn(
-          "flex items-center justify-center",
-          !imagePreview && "flex-1"
-        )}
-      >
-        <CameraCapture onCapture={handleCapture} />
-      </div>
+      {!imagePreview && (
+        <div className="flex flex-col justify-between flex-1 py-4 h-screen">
+          <div className="grid grid-cols-3 gap-1 overflow-y-scroll pb-12">
+            {medias.map((media) => (
+              <div
+                key={media.id}
+                className="overflow-x-hidden overflow-y-hidden space-y-1"
+              >
+                <Image
+                  alt={media.comment ?? media.url}
+                  src={media.url}
+                  className="object-cover rounded-md"
+                  width={124}
+                  height={124}
+                />
+                <Label className="font-bold">{media.comment}</Label>
+              </div>
+            ))}
+          </div>
+          <div
+            className={cn(
+              "flex p-2 justify-center fixed bottom-0 right-0 left-0"
+            )}
+          >
+            <CameraCapture onCapture={handleCapture} />
+          </div>
+        </div>
+      )}
 
       {imagePreview && (
         <>
@@ -120,6 +170,17 @@ export default function AddPhotoPage() {
             onChange={(e) => setComment(e.target.value)}
           />
 
+          <div className="flex space-x-2">
+            <Button
+              disabled={!capturedImage || isUploading}
+              className="w-full"
+              onClick={cleanPhoto}
+              variant="destructive"
+            >
+              Apagar
+            </Button>
+            <CameraCapture title="Nova foto" onCapture={handleCapture} />
+          </div>
           <Button
             disabled={!capturedImage || isUploading}
             className="w-full"
@@ -133,7 +194,7 @@ export default function AddPhotoPage() {
             ) : (
               <>
                 <Camera className="mr-2 h-4 w-4" />
-                Add Photo to Album
+                Adicionar foto ao Album
               </>
             )}
           </Button>

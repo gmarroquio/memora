@@ -67,20 +67,18 @@ export default function DashboardHeader() {
               <AlbumIcon />
               <span>{text.pt.dashboard.sidebar.nav.albums}</span>
             </Link>
-            {
-              <Link
-                href="/dashboard/payments"
-                className={cn(
-                  "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                  pathname === "/dashboard/payments"
-                    ? "text-primary font-bold"
-                    : "text-muted-foreground"
-                )}
-              >
-                <Wallet />
-                <span>{text.pt.dashboard.sidebar.nav.payments}</span>
-              </Link>
-            }
+            <Link
+              href="/dashboard/payments"
+              className={cn(
+                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+                pathname === "/dashboard/payments"
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground"
+              )}
+            >
+              <Wallet />
+              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+            </Link>
             <Link
               href="/dashboard/settings"
               className={cn(
@@ -131,20 +129,18 @@ export default function DashboardHeader() {
               <AlbumIcon />
               <span>{text.pt.dashboard.sidebar.nav.albums}</span>
             </Link>
-            {
-              // <Link
-              //   href="/dashboard/payments"
-              //   className={cn(
-              //     "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-              //     pathname === "/dashboard/payments"
-              //       ? "text-primary font-bold"
-              //       : "text-muted-foreground"
-              //   )}
-              // >
-              //   <Wallet />
-              //   <span>{text.pt.dashboard.sidebar.nav.payments}</span>
-              // </Link>
-            }
+            <Link
+              href="/dashboard/payments"
+              className={cn(
+                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+                pathname === "/dashboard/payments"
+                  ? "text-primary font-bold"
+                  : "text-muted-foreground"
+              )}
+            >
+              <Wallet />
+              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+            </Link>
             <Link
               href="/dashboard/settings"
               className={cn(

@@ -14,6 +14,13 @@ export const usersTable = sqliteTable("users", {
   }).default("free"),
 });
 
+export const anonUsersTable = sqliteTable("anon_users", {
+  id: text("id")
+    .$defaultFn(() => createId())
+    .primaryKey(),
+  name: text("name").notNull(),
+});
+
 export const albumsTable = sqliteTable("albums", {
   id: text("id")
     .$defaultFn(() => createId())

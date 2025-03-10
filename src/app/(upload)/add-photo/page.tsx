@@ -25,12 +25,16 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json";
+import { Input } from "@/components/ui/input";
+import { createId } from "@paralleldrive/cuid2";
+import { getAnonUser, saveAnonUser } from "@/lib/anonUser";
 
 const searchAlbum = z.object({
   code: z
     .string()
     .min(6, "Album name must be 6 characters")
     .max(6, "Album name must be 6 characters"),
+  name: z.string().min(1, "Name is required"),
 });
 
 type SearchAlbum = z.infer<typeof searchAlbum>;
@@ -45,6 +49,7 @@ export default function Page() {
     resolver: zodResolver(searchAlbum),
     defaultValues: {
       code: code ?? "",
+      name: "",
     },
   });
 
@@ -55,19 +60,23 @@ export default function Page() {
   }, [toastMessage]);
 
   useEffect(() => {
-    if (code && buttonRef) {
-      buttonRef.current?.click();
+    const user = getAnonUser();
+    if (user) {
+      form.setValue("code", user.code);
+      form.setValue("name", user.name);
     }
-  }, [buttonRef, code]);
+    //eslint-disable-next-line
+  }, []);
 
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     try {
       const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
       if (response.ok) {
-        const { code } = await response.json();
-        router.push(`/add-photo/${code.albumId}`);
+        saveAnonUser(data.name, data.code, createId());
+        router.push(`/add-photo/${data.code}`);
       } else {
-        throw new Error();
+        const error = await response.json();
+        throw new Error(error.message);
       }
     } catch {
       toast.error("Error searching for album");
@@ -84,7 +93,7 @@ export default function Page() {
           </span>
         </Link>
       </header>
-      <div className="py-4 md:w-lg mx-auto">
+      <div className="mt-10 md:mt-0 py-4 md:w-lg mx-auto">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
@@ -130,6 +139,22 @@ export default function Page() {
                   </FormControl>
                   <FormDescription>
                     {text.pt.add_photo.form.album_code.description}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{text.pt.add_photo.form.name.label}</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    {text.pt.add_photo.form.name.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

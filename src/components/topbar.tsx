@@ -45,7 +45,7 @@ export const TopBar = () => {
             </Link>
           </nav>
 
-          <div>
+          <div className="hidden md:block">
             <SignedIn>
               <Link href="/dashboard" className="hidden md:flex">
                 <Button>{text.pt.top_bar.dashboard}</Button>

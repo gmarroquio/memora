@@ -614,6 +614,10 @@
           "label": "Código do Álbum",
           "description": "Por favor, insira o código do álbum"
         },
+        "name": {
+          "label": "Nome",
+          "description": "Insira seu nome"
+        },
         "button": {
           "label": "Ir para o Álbum"
         }

@@ -1,5 +1,11 @@
 import { db } from "@/db";
-import { codesTable } from "@/db/schema";
+import {
+  albumsTable,
+  anonUsersTable,
+  codesTable,
+  mediasTable,
+  previewsTable,
+} from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAfter } from "date-fns";
@@ -16,9 +22,34 @@ export async function GET(
     .limit(1)
     .where(eq(codesTable.code, incomeCode.toUpperCase()));
 
+  if (!code)
+    return NextResponse.json(
+      { message: "Code don't exists!" },
+      { status: 401 }
+    );
+
   if (isAfter(new Date(), new Date(code.expireAt))) {
     return NextResponse.json({ message: "Expired code!" }, { status: 401 });
   }
 
-  return NextResponse.json({ code });
+  const [album] = await db
+    .select()
+    .from(albumsTable)
+    .limit(1)
+    .where(eq(albumsTable.id, code.albumId));
+
+  const medias = await db
+    .select({
+      id: mediasTable.id,
+      url: mediasTable.url,
+      preview: previewsTable.url,
+      uploader: anonUsersTable.name,
+      comment: mediasTable.comment,
+    })
+    .from(mediasTable)
+    .leftJoin(anonUsersTable, eq(anonUsersTable.id, mediasTable.uploader))
+    .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
+    .where(eq(mediasTable.albumId, code.albumId));
+
+  return NextResponse.json({ album, medias });
 }
