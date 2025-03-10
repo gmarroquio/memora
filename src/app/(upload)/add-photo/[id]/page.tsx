@@ -17,6 +17,7 @@ import { Media } from "@/components/dashboard/album-photo-gallery";
 import { Label } from "@/components/ui/label";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
+import { convertImage } from "@/lib/image";
 
 interface MediaAlbum extends Media {
   uploaderId: string;
@@ -26,7 +27,9 @@ interface MediaAlbum extends Media {
 export default function AddPhotoPage() {
   const path = usePathname();
   const code = path.split("/").at(-1);
-  const [album, setAlbum] = useState<Album | null>(null);
+  const [album, setAlbum] = useState<
+    (Album & { limit: number; count: number }) | null
+  >(null);
   const [medias, setMedias] = useState<MediaAlbum[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -40,9 +43,10 @@ export default function AddPhotoPage() {
   const router = useRouter();
   const { startUpload } = useUploadThing("imageUploader");
 
-  const handleCapture = (imageData: File[]) => {
-    setCapturedImage(imageData);
-    if (imageData) setImagePreview(URL.createObjectURL(imageData[0]));
+  const handleCapture = async (imageData: File) => {
+    const preview = await convertImage(imageData);
+    setCapturedImage([imageData, preview]);
+    if (imageData) setImagePreview(URL.createObjectURL(preview));
   };
 
   const cleanPhoto = () => {
@@ -85,7 +89,7 @@ export default function AddPhotoPage() {
 
     try {
       if (capturedImage && album) {
-        const image = await startUpload([capturedImage[0]]);
+        const image = await startUpload(capturedImage);
         if (image && image.length > 0) {
           const response = await fetch(
             baseUrl({ path: `/api/albums/${album.id}/` }),
@@ -96,12 +100,15 @@ export default function AddPhotoPage() {
                 comment,
                 uploader: user.id,
                 utId: image[0].key,
+                previewUrl: image[1].ufsUrl,
+                previewKey: image[1].key,
               }),
             }
           );
           if (response.ok) {
-            const medias = await response.json();
+            const { medias, count } = await response.json();
             setMedias(medias);
+            setAlbum({ ...album, count });
             cleanPhoto();
             toast("Upload Success");
           } else throw new Error();
@@ -169,17 +176,19 @@ export default function AddPhotoPage() {
               >
                 <Image
                   alt={media.comment ?? media.url}
-                  src={media.url}
+                  src={media.preview ?? media.url}
                   className="object-cover rounded-md md:hidden"
                   width={124}
                   height={124}
+                  priority
                 />
                 <Image
                   alt={media.comment ?? media.url}
-                  src={media.url}
+                  src={media.preview ?? media.url}
                   className="object-cover rounded-md hidden md:block"
                   width={180}
                   height={180}
+                  priority
                 />
                 <Label className="font-bold">{media.comment}</Label>
               </div>
@@ -229,19 +238,27 @@ export default function AddPhotoPage() {
             <CameraCapture title="Nova foto" onCapture={handleCapture} />
           </div>
           <Button
-            disabled={!capturedImage || isUploading}
+            disabled={
+              !capturedImage || isUploading || album?.count! >= album?.limit!
+            }
             className="w-full"
             onClick={handleSubmit}
           >
-            {isUploading ? (
-              <>
-                <Upload className="mr-2 h-4 w-4" />
-                Uploading...
-              </>
+            {album?.count! >= album?.limit! ? (
+              <span>Limite do album atingido</span>
             ) : (
               <>
-                <Camera className="mr-2 h-4 w-4" />
-                Adicionar foto ao Album
+                {isUploading ? (
+                  <>
+                    <Upload className="mr-2 h-4 w-4" />
+                    Uploading...
+                  </>
+                ) : (
+                  <>
+                    <Camera className="mr-2 h-4 w-4" />
+                    Adicionar foto ao Album
+                  </>
+                )}
               </>
             )}
           </Button>
@@ -267,11 +284,7 @@ export default function AddPhotoPage() {
             width={500}
             height={450}
           />
-          <Input
-            placeholder="Legenda (opcional)"
-            defaultValue={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
+          <Label className="text-lg">{imageShow.comment}</Label>
 
           <div className="flex space-x-2">
             <Button

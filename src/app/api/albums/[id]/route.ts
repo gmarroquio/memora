@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/index";
-import { albumsTable, anonUsersTable, mediasTable } from "@/db/schema";
-import { and, eq } from "drizzle-orm";
+import {
+  albumsTable,
+  anonUsersTable,
+  mediasTable,
+  previewsTable,
+  usersTable,
+} from "@/db/schema";
+import { and, eq, count } from "drizzle-orm";
 
 export const GET = async (
   req: NextRequest,
@@ -39,11 +45,18 @@ export const POST = async (
     comment?: string;
     utId: string;
     uploader: string;
+    previewUrl: string;
+    previewKey: string;
   } = await req.json();
 
   const [album] = await db
-    .select()
+    .select({
+      id: albumsTable.id,
+      userId: albumsTable.userId,
+      limit: usersTable.photoLimit,
+    })
     .from(albumsTable)
+    .leftJoin(usersTable, eq(usersTable.id, albumsTable.userId))
     .where(eq(albumsTable.id, albumId));
 
   if (!album) {
@@ -52,22 +65,44 @@ export const POST = async (
     );
   }
 
-  await db.insert(mediasTable).values({
-    albumId,
-    ownerId: album.userId,
-    ...body,
-  });
+  const [newMedia] = await db
+    .insert(mediasTable)
+    .values({
+      albumId,
+      ownerId: album.userId,
+      url: body.url,
+      comment: body.comment,
+      utId: body.utId,
+      uploader: body.uploader,
+    })
+    .returning();
+
+  await db
+    .insert(previewsTable)
+    .values({
+      mediaId: newMedia.id,
+      utId: body.previewKey,
+      url: body.previewUrl,
+    })
+    .returning();
 
   const medias = await db
     .select({
       id: mediasTable.id,
       url: mediasTable.url,
       comment: mediasTable.comment,
+      preview: previewsTable.url,
       uploaderId: anonUsersTable.id,
       uploaderName: anonUsersTable.name,
     })
     .from(mediasTable)
+    .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
     .leftJoin(anonUsersTable, eq(mediasTable.uploader, anonUsersTable.id));
 
-  return NextResponse.json(medias);
+  const [userMedias] = await db
+    .select({ count: count() })
+    .from(mediasTable)
+    .where(eq(mediasTable.ownerId, album.userId));
+
+  return NextResponse.json({ medias, count: userMedias.count });
 };

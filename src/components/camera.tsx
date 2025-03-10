@@ -7,7 +7,7 @@ import { Camera } from "lucide-react";
 import { renameFile } from "@/lib/utils";
 
 interface CameraCaptureProps {
-  onCapture: (imageData: File[]) => void;
+  onCapture: (imageData: File) => void;
   title?: string;
 }
 
@@ -19,11 +19,8 @@ export default function CameraCapture({
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       e.preventDefault();
-      const files: File[] = [];
-      for (const file of e.target.files) {
-        files.push(renameFile(file));
-      }
-      onCapture(files);
+      const file: File = renameFile(e.target.files[0]);
+      onCapture(file);
     }
   };
 

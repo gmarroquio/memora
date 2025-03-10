@@ -50,6 +50,7 @@ export const mediasTable = sqliteTable("medias", {
 export const previewsTable = sqliteTable("previews", {
   id: integer("id").primaryKey(),
   url: text("url").notNull(),
+  utId: text("ut_id").notNull().default("empty"),
   mediaId: integer("media_id")
     .notNull()
     .references(() => mediasTable.id, { onDelete: "cascade" }),

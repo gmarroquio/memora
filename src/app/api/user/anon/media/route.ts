@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { mediasTable } from "@/db/schema";
+import { mediasTable, previewsTable } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -15,10 +15,20 @@ export async function DELETE(req: NextRequest) {
       { status: 400 }
     );
 
+  const preview = await db
+    .select()
+    .from(previewsTable)
+    .where(eq(previewsTable.mediaId, body.id));
+
   const deletedMedia = await db
     .delete(mediasTable)
     .where(and(eq(mediasTable.uploader, userId), eq(mediasTable.id, body.id)))
     .returning();
+
+  const toDelete = [
+    ...preview.map((p) => p.utId),
+    ...deletedMedia.map((m) => m.utId),
+  ];
 
   await fetch("https://api.uploadthing.com/v6/deleteFiles", {
     method: "POST",
@@ -27,7 +37,7 @@ export async function DELETE(req: NextRequest) {
       "Content-type": "application/json",
     },
     body: JSON.stringify({
-      fileKeys: deletedMedia.map((m) => m.utId),
+      fileKeys: toDelete,
     }),
   });
 

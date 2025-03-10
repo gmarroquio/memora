@@ -5,8 +5,9 @@ import {
   codesTable,
   mediasTable,
   previewsTable,
+  usersTable,
 } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { count, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAfter } from "date-fns";
 
@@ -37,8 +38,11 @@ export async function GET(
       id: albumsTable.id,
       title: albumsTable.title,
       coverUrl: albumsTable.coverUrl,
+      limit: usersTable.photoLimit,
+      userId: albumsTable.userId,
     })
     .from(albumsTable)
+    .leftJoin(usersTable, eq(albumsTable.userId, usersTable.id))
     .limit(1)
     .where(eq(albumsTable.id, code.albumId));
 
@@ -56,5 +60,13 @@ export async function GET(
     .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
     .where(eq(mediasTable.albumId, code.albumId));
 
-  return NextResponse.json({ album, medias });
+  const [userMedias] = await db
+    .select({ count: count() })
+    .from(mediasTable)
+    .where(eq(mediasTable.ownerId, album.userId));
+
+  return NextResponse.json({
+    album: { ...album, count: userMedias.count },
+    medias,
+  });
 }

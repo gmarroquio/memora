@@ -78,6 +78,13 @@
       "when": 1741589793244,
       "tag": "0010_dashing_malice",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1741609924855,
+      "tag": "0011_far_sugar_man",
+      "breakpoints": true
     }
   ]
 }
