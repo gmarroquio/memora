@@ -299,7 +299,13 @@ export default function AddPhotoPage() {
             >
               Apagar
             </Button>
-            <CameraCapture title="Nova foto" onCapture={handleCapture} />
+            <CameraCapture
+              title="Nova foto"
+              onCapture={(file) => {
+                setImageShow(null);
+                handleCapture(file);
+              }}
+            />
           </div>
         </>
       )}
