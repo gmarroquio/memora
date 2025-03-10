@@ -239,12 +239,14 @@ export default function AddPhotoPage() {
           </div>
           <Button
             disabled={
-              !capturedImage || isUploading || album?.count! >= album?.limit!
+              !capturedImage ||
+              isUploading ||
+              Number(album?.count) >= Number(album?.limit)
             }
             className="w-full"
             onClick={handleSubmit}
           >
-            {album?.count! >= album?.limit! ? (
+            {Number(album?.count) >= Number(album?.limit) ? (
               <span>Limite do album atingido</span>
             ) : (
               <>
