@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/form";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json";
 import { Input } from "@/components/ui/input";
@@ -45,6 +45,7 @@ export default function Page() {
   const code = searchParams.get("code");
   const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const form = useForm<SearchAlbum>({
     resolver: zodResolver(searchAlbum),
     defaultValues: {
@@ -69,6 +70,7 @@ export default function Page() {
   }, []);
 
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
+    setLoading(true);
     try {
       const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
       if (response.ok) {
@@ -86,6 +88,7 @@ export default function Page() {
       }
     } catch {
       toast.error("Error searching for album");
+      setLoading(false);
     }
   };
 
@@ -167,7 +170,7 @@ export default function Page() {
               )}
             />
 
-            <Button ref={buttonRef} type="submit">
+            <Button ref={buttonRef} type="submit" disabled={loading}>
               <Camera />
               {text.pt.add_photo.form.button.label}
             </Button>
