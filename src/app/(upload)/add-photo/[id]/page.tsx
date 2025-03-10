@@ -44,6 +44,7 @@ export default function AddPhotoPage() {
   const { startUpload } = useUploadThing("imageUploader");
 
   const handleCapture = async (imageData: File) => {
+    setImageShow(null);
     const preview = await convertImage(imageData);
     setCapturedImage([imageData, preview]);
     if (imageData) setImagePreview(URL.createObjectURL(preview));
@@ -299,13 +300,7 @@ export default function AddPhotoPage() {
             >
               Apagar
             </Button>
-            <CameraCapture
-              title="Nova foto"
-              onCapture={(file) => {
-                setImageShow(null);
-                handleCapture(file);
-              }}
-            />
+            <CameraCapture title="Nova foto" onCapture={handleCapture} />
           </div>
         </>
       )}
