@@ -13,7 +13,6 @@ export const ourFileRouter = {
       maxFileCount: 2,
     },
   })
-    // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       const user = await auth(req);
 
