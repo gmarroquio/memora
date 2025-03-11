@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/index";
-import { albumsTable, mediasTable } from "@/db/schema";
+import { albumsTable, mediasTable, usersTable } from "@/db/schema";
 import { count, eq } from "drizzle-orm";
 
 export const POST = async (req: NextRequest) => {
@@ -9,6 +9,24 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
   const body = await req.json();
+
+  const [user] = await db
+    .select({
+      albumLimit: usersTable.albumLimit,
+      totalAlbum: count(albumsTable.id),
+    })
+    .from(usersTable)
+    .leftJoin(albumsTable, eq(usersTable.id, albumsTable.userId))
+    .where(eq(usersTable.id, userId));
+
+  if (!user)
+    return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
+
+  if (user.albumLimit <= user.totalAlbum)
+    return NextResponse.json(
+      { message: "User cannot create more albums!" },
+      { status: 403 }
+    );
 
   const [album] = await db
     .insert(albumsTable)

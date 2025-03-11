@@ -5,7 +5,6 @@ import {
   anonUsersTable,
   mediasTable,
   previewsTable,
-  usersTable,
 } from "@/db/schema";
 import { and, eq, count, desc } from "drizzle-orm";
 
@@ -53,10 +52,9 @@ export const POST = async (
     .select({
       id: albumsTable.id,
       userId: albumsTable.userId,
-      limit: usersTable.photoLimit,
+      limit: albumsTable.photoLimit,
     })
     .from(albumsTable)
-    .leftJoin(usersTable, eq(usersTable.id, albumsTable.userId))
     .where(eq(albumsTable.id, albumId));
 
   if (!album) {

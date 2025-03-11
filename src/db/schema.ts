@@ -8,10 +8,7 @@ export const usersTable = sqliteTable("users", {
   email: text("email").unique().notNull(),
   phoneNumber: text("phone_number"),
   stripeId: text("stripe_id"),
-  photoLimit: integer("photo_limit").default(10),
-  subscription: text("subscription", {
-    enum: ["free", "tier1", "tier2", "tier3"],
-  }).default("free"),
+  albumLimit: integer("album_limit").default(2).notNull(),
 });
 
 export const anonUsersTable = sqliteTable("anon_users", {
@@ -27,6 +24,7 @@ export const albumsTable = sqliteTable("albums", {
     .primaryKey(),
   title: text("title").notNull(),
   coverUrl: text("cover_url"),
+  photoLimit: integer("photo_limit").default(10),
   userId: text("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
@@ -62,6 +60,22 @@ export const codesTable = sqliteTable("album_codes", {
   expireAt: text("expire_at")
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),
+  albumId: text("album_id")
+    .notNull()
+    .references(() => albumsTable.id, { onDelete: "cascade" }),
+});
+
+export const subscriptionsTable = sqliteTable("subscriptions", {
+  id: integer("id").primaryKey(),
+  priceId: text("price_id"),
+  status: text("status", { enum: ["active", "inactive", "expired"] }).default(
+    "inactive"
+  ),
+  buyDate: text("buy_date")
+    .default(sql`(CURRENT_TIMESTAMP)`)
+    .notNull(),
+  activationDate: text("activation_date").default(sql`(CURRENT_TIMESTAMP)`),
+  expireAt: text("expire_at").default(sql`(CURRENT_TIMESTAMP)`),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),

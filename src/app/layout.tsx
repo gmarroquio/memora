@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Event photos",
+  title: "Memora",
   description: "See your party by your guests lens",
 };
 

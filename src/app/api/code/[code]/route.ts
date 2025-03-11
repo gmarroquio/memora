@@ -5,7 +5,6 @@ import {
   codesTable,
   mediasTable,
   previewsTable,
-  usersTable,
 } from "@/db/schema";
 import { and, count, desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
@@ -39,11 +38,10 @@ export async function GET(
       id: albumsTable.id,
       title: albumsTable.title,
       coverUrl: albumsTable.coverUrl,
-      limit: usersTable.photoLimit,
+      limit: albumsTable.photoLimit,
       userId: albumsTable.userId,
     })
     .from(albumsTable)
-    .leftJoin(usersTable, eq(albumsTable.userId, usersTable.id))
     .limit(1)
     .where(eq(albumsTable.id, code.albumId));
 
