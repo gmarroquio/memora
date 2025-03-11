@@ -1,12 +1,16 @@
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
+const products = {
+  tier_1: { id: process.env.PRODUCT_TIER_1!, photo_limit: 500, time: 6 },
+  tier_2: { id: process.env.PRODUCT_TIER_2!, photo_limit: 1500, time: 12 },
+};
+
 export async function GET(req: Request) {
-  const origin = (await headers()).get("origin");
+  const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
   const userId = req.headers.get("userId");
   if (!userId)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
@@ -22,13 +26,13 @@ export async function GET(req: Request) {
 
   let stripeCustomerId: string | null = user.stripeId;
 
-  const stripe = new Stripe(process.env.STRIPE_SECRECT_KEY!);
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
   if (!stripeCustomerId) {
     const newCustomer = await stripe.customers.create({
       email: user.email,
       metadata: {
-        userId: user.id, // DO NOT FORGET THIS
+        userId: user.id,
       },
     });
     await db
@@ -41,11 +45,14 @@ export async function GET(req: Request) {
 
   const checkout = await stripe.checkout.sessions.create({
     customer: stripeCustomerId,
-    return_url: `${origin ?? "https://memora.party"}/dashboard`,
+    return_url: `${
+      dev ? "http://localhost:3000" : "https://memora.party"
+    }/dashboard/albums`,
     mode: "payment",
-    line_items: [{ price: process.env.PRODUCT_TIER_1, quantity: 1 }],
+    line_items: [{ price: products.tier_1.id, quantity: 1 }],
     ui_mode: "embedded",
     allow_promotion_codes: true,
+    metadata: products.tier_1,
   });
 
   return NextResponse.json(checkout);

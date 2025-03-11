@@ -8,7 +8,7 @@ export const usersTable = sqliteTable("users", {
   email: text("email").unique().notNull(),
   phoneNumber: text("phone_number"),
   stripeId: text("stripe_id"),
-  albumLimit: integer("album_limit").default(2).notNull(),
+  albumLimit: integer("album_limit").default(0).notNull(),
 });
 
 export const anonUsersTable = sqliteTable("anon_users", {
@@ -68,17 +68,23 @@ export const codesTable = sqliteTable("album_codes", {
 export const subscriptionsTable = sqliteTable("subscriptions", {
   id: integer("id").primaryKey(),
   priceId: text("price_id"),
-  status: text("status", { enum: ["active", "inactive", "expired"] }).default(
-    "inactive"
-  ),
+  receiptUrl: text("receipt_url"),
+  status: text("status", {
+    enum: ["active", "inactive", "expired", "deleted"],
+  }).default("inactive"),
   buyDate: text("buy_date")
     .default(sql`(CURRENT_TIMESTAMP)`)
     .notNull(),
-  activationDate: text("activation_date").default(sql`(CURRENT_TIMESTAMP)`),
-  expireAt: text("expire_at").default(sql`(CURRENT_TIMESTAMP)`),
-  albumId: text("album_id")
+  activationDate: text("activation_date"),
+  photoLimit: integer("photo_limit").default(500),
+  expirationTime: integer("expiration_time").default(6),
+  expireAt: text("expire_at"),
+  albumId: text("album_id").references(() => albumsTable.id, {
+    onDelete: "cascade",
+  }),
+  userId: text("user_id")
     .notNull()
-    .references(() => albumsTable.id, { onDelete: "cascade" }),
+    .references(() => usersTable.id, { onDelete: "cascade" }),
 });
 
 export type InsertUser = typeof usersTable.$inferInsert;

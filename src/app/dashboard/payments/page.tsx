@@ -6,6 +6,7 @@ import {
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
@@ -37,7 +38,11 @@ export default function Page() {
   }, [isLoaded]);
 
   if (loading) {
-    return <div>Loading</div>;
+    return (
+      <div className="h-40 w-full flex items-center justify-center">
+        <Loader className="animate-spin h-10 w-10" />
+      </div>
+    );
   }
 
   return (
