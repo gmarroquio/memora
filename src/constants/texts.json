@@ -143,6 +143,7 @@
             "price": 49,
             "perks": [
               "Up to 500 photos",
+              "U$ 0.15 per adition photo (optional)",
               "6 months of storage",
               "Custom album link",
               "Download all photos"
@@ -153,7 +154,8 @@
             "currency": "U$",
             "price": 99,
             "perks": [
-              "Unlimited photos",
+              "Up to 1500 photos",
+              "U$ 0.10 per adition photo (optional)",
               "1 year of storage",
               "Custom album link & QR code",
               "Download all photos",
@@ -164,6 +166,7 @@
             "name": "Big Events",
             "cta": "Get in touch",
             "perks": [
+              "Unlimited photos",
               "Tailored for your event",
               "Public albums",
               "Custom album link & QR code",
@@ -491,6 +494,7 @@
             "price": 49,
             "perks": [
               "Até 500 fotos",
+              "R$ 0.15 por foto adicional (opcional)",
               "6 meses de armazenamento",
               "Link personalizado do álbum",
               "Baixar todas as fotos"
@@ -501,7 +505,8 @@
             "currency": "R$",
             "price": 99,
             "perks": [
-              "Fotos ilimitadas",
+              "Até 1500 fotos",
+              "R$ 0.10 por foto adicional (opcional)",
               "1 ano de armazenamento",
               "Link personalizado do álbum e código QR",
               "Baixar todas as fotos",
