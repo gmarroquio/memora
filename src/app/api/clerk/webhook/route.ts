@@ -64,8 +64,7 @@ export async function POST(req: NextRequest) {
 
     await db.insert(albumsTable).values({
       userId: msg.data.id,
-      title:
-        "Memórias de " + msg.data.first_name + " " + (msg.data.last_name ?? ""),
+      title: "Memórias de " + msg.data.first_name,
     });
   }
 

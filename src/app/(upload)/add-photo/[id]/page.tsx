@@ -181,7 +181,7 @@ export default function AddPhotoPage() {
           />
         </>
       )}
-      <h1 className="text-2xl md:text-3xl font-bold">{album?.title}</h1>
+      <h1 className="text-xl md:text-3xl font-bold">{album?.title}</h1>
 
       {!imagePreview && !imageShow && (
         <div className="flex flex-col justify-between flex-1 py-4 h-screen">

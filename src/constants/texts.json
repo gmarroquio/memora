@@ -684,7 +684,7 @@
           "title": "Configurações da Conta",
           "description": "Gerencie os detalhes e preferências da sua conta.",
           "name": {
-            "label": "Nome",
+            "label": "Album",
             "placeholder": "Digite seu nome"
           },
           "email": {
