@@ -1,6 +1,7 @@
 import type React from "react";
 import type { Metadata } from "next";
 import DashboardHeader from "@/components/dashboard/dashboard-header";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -18,7 +19,9 @@ export default function DashboardLayout({
   return (
     <div className="flex min-h-screen">
       <DashboardHeader />
-      <main className="flex-1 mt-6 flex">{children}</main>
+      <Suspense>
+        <main className="flex-1 mt-6 flex">{children}</main>
+      </Suspense>
     </div>
   );
 }

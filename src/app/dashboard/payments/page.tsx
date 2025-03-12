@@ -42,7 +42,7 @@ export default function Page() {
         })
         .finally(() => setLoading(false));
     }
-  }, [price, isLoaded]);
+  }, [price, isLoaded, userId]);
 
   if (!isLoaded) {
     return (
