@@ -52,8 +52,9 @@ export const TopBar = () => {
               </Link>
             </SignedIn>
             <SignedOut>
-              <Button disabled>{text.pt.top_bar.get_start}</Button>
-              <Link href="/login" className="hidden md:flex"></Link>
+              <Link href="/login" className="hidden md:flex">
+                <Button>{text.pt.top_bar.get_start}</Button>
+              </Link>
             </SignedOut>
           </div>
 
