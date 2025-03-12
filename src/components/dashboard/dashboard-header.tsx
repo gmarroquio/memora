@@ -3,15 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  AlbumIcon,
-  CogIcon,
-  ImagesIcon,
-  LogOut,
-  Menu,
-  Wallet,
-  X,
-} from "lucide-react";
+import { CogIcon, ImagesIcon, LogOut, Menu, Wallet, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import text from "@/constants/texts.json";
@@ -55,18 +47,20 @@ export default function DashboardHeader() {
               <ImagesIcon />
               <span>{text.pt.dashboard.sidebar.nav.gallery}</span>
             </Link>
-            <Link
-              href="/dashboard/albums"
-              className={cn(
-                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname.startsWith("/dashboard/albums")
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground"
-              )}
-            >
-              <AlbumIcon />
-              <span>{text.pt.dashboard.sidebar.nav.albums}</span>
-            </Link>
+            {
+              //<Link
+              //  href="/dashboard/albums"
+              //  className={cn(
+              //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+              //    pathname.startsWith("/dashboard/albums")
+              //      ? "text-primary font-bold"
+              //      : "text-muted-foreground"
+              //  )}
+              //>
+              //  <AlbumIcon />
+              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
+              //</Link>
+            }
             <Link
               href="/dashboard/payments"
               className={cn(
@@ -117,18 +111,20 @@ export default function DashboardHeader() {
               <ImagesIcon />
               <span>{text.pt.dashboard.sidebar.nav.gallery}</span>
             </Link>
-            <Link
-              href="/dashboard/albums"
-              className={cn(
-                "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname.startsWith("/dashboard/albums")
-                  ? "text-primary font-bold"
-                  : "text-muted-foreground"
-              )}
-            >
-              <AlbumIcon />
-              <span>{text.pt.dashboard.sidebar.nav.albums}</span>
-            </Link>
+            {
+              //<Link
+              //  href="/dashboard/albums"
+              //  className={cn(
+              //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
+              //    pathname.startsWith("/dashboard/albums")
+              //      ? "text-primary font-bold"
+              //      : "text-muted-foreground"
+              //  )}
+              //>
+              //  <AlbumIcon />
+              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
+              //</Link>
+            }
             <Link
               href="/dashboard/payments"
               className={cn(

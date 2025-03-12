@@ -1,7 +1,8 @@
 import { db } from "@/db";
-import { codesTable } from "@/db/schema";
+import { albumsTable, codesTable } from "@/db/schema";
 import { NextRequest, NextResponse } from "next/server";
 import { addDays } from "date-fns";
+import { eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
   const userId = req.headers.get("userId");
@@ -11,9 +12,14 @@ export async function POST(req: NextRequest) {
   const code = Math.random().toString(36).substring(2, 8).toUpperCase();
   const expires = addDays(new Date(), body.expirationDays);
 
+  const [album] = await db
+    .select()
+    .from(albumsTable)
+    .where(eq(albumsTable.userId, userId));
+
   await db
     .insert(codesTable)
-    .values({ code, expireAt: expires.toISOString(), albumId: body.albumId });
+    .values({ code, expireAt: expires.toISOString(), albumId: album.id });
 
   return NextResponse.json({ code });
 }

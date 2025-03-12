@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
           userId: data.object.customer,
           status: data.object.payment_status,
           priceId: data.object.metadata?.id,
-          photoLimit: data.object.metadata?.photoLimit,
+          photoLimit: data.object.metadata?.photo_limit,
           time: data.object.metadata?.time,
         }),
       }

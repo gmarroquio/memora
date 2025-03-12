@@ -15,13 +15,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import {
   Card,
@@ -33,15 +26,11 @@ import {
 import { QRCodeCanvas } from "qrcode.react";
 import { toast } from "sonner";
 import { Copy, Check, Download } from "lucide-react";
-import { Album } from "./album-list";
 import { baseUrl } from "@/lib/utils";
 import text from "@/constants/texts.json"; // Adjust the import path accordingly
 import { useAuth } from "@clerk/nextjs";
 
 const guestCodeSchema = z.object({
-  albumId: z.string({
-    required_error: "Please select an album.",
-  }),
   expirationDays: z.number().min(1).max(30),
 });
 
@@ -49,8 +38,7 @@ export default function GuestCodeGenerator() {
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [, copy] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState(false);
-  const [albums, setAlbums] = useState<Album[]>([]);
-  const { isLoaded, userId } = useAuth();
+  const { userId } = useAuth();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const form = useForm<z.infer<typeof guestCodeSchema>>({
@@ -108,17 +96,6 @@ export default function GuestCodeGenerator() {
     downloadStringAsFile(dataURI, `${code}-qrcode.png`);
   }
 
-  useEffect(() => {
-    if (userId)
-      fetch(baseUrl({ path: "/api/albums" }), {
-        headers: { userId },
-      }).then((response) => {
-        if (response.ok) {
-          response.json().then(setAlbums);
-        }
-      });
-  }, [isLoaded, userId]);
-
   return (
     <Card>
       <CardHeader>
@@ -132,49 +109,6 @@ export default function GuestCodeGenerator() {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="albumId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {
-                      text.pt.dashboard.settings.guest_code_generator.album
-                        .label
-                    }
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue
-                          placeholder={
-                            text.pt.dashboard.settings.guest_code_generator
-                              .album.placeholder
-                          }
-                        />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {albums.map((album) => (
-                        <SelectItem key={album.id} value={album.id}>
-                          {album.title}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormDescription>
-                    {
-                      text.pt.dashboard.settings.guest_code_generator.album
-                        .description
-                    }
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="expirationDays"

@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { usersTable } from "@/db/schema";
+import { albumsTable, usersTable } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
@@ -60,6 +60,12 @@ export async function POST(req: NextRequest) {
       id: msg.data.id,
       name: msg.data.first_name + " " + (msg.data.last_name ?? ""),
       email: msg.data.email_addresses[0].email_address,
+    });
+
+    await db.insert(albumsTable).values({
+      userId: msg.data.id,
+      title:
+        "Memórias de " + msg.data.first_name + " " + (msg.data.last_name ?? ""),
     });
   }
 

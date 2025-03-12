@@ -12,7 +12,8 @@ const products = {
 export async function GET(req: Request) {
   const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
   const userId = req.headers.get("userId");
-  if (!userId)
+  const price = req.headers.get("price") as "tier_1" | "tier_2";
+  if (!userId || !price)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
   const [user] = await db
@@ -47,12 +48,12 @@ export async function GET(req: Request) {
     customer: stripeCustomerId,
     return_url: `${
       dev ? "http://localhost:3000" : "https://memora.party"
-    }/dashboard/albums`,
+    }/dashboard/`,
     mode: "payment",
-    line_items: [{ price: products.tier_1.id, quantity: 1 }],
+    line_items: [{ price: products[price].id, quantity: 1 }],
     ui_mode: "embedded",
     allow_promotion_codes: true,
-    metadata: products.tier_1,
+    metadata: products[price],
   });
 
   return NextResponse.json(checkout);

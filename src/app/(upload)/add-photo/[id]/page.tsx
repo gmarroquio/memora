@@ -199,6 +199,11 @@ export default function AddPhotoPage() {
             }
             className="grid grid-cols-3 gap-1 overflow-y-auto pb-12"
           >
+            {medias.length === 0 && (
+              <span className="col-span-3 text-lg">
+                Album ainda não tem nenhuma foto
+              </span>
+            )}
             {medias.map((media) => (
               <div
                 key={media.id}
