@@ -46,6 +46,9 @@ export default function AddPhotoPage() {
 
   const handleCapture = async (imageData: File) => {
     setImageShow(null);
+    while (imageData.size > 4 * 1024 * 1024) {
+      imageData = await convertImage(imageData, 0.9, 1, false);
+    }
     const preview = await convertImage(imageData);
     setCapturedImage([imageData, preview]);
     if (imageData) setImagePreview(URL.createObjectURL(preview));
@@ -74,10 +77,9 @@ export default function AddPhotoPage() {
           const newMedias = medias.filter((m) => m.id !== imageShow.id);
           setMedias(newMedias);
           setImageShow(null);
-          toast("Photo deleted");
         } else throw new Error();
       }
-    } catch {
+    } catch (e) {
       toast.error("Error uploading image");
     }
   };
@@ -112,13 +114,12 @@ export default function AddPhotoPage() {
             setMedias(medias);
             setAlbum({ ...album, count });
             cleanPhoto();
-            toast("Upload Success");
           } else throw new Error();
         } else {
           throw new Error();
         }
       }
-    } catch {
+    } catch (e) {
       toast.error("Error uploading image");
     }
     setIsUploading(false);
@@ -329,7 +330,7 @@ export default function AddPhotoPage() {
           <div className="flex space-x-2">
             <Button
               disabled={imageShow.uploaderId !== user!.id}
-              className="w-full"
+              className="w-full h-10 md:h-8"
               onClick={handleDeletePhoto}
               variant="destructive"
             >

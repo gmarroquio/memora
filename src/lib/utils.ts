@@ -34,10 +34,13 @@ export function stringHash(str: string) {
 export function renameFile(file: File, name?: string) {
   const blob = file.slice(0, file.size, file.type);
   const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
+  const end = file.type.split("/")[1];
   const newFile = new File(
     [blob],
     (dev ? "dev-" : "") +
-      (name ?? stringHash(file.name + new Date().toISOString())),
+      (name ?? stringHash(file.name + new Date().toISOString())) +
+      "." +
+      end,
     {
       type: file.type,
     }
