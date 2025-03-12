@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import text from "@/constants/texts.json";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -375,12 +376,22 @@ export default function Page() {
                       ))}
                     </ul>
                   </div>
-                  <Button
-                    className="mt-8 bg-primary hover:bg-primary/90"
-                    disabled
-                  >
-                    {price.cta ?? text.pt.home.pricing.cta}
-                  </Button>
+                  {price.id ? (
+                    <Link href={`/login?payments=${price.id}`}>
+                      <Button className="mt-8 bg-primary hover:bg-primary/90">
+                        {price.cta ?? text.pt.home.pricing.cta}
+                      </Button>
+                    </Link>
+                  ) : (
+                    <>
+                      <Button
+                        disabled={price.disabled}
+                        className="mt-8 bg-primary hover:bg-primary/90"
+                      >
+                        {price.cta ?? text.pt.home.pricing.cta}
+                      </Button>
+                    </>
+                  )}
                 </div>
               ))}
             </div>

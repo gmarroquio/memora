@@ -484,7 +484,7 @@
         "category": "Preços",
         "title": "Preços Simples e Transparentes",
         "subtitle": "Escolha o plano perfeito para a sua festa. Sem taxas ocultas ou surpresas.",
-        "cta": "Em Breve",
+        "cta": "Comece agora",
         "one_time": "uma vez",
         "most_popular": "Mais Vendido",
         "prices": [
@@ -492,6 +492,7 @@
             "name": "Básico",
             "currency": "R$",
             "price": 49,
+            "id": "tier_1",
             "perks": [
               "Até 500 fotos",
               "R$ 0.15 por foto adicional (opcional)",
@@ -504,6 +505,7 @@
             "name": "Premium",
             "currency": "R$",
             "price": 99,
+            "id": "tier_2",
             "perks": [
               "Até 1500 fotos",
               "R$ 0.10 por foto adicional (opcional)",
@@ -516,6 +518,7 @@
           {
             "name": "Grandes Eventos",
             "cta": "Entre em contato",
+            "disabled": true,
             "perks": [
               "Personalizado para o seu evento",
               "Albums públicos",

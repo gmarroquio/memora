@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
   const searchParams = useSearchParams();
-  const payment = searchParams.get("payment");
+  const payments = searchParams.get("payments");
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
 
   return (
@@ -33,8 +33,8 @@ export default function LoginPage() {
             <TabsContent value="login">
               <SignIn
                 fallbackRedirectUrl={
-                  payment
-                    ? `/dashboard/payments?payment=${payment}`
+                  payments
+                    ? `/dashboard/payments?payments=${payments}`
                     : "/dashboard"
                 }
               />
@@ -42,8 +42,8 @@ export default function LoginPage() {
             <TabsContent value="signup">
               <SignUp
                 fallbackRedirectUrl={
-                  payment
-                    ? `/dashboard/payments?payment=${payment}`
+                  payments
+                    ? `/dashboard/payments?payments=${payments}`
                     : "/dashboard"
                 }
               />

@@ -17,11 +17,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 export default function Page() {
   const searchParams = useSearchParams();
-  const payment = searchParams.get("payment");
+  const payments = searchParams.get("payments");
   const [stripeCheckout, setStripeCheckout] = useState<string | undefined>(
     undefined
   );
-  const [price, setPrice] = useState<string | null>(payment);
+  const [price, setPrice] = useState<string | null>(payments);
   const [loading, setLoading] = useState<boolean>(false);
   const { userId, isLoaded } = useAuth();
 
