@@ -52,6 +52,7 @@ export const PaymentsHistory = ({ setPrice }: PaymentHistoryProps) => {
 
   if (
     subscriptions &&
+    subscriptions.length > 0 &&
     isBefore(
       new Date(),
       addMonths(subscriptions[0].buyDate, subscriptions[0].expirationTime)
