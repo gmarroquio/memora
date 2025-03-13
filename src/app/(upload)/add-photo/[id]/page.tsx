@@ -79,7 +79,7 @@ export default function AddPhotoPage() {
           setImageShow(null);
         } else throw new Error();
       }
-    } catch (e) {
+    } catch {
       toast.error("Error uploading image");
     }
   };
@@ -119,7 +119,7 @@ export default function AddPhotoPage() {
           throw new Error();
         }
       }
-    } catch (e) {
+    } catch {
       toast.error("Error uploading image");
     }
     setIsUploading(false);

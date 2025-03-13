@@ -23,7 +23,11 @@ export async function GET(req: NextRequest) {
   }
 
   const [user] = await db
-    .select()
+    .select({
+      id: usersTable.id,
+      name: usersTable.name,
+      email: usersTable.email,
+    })
     .from(usersTable)
     .where(eq(usersTable.id, userId));
 

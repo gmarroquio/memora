@@ -1,19 +1,12 @@
 "use client";
-import PaymentPlans from "@/components/dashboard/payment-plans";
-import { Button } from "@/components/ui/button";
+import { PaymentsHistory } from "@/components/dashboard/payments/payments";
+import { StripeCheckout } from "@/components/dashboard/payments/stripe-checkout";
 import { baseUrl } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
-import {
-  EmbeddedCheckout,
-  EmbeddedCheckoutProvider,
-} from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { Loader } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -59,24 +52,10 @@ export default function Page() {
         Choose the perfect plan for your wedding photo collection
       </p>
       {stripeCheckout ? (
-        <div>
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-semibold">Complete Your Purchase</h2>
-            <Button
-              variant="ghost"
-              onClick={() => setStripeCheckout(undefined)}
-            >
-              Change Plan
-            </Button>
-          </div>
-
-          <EmbeddedCheckoutProvider
-            stripe={stripePromise}
-            options={{ clientSecret: stripeCheckout }}
-          >
-            <EmbeddedCheckout className="w-full" />
-          </EmbeddedCheckoutProvider>
-        </div>
+        <StripeCheckout
+          cleanCheckout={() => setStripeCheckout(undefined)}
+          checkout={stripeCheckout}
+        />
       ) : (
         <>
           {loading ? (
@@ -84,7 +63,7 @@ export default function Page() {
               <Loader className="animate-spin h-10 w-10" />
             </div>
           ) : (
-            <PaymentPlans setPlan={setPrice} />
+            <PaymentsHistory setPrice={setPrice} />
           )}
         </>
       )}

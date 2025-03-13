@@ -37,6 +37,7 @@ export default function DashboardHeader() {
           <nav className="flex flex-col space-y-4 lg:space-y-6 my-6">
             <Link
               href="/dashboard"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard"
@@ -50,6 +51,7 @@ export default function DashboardHeader() {
             {
               //<Link
               //  href="/dashboard/albums"
+              //  onClick={() => setIsMenuOpen(!isMenuOpen)}
               //  className={cn(
               //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
               //    pathname.startsWith("/dashboard/albums")
@@ -63,6 +65,7 @@ export default function DashboardHeader() {
             }
             <Link
               href="/dashboard/payments"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard/payments"
@@ -75,6 +78,7 @@ export default function DashboardHeader() {
             </Link>
             <Link
               href="/dashboard/settings"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard/settings"
@@ -101,6 +105,7 @@ export default function DashboardHeader() {
           <nav className="flex flex-col space-y-4 lg:space-y-6 mt-6 mb-4">
             <Link
               href="/dashboard"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard"
@@ -114,6 +119,7 @@ export default function DashboardHeader() {
             {
               //<Link
               //  href="/dashboard/albums"
+              //  onClick={() => setIsMenuOpen(!isMenuOpen)}
               //  className={cn(
               //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
               //    pathname.startsWith("/dashboard/albums")
@@ -127,6 +133,7 @@ export default function DashboardHeader() {
             }
             <Link
               href="/dashboard/payments"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard/payments"
@@ -139,6 +146,7 @@ export default function DashboardHeader() {
             </Link>
             <Link
               href="/dashboard/settings"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
                 pathname === "/dashboard/settings"

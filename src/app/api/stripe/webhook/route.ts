@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify({
           userId: data.object.customer,
           status: data.object.payment_status,
+          name: data.object.metadata?.name,
           priceId: data.object.metadata?.id,
           photoLimit: data.object.metadata?.photo_limit,
           time: data.object.metadata?.time,

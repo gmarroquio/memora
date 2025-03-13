@@ -1,0 +1,1 @@
+ALTER TABLE `subscriptions` ADD `name` text DEFAULT 'Basic';

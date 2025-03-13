@@ -5,8 +5,18 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const products = {
-  tier_1: { id: process.env.PRODUCT_TIER_1!, photo_limit: 500, time: 6 },
-  tier_2: { id: process.env.PRODUCT_TIER_2!, photo_limit: 1500, time: 12 },
+  tier_1: {
+    id: process.env.PRODUCT_TIER_1!,
+    photo_limit: 500,
+    time: 6,
+    name: "Basic",
+  },
+  tier_2: {
+    id: process.env.PRODUCT_TIER_2!,
+    photo_limit: 1500,
+    time: 12,
+    name: "Premium",
+  },
 };
 
 export async function GET(req: Request) {

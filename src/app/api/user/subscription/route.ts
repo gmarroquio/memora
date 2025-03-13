@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { albumsTable, subscriptionsTable, usersTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -17,6 +17,7 @@ export async function POST(req: NextRequest) {
 
   await db.insert(subscriptionsTable).values({
     userId: user.id,
+    name: body.name,
     priceId: body.priceId,
     photoLimit: body.photoLimit,
     expirationTime: body.time,
@@ -30,4 +31,18 @@ export async function POST(req: NextRequest) {
     .where(eq(albumsTable.userId, user.id));
 
   return NextResponse.json({ message: "Done" });
+}
+
+export async function GET(req: NextRequest) {
+  const userId = req.headers.get("userId");
+  if (!userId)
+    return NextResponse.json({ message: "User unouthorized" }, { status: 401 });
+
+  const subscriptions = await db
+    .select()
+    .from(subscriptionsTable)
+    .where(eq(subscriptionsTable.userId, userId))
+    .orderBy(desc(subscriptionsTable.buyDate));
+
+  return NextResponse.json(subscriptions);
 }

@@ -69,6 +69,7 @@ export const subscriptionsTable = sqliteTable("subscriptions", {
   id: integer("id").primaryKey(),
   priceId: text("price_id"),
   receiptUrl: text("receipt_url"),
+  name: text("name").default("Basic"),
   status: text("status", {
     enum: ["active", "inactive", "expired", "deleted"],
   }).default("inactive"),
