@@ -43,7 +43,7 @@ export function Logo({
         />
       </svg>
       {logoBlur && (
-        <div className={`blur-${blurSize} absolute top-0`}>
+        <div style={{ filter: "blur(8px)" }} className={`absolute top-0`}>
           <svg
             id="blur"
             data-name="blur"
