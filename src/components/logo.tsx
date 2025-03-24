@@ -15,20 +15,17 @@ export function Logo({
   return (
     <div className="relative">
       <svg
-        id="Camada_2"
-        data-name="Camada 2"
+        id="logo"
+        data-name="logo"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 680.62 479.54"
         height={size * 480}
         width={size * 680}
       >
         <defs>
-          <filter id="f1">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
-          </filter>
           <linearGradient
             id="gradient"
-            data-name="Gradiente sem nome 18"
+            data-name="gradient"
             x1="265.3"
             y1="853.84"
             x2="785.6"
@@ -48,19 +45,16 @@ export function Logo({
         />
       </svg>
       {logoBlur && (
-        <div className={cn("absolute top-0", `blur-${blurSize}`)}>
+        <div className={`blur-${blurSize} absolute top-0`}>
           <svg
-            id="Camada_2"
-            data-name="Camada 2"
+            id="blur"
+            data-name="blur"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 680.62 479.54"
             height={size * 480}
             width={size * 680}
           >
             <defs>
-              <filter id="f1">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
-              </filter>
               <linearGradient
                 id="gradient"
                 data-name="Gradiente sem nome 18"
