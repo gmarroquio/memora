@@ -17,7 +17,7 @@ export default function LoginPage() {
       <main className="flex-1 flex justify-center">
         <div className="w-full max-w-md p-6">
           <div className="mb-6 flex justify-center">
-            <Logo size={0.3} />
+            <Logo size={0.2} logoBlur />
           </div>
           <h1 className="text-2xl font-bold text-center mb-6">
             {text.pt.title}
