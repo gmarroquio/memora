@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import { Button } from "@/components/ui/button";
-import { Camera, Heart } from "lucide-react";
+import { Camera } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
