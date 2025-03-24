@@ -8,7 +8,7 @@ export function Logo({
   size = 0.3,
   color = "url(#gradient)",
   logoBlur = false,
-  blurSize = "sm",
+  blurSize = 8,
 }: LogoProps) {
   return (
     <div className="relative">
