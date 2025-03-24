@@ -2,7 +2,7 @@ type LogoProps = {
   size?: number;
   color?: string;
   logoBlur?: boolean;
-  blurSize?: "xs" | "sm" | "md" | "lg" | "xl";
+  blurSize?: 4 | 8 | 12 | 16 | 20;
 };
 export function Logo({
   size = 0.3,
@@ -43,7 +43,10 @@ export function Logo({
         />
       </svg>
       {logoBlur && (
-        <div style={{ filter: "blur(8px)" }} className={`absolute top-0`}>
+        <div
+          style={{ filter: `blur(${blurSize}px)` }}
+          className={`absolute top-0`}
+        >
           <svg
             id="blur"
             data-name="blur"
