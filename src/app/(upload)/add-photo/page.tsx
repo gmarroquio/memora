@@ -28,6 +28,7 @@ import text from "./text.json";
 import { Input } from "@/components/ui/input";
 import { createId } from "@paralleldrive/cuid2";
 import { getAnonUser, saveAnonUser } from "@/lib/anonUser";
+import { Logo } from "@/components/logo";
 
 const searchAlbum = z.object({
   code: z
@@ -95,11 +96,8 @@ export default function Page() {
   return (
     <>
       <header className="hidden md:flex items-center justify-center p-2 md:p-4">
-        <Link href="/" className="flex items-center gap-2">
-          <Heart className="md:h-9 md:w-9 text-primary" />
-          <span className="md:text-4xl font-semibold tracking-tight">
-            {text.pt.header.title}
-          </span>
+        <Link href="/" className="flex items-center">
+          <Logo size={0.05} />
         </Link>
       </header>
       <div className="mt-10 md:mt-0 py-4 md:w-lg mx-auto">

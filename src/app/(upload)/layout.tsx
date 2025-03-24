@@ -10,9 +10,12 @@ export default function Layout({
   return (
     <div className="h-dvh flex flex-col">
       <header className="absolute bg-white top-4 right-0 border rounded-l-md py-1 px-2 shadow-md">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="font-semibold text-sm tracking-tight">
-            powered by Memora
+        <Link href="/" className="flex items-center gap-1">
+          <span className="font-semibold text-sm tracking-tight text-primary-foreground">
+            powered by
+          </span>
+          <span className="font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary">
+            Memora
           </span>
         </Link>
       </header>
