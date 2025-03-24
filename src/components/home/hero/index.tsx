@@ -34,7 +34,7 @@ export function Hero() {
           <div className="relative flex items-center justify-center">
             <div className="relative w-full max-w-[500px] aspect-square overflow-hidden rounded-2xl shadow-xl">
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="https://lsowtuhwxu.ufs.sh/f/JcBjQyIwDp03qmnEPduO3lFi7nRoqSwXyCA9PLEQ1TzhdtbY"
                 width={600}
                 height={600}
                 alt="Wedding couple looking at photos on a smartphone"

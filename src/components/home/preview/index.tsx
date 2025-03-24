@@ -30,7 +30,7 @@ export function Preview() {
             <div className="relative rounded-2xl border bg-background p-2 shadow-xl">
               <div className="overflow-hidden rounded-xl">
                 <Image
-                  src="/placeholder.svg?height=600&width=400"
+                  src="https://lsowtuhwxu.ufs.sh/f/JcBjQyIwDp03cR0ofbzB5QFlb6HxdtwGKU2pn7IfXsRyj9Tu"
                   width={400}
                   height={600}
                   alt="Party photo album app interface"
