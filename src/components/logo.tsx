@@ -2,13 +2,13 @@ type LogoProps = {
   size?: number;
   color?: string;
   logoBlur?: boolean;
-  blurSize?: 4 | 8 | 12 | 16 | 20;
+  blurSize?: 4 | 8 | 12 | 16 | 20 | 24 | 28;
 };
 export function Logo({
   size = 0.3,
   color = "url(#gradient)",
   logoBlur = false,
-  blurSize = 8,
+  blurSize = 28,
 }: LogoProps) {
   return (
     <div className="relative">
