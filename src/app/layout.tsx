@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { PostHogProvider } from "./providers";
+import { IntlProvider } from "./intl-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,14 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
         >
-          <PostHogProvider>
-            {children}
-            <Toaster />
-          </PostHogProvider>
+          <IntlProvider>
+            <PostHogProvider>
+              {children}
+              <Toaster />
+            </PostHogProvider>
+          </IntlProvider>
         </body>
       </html>
     </ClerkProvider>

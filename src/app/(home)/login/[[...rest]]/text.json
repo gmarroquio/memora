@@ -1,0 +1,16 @@
+{
+  "en": {
+    "title": "Welcome to Memora",
+    "tabs": {
+      "login": "Login",
+      "signup": "Sign Up"
+    }
+  },
+  "pt": {
+    "title": "Bem-vindo à Memora",
+    "tabs": {
+      "login": "Entrar",
+      "signup": "Cadastrar"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "en": {
+    "category": "App Preview",
+    "title": "Beautiful, Intuitive, and Easy to Use",
+    "subtitle": "Our app is designed to be simple for guests of all ages. No downloads required - just open the link and start uploading.",
+    "comment": "So easy to use! All our guests loved it!",
+    "bullet_points": [
+      "No app download required",
+      "Works on any device",
+      "Simple one-tap upload",
+      "Real-time updates"
+    ]
+  },
+  "pt": {
+    "category": "Prévia do App",
+    "title": "Bonito, Intuitivo e Fácil de Usar",
+    "subtitle": "Nosso aplicativo é projetado para ser simples para convidados de todas as idades. Sem downloads necessários - basta abrir o link e começar a enviar.",
+    "comment": "Tão fácil de usar! Todos os nossos convidados adoraram!",
+    "bullet_points": [
+      "Sem necessidade de download do aplicativo",
+      "Funciona em qualquer dispositivo",
+      "Envio simples com um toque",
+      "Atualizações em tempo real"
+    ]
+  }
+}

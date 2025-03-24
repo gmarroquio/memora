@@ -5,7 +5,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import text from "@/constants/texts.json";
+import text from "./text.json";
 
 export const TopBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,8 +14,11 @@ export const TopBar = () => {
     <>
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center">
             <span className="text-xl font-semibold tracking-tight">Memora</span>
+            <span className="text-xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary">
+              .party
+            </span>
           </Link>
 
           <nav className="hidden md:flex gap-6">
@@ -23,37 +26,37 @@ export const TopBar = () => {
               href="/#features"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.top_bar.features}
+              {text.pt.features}
             </Link>
             <Link
               href="/#how-it-works"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.top_bar.how_it_works}
+              {text.pt.how_it_works}
             </Link>
             <Link
               href="/#testimonials"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.top_bar.testimonials}
+              {text.pt.testimonials}
             </Link>
             <Link
               href="/#pricing"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.top_bar.price}
+              {text.pt.price}
             </Link>
           </nav>
 
           <div className="hidden md:block">
             <SignedIn>
               <Link href="/dashboard" className="hidden md:flex">
-                <Button>{text.pt.top_bar.dashboard}</Button>
+                <Button>{text.pt.dashboard}</Button>
               </Link>
             </SignedIn>
             <SignedOut>
               <Link href="/login" className="hidden md:flex">
-                <Button>{text.pt.top_bar.get_start}</Button>
+                <Button>{text.pt.get_start}</Button>
               </Link>
             </SignedOut>
           </div>
@@ -80,37 +83,37 @@ export const TopBar = () => {
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.top_bar.features}
+              {text.pt.features}
             </Link>
             <Link
               href="#how-it-works"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.top_bar.how_it_works}
+              {text.pt.how_it_works}
             </Link>
             <Link
               href="#testimonials"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.top_bar.testimonials}
+              {text.pt.testimonials}
             </Link>
             <Link
               href="#pricing"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.top_bar.price}
+              {text.pt.price}
             </Link>
             <SignedOut>
               <Link href="/login" className="flex flex-col gap-2 mt-4">
-                <Button>{text.pt.top_bar.get_start}</Button>
+                <Button>{text.pt.get_start}</Button>
               </Link>
             </SignedOut>
             <SignedIn>
               <Link href="/dashboard" className="flex flex-col gap-2 mt-4">
-                <Button>{text.pt.top_bar.dashboard}</Button>
+                <Button>{text.pt.dashboard}</Button>
               </Link>
             </SignedIn>
           </div>

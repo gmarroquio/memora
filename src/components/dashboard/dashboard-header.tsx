@@ -159,7 +159,7 @@ export default function DashboardHeader() {
             </Link>
           </nav>
           <SignOutButton>
-            <Button variant="ghost" className="p-0">
+            <Button className="p-0">
               <LogOut className="h-4 w-4" />
               <span>{text.pt.dashboard.sidebar.logout}</span>
             </Button>

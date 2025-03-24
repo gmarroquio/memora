@@ -1,0 +1,15 @@
+{
+  "pt": {
+    "no_photo": "Album ainda não tem nenhuma foto",
+    "delete": "Apagar",
+    "uploading": "Adicionando...",
+    "add_photo": "Adicionar foto ao Album",
+    "new_photo": "Nova foto",
+    "subtitle": "Legenda (opcional)",
+    "limit": "Limite do album atingido",
+    "error_deleting": "Erro ao apagar imagem",
+    "error_finding": "Album não encontrado",
+    "error_uploading": "Erro ao adicionar imagem",
+    "error_name": "Nome é obrigatório"
+  }
+}

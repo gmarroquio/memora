@@ -1,0 +1,54 @@
+{
+  "en": {
+    "title": "Your Albums",
+    "create_album": {
+      "title": "Create New Album",
+      "album_name": {
+        "label": "Album Name",
+        "placeholder": "Enter album name"
+      },
+      "cover_image": {
+        "label": "Cover Image",
+        "description": "Upload a cover image for your album",
+        "upload_prompt": "Click to upload",
+        "file_types": "JPG, PNG or WebP (max. 5MB)",
+        "select_file": "Select file"
+      },
+      "button": {
+        "create": "Create Album"
+      }
+    },
+    "albums_list": {
+      "no_albums": "You don't have any album",
+      "preview": "Preview",
+      "view_album": "View Album",
+      "photos_count": "{count} photos in this album"
+    }
+  },
+  "pt": {
+    "title": "Seus Álbums",
+    "create_album": {
+      "title": "Criar Novo Álbum",
+      "album_name": {
+        "label": "Nome do Álbum",
+        "placeholder": "Digite o nome do álbum"
+      },
+      "cover_image": {
+        "label": "Imagem de Capa",
+        "description": "Envie uma imagem de capa para seu álbum (opcional)",
+        "upload_prompt": "Clique para enviar",
+        "file_types": "JPG, PNG ou WebP (máx. 5MB)",
+        "select_file": "Selecionar arquivo"
+      },
+      "button": {
+        "create": "Criar Álbum"
+      }
+    },
+    "albums_list": {
+      "no_albums": "Você não tem nenhum álbum",
+      "preview": "Visualizar",
+      "view_album": "Ver Álbum",
+      "photos_count": "{count} fotos neste álbum"
+    }
+  }
+}

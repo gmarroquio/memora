@@ -1,0 +1,74 @@
+{
+  "en": {
+    "title": "Contact Us",
+    "get_in_touch": {
+      "title": "Get in Touch",
+      "description": "Have questions about Memora or need assistance with your party album? We're here to help! Fill out the form below, and we'll get back to you as soon as possible."
+    },
+    "form": {
+      "name_placeholder": "Your Name",
+      "email_placeholder": "Your Email",
+      "subject_placeholder": "Subject",
+      "message_placeholder": "Your Message",
+      "send_message": "Send Message"
+    },
+    "contact_information": {
+      "title": "Contact Information",
+      "email": "support@memora.party",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Wedding Lane, Photo City, PC 12345",
+      "office_hours": {
+        "title": "Office Hours",
+        "hours": [
+          "Monday - Friday: 9:00 AM - 5:00 PM (EST)",
+          "Saturday - Sunday: Closed"
+        ]
+      },
+      "follow_us": {
+        "title": "Follow Us",
+        "social_media": "Add your social media icons/links here"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "For quick answers to common questions, check out our FAQ page.",
+      "visit_faq": "Visit FAQ"
+    }
+  },
+  "pt": {
+    "title": "Fale Conosco",
+    "get_in_touch": {
+      "title": "Entre em Contato",
+      "description": "Tem perguntas sobre a Memora ou precisa de assistência com seu álbum de festa? Estamos aqui para ajudar! Preencha o formulário abaixo e retornaremos o mais rápido possível."
+    },
+    "form": {
+      "name_placeholder": "Seu Nome",
+      "email_placeholder": "Seu Email",
+      "subject_placeholder": "Assunto",
+      "message_placeholder": "Sua Mensagem",
+      "send_message": "Enviar Mensagem"
+    },
+    "contact_information": {
+      "title": "Informações de Contato",
+      "email": "support@memora.party",
+      "phone": "+55 (99) 99999-9999",
+      "address": "123 Memory Lane, Photo City, PC 12345",
+      "office_hours": {
+        "title": "Horário de Atendimento",
+        "hours": [
+          "Segunda - Sexta: 9:00 AM - 5:00 PM (GMT-3)",
+          "Sábado - Domingo: Fechado"
+        ]
+      },
+      "follow_us": {
+        "title": "Siga-nos",
+        "social_media": "Adicione seus ícones/links de redes sociais aqui"
+      }
+    },
+    "faq": {
+      "title": "Perguntas Frequentes",
+      "description": "Para respostas rápidas a perguntas comuns, visite nossa página de FAQ.",
+      "visit_faq": "Visitar FAQ"
+    }
+  }
+}

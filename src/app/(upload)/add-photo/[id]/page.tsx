@@ -1,5 +1,4 @@
 "use client";
-//Change to server????
 
 import type React from "react";
 import { useEffect, useState } from "react";
@@ -19,6 +18,7 @@ import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
 import { convertImage } from "@/lib/image";
 import InfiniteScroll from "react-infinite-scroll-component";
+import text from "./text.json";
 
 interface MediaAlbum extends Media {
   uploaderId: string;
@@ -80,7 +80,7 @@ export default function AddPhotoPage() {
         } else throw new Error();
       }
     } catch {
-      toast.error("Error uploading image");
+      toast.error(text.pt.error_deleting);
     }
   };
 
@@ -120,7 +120,7 @@ export default function AddPhotoPage() {
         }
       }
     } catch {
-      toast.error("Error uploading image");
+      toast.error(text.pt.error_uploading);
     }
     setIsUploading(false);
     setIsLoading(false);
@@ -137,14 +137,14 @@ export default function AddPhotoPage() {
       });
       setIsLoading(false);
     } else {
-      router.push(`/add-photo/?toast=Error finding album`);
+      router.push(`/add-photo/?toast=${text.pt.error_finding}`);
     }
   };
 
   useEffect(() => {
     const storageUser = getAnonUser();
     if (!storageUser) {
-      router.push(`/add-photo/?toast=Name is required&code=${code}`);
+      router.push(`/add-photo/?toast=${text.pt.error_name}&code=${code}`);
     }
     setUser(storageUser);
     fetch(baseUrl({ path: `/api/code/${code}` })).then((resp) => {
@@ -155,7 +155,7 @@ export default function AddPhotoPage() {
         });
         setIsLoading(false);
       } else {
-        router.push(`/add-photo/?toast=Error finding album`);
+        router.push(`/add-photo/?toast=${text.pt.error_finding}`);
       }
     });
   }, [code, router]);
@@ -201,9 +201,7 @@ export default function AddPhotoPage() {
             className="grid grid-cols-3 gap-1 overflow-y-auto pb-12"
           >
             {medias.length === 0 && (
-              <span className="col-span-3 text-lg">
-                Album ainda não tem nenhuma foto
-              </span>
+              <span className="col-span-3 text-lg">{text.pt.no_photo}</span>
             )}
             {medias.map((media) => (
               <div
@@ -258,7 +256,7 @@ export default function AddPhotoPage() {
             height={450}
           />
           <Input
-            placeholder="Legenda (opcional)"
+            placeholder={text.pt.subtitle}
             defaultValue={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -270,9 +268,12 @@ export default function AddPhotoPage() {
               onClick={cleanPhoto}
               variant="destructive"
             >
-              Apagar
+              {text.pt.delete}
             </Button>
-            <CameraCapture title="Nova foto" onCapture={handleCapture} />
+            <CameraCapture
+              title={text.pt.new_photo}
+              onCapture={handleCapture}
+            />
           </div>
           <Button
             disabled={
@@ -284,18 +285,18 @@ export default function AddPhotoPage() {
             onClick={handleSubmit}
           >
             {Number(album?.count) >= Number(album?.limit) ? (
-              <span>Limite do album atingido</span>
+              <span>{text.pt.limit}</span>
             ) : (
               <>
                 {isUploading ? (
                   <>
                     <Upload className="mr-2 h-4 w-4" />
-                    Uploading...
+                    {text.pt.uploading}
                   </>
                 ) : (
                   <>
                     <Camera className="mr-2 h-4 w-4" />
-                    Adicionar foto ao Album
+                    {text.pt.add_photo}
                   </>
                 )}
               </>
@@ -334,9 +335,12 @@ export default function AddPhotoPage() {
               onClick={handleDeletePhoto}
               variant="destructive"
             >
-              Apagar
+              {text.pt.delete}
             </Button>
-            <CameraCapture title="Nova foto" onCapture={handleCapture} />
+            <CameraCapture
+              title={text.pt.new_photo}
+              onCapture={handleCapture}
+            />
           </div>
         </>
       )}

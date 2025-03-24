@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Download, Loader } from "lucide-react";
+import { Download, Loader, Trash2 } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
 import { Media } from "./album-photo-gallery";
 import { useAuth } from "@clerk/nextjs";
@@ -21,6 +21,12 @@ export default function PhotoGallery() {
         ? prev.filter((photoId) => photoId !== id)
         : [...prev, id]
     );
+  };
+
+  const handleDelete = (id: number) => {
+    // In a real application, you would implement the delete functionality here
+    console.log("Deleting photo with id:", id);
+    setMedias((prev) => prev.filter((photo) => photo.id !== id));
   };
 
   const handleDownload = () => {
@@ -72,6 +78,15 @@ export default function PhotoGallery() {
                 checked={selectedPhotos.includes(photo.id)}
                 onCheckedChange={() => togglePhotoSelection(photo.id)}
               />
+            </div>
+            <div className="absolute top-2 right-2 flex space-x-2">
+              <Button
+                variant="destructive"
+                size="icon"
+                onClick={() => handleDelete(photo.id)}
+              >
+                <Trash2 className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         ))}

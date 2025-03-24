@@ -1,0 +1,42 @@
+{
+  "pt": {
+    "category": "Como Funciona",
+    "title": "Passos Simples para Coletar Todas as Suas Fotos do Evento",
+    "subtitle": "Começar é fácil. Siga estes passos simples para criar seu álbum colaborativo de festa.",
+    "cta": "Em Breve",
+    "steps": [
+      {
+        "title": "Crie Seu Álbum",
+        "subtitle": "Inscreva-se e crie um álbum de festa personalizado com seu tema e data."
+      },
+      {
+        "title": "Compartilhe com os Convidados",
+        "subtitle": "Compartilhe seu link único do álbum ou código QR com seus convidados através de convites ou no local."
+      },
+      {
+        "title": "Colete e Aproveite",
+        "subtitle": "Os convidados enviam fotos durante e após a festa, criando uma coleção completa de memórias."
+      }
+    ]
+  },
+  "en": {
+    "category": "How It Works",
+    "title": "Simple Steps to Collect All Your Event Photos",
+    "subtitle": "Getting started is easy. Follow these simple steps to create your collaborative party album.",
+    "cta": "Create Your Album Now",
+    "steps": [
+      {
+        "title": "Create Your Album",
+        "subtitle": "Sign up and create a personalized party album with your theme and date."
+      },
+      {
+        "title": "Share With Guests",
+        "subtitle": "Share your unique album link or QR code with your party guests through invitations or at the venue."
+      },
+      {
+        "title": "Collect & Enjoy",
+        "subtitle": "Guests upload photos during and after the party, creating a complete collection of memories."
+      }
+    ]
+  }
+}

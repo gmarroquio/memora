@@ -1,0 +1,52 @@
+{
+  "en": {
+    "subtitle": "Capture, collect, and cherish every moment of your party with our collaborative photo album app.",
+    "product": {
+      "title": "Product",
+      "links": {
+        "features": "Features",
+        "how_it_works": "How It Works",
+        "pricing": "Pricing",
+        "faq": "FAQ"
+      }
+    },
+    "company": {
+      "title": "Company",
+      "links": {
+        "about": "About Us",
+        "blog": "Blog",
+        "contact": "Contact"
+      }
+    },
+    "news": {
+      "title": "Stay Updated",
+      "subscribe": "Subscribe",
+      "warning": "By subscribing, you agree to our Terms and Privacy Policy."
+    }
+  },
+  "pt": {
+    "subtitle": "Capture, colete e valorize cada momento da sua festa com nosso aplicativo colaborativo de álbum de fotos.",
+    "product": {
+      "title": "Produto",
+      "links": {
+        "features": "Recursos",
+        "how_it_works": "Como Funciona",
+        "pricing": "Preços",
+        "faq": "FAQ"
+      }
+    },
+    "company": {
+      "title": "Empresa",
+      "links": {
+        "about": "Sobre Nós",
+        "blog": "Blog",
+        "contact": "Contato"
+      }
+    },
+    "news": {
+      "title": "Fique Atualizado",
+      "subscribe": "Inscrever-se",
+      "warning": "Ao se inscrever, você concorda com nossos Termos e Política de Privacidade."
+    }
+  }
+}

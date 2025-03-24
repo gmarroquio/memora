@@ -1,0 +1,40 @@
+{
+  "pt": {
+    "header": {
+      "title": "Memora"
+    },
+    "error": "Álbum não encontrado",
+    "form": {
+      "album_code": {
+        "label": "Código do Álbum",
+        "description": "Por favor, insira o código do álbum"
+      },
+      "name": {
+        "label": "Nome",
+        "description": "Insira seu nome"
+      },
+      "button": {
+        "label": "Ir para o Álbum"
+      }
+    }
+  },
+  "en": {
+    "header": {
+      "title": "Memora"
+    },
+    "error": "Album not found",
+    "form": {
+      "album_code": {
+        "label": "Album Code",
+        "description": "Please enter the album code"
+      },
+      "name": {
+        "label": "Name",
+        "description": "Enter your name"
+      },
+      "button": {
+        "label": "Go to Album"
+      }
+    }
+  }
+}

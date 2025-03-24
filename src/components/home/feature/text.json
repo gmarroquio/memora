@@ -1,0 +1,77 @@
+{
+  "pt": {
+    "category": "Recursos",
+    "title": "Tudo o Que Você Precisa para Suas Fotos de Festa",
+    "subtitle": "Nosso aplicativo facilita a coleta, organização e compartilhamento de todas as suas fotos de festa em um só lugar.",
+    "features": [
+      {
+        "icon": "Users",
+        "title": "Contribuições dos Convidados",
+        "subtitle": "Deixe seus convidados enviarem suas fotos diretamente para seu álbum com um link simples ou código QR."
+      },
+      {
+        "icon": "Share2",
+        "title": "Compartilhamento Fácil",
+        "subtitle": "Compartilhe seu álbum com amigos e familiares que não puderam comparecer à celebração."
+      },
+      {
+        "icon": "Download",
+        "title": "Baixar e Imprimir",
+        "subtitle": "Baixe fotos em alta resolução para impressão ou crie livros de fotos personalizados."
+      },
+      {
+        "icon": "Lock",
+        "title": "Privado e Seguro",
+        "subtitle": "Mantenha suas memórias privadas com proteção por senha e acesso controlado."
+      },
+      {
+        "icon": "Heart",
+        "title": "Favoritos e Comentários",
+        "subtitle": "Marque suas fotos favoritas e deixe comentários para reviver os momentos especiais."
+      },
+      {
+        "icon": "Camera",
+        "title": "Armazenamento Ilimitado",
+        "subtitle": "Armazene todas as suas fotos de festa sem se preocupar com falta de espaço."
+      }
+    ]
+  },
+
+  "en": {
+    "category": "Features",
+    "title": "Everything You Need for Your Party Photos",
+    "subtitle": "Our app makes it easy to collect, organize, and share all your party photos in one place.",
+    "features": [
+      {
+        "icon": "Users",
+        "title": "Guest Contributions",
+        "subtitle": "Let your guests send their photos directly to your album with a simple link or QR code."
+      },
+      {
+        "icon": "Share2",
+        "title": "Easy Sharing",
+        "subtitle": "Share your album with friends and family who couldn't attend the celebration."
+      },
+      {
+        "icon": "Download",
+        "title": "Download and Print",
+        "subtitle": "Download high-resolution photos for printing or create personalized photo books."
+      },
+      {
+        "icon": "Lock",
+        "title": "Private and Secure",
+        "subtitle": "Keep your memories private with password protection and controlled access."
+      },
+      {
+        "icon": "Heart",
+        "title": "Favorites and Comments",
+        "subtitle": "Mark your favorite photos and leave comments to relive the special moments."
+      },
+      {
+        "icon": "Camera",
+        "title": "Unlimited Storage",
+        "subtitle": "Store all your party photos without worrying about running out of space."
+      }
+    ]
+  }
+}

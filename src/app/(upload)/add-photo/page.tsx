@@ -24,7 +24,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { baseUrl } from "@/lib/utils";
-import text from "@/constants/texts.json";
+import text from "./text.json";
 import { Input } from "@/components/ui/input";
 import { createId } from "@paralleldrive/cuid2";
 import { getAnonUser, saveAnonUser } from "@/lib/anonUser";
@@ -87,7 +87,7 @@ export default function Page() {
         throw new Error(error.message);
       }
     } catch {
-      toast.error("Error searching for album");
+      toast.error(text.pt.error);
       setLoading(false);
     }
   };
@@ -98,7 +98,7 @@ export default function Page() {
         <Link href="/" className="flex items-center gap-2">
           <Heart className="md:h-9 md:w-9 text-primary" />
           <span className="md:text-4xl font-semibold tracking-tight">
-            {text.pt.add_photo.header.title}
+            {text.pt.header.title}
           </span>
         </Link>
       </header>
@@ -113,9 +113,7 @@ export default function Page() {
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {text.pt.add_photo.form.album_code.label}
-                  </FormLabel>
+                  <FormLabel>{text.pt.form.album_code.label}</FormLabel>
                   <FormControl>
                     <InputOTP maxLength={6} {...field} inputMode="text">
                       <InputOTPGroup>
@@ -147,7 +145,7 @@ export default function Page() {
                     </InputOTP>
                   </FormControl>
                   <FormDescription>
-                    {text.pt.add_photo.form.album_code.description}
+                    {text.pt.form.album_code.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -158,12 +156,12 @@ export default function Page() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{text.pt.add_photo.form.name.label}</FormLabel>
+                  <FormLabel>{text.pt.form.name.label}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
                   <FormDescription>
-                    {text.pt.add_photo.form.name.description}
+                    {text.pt.form.name.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -172,7 +170,7 @@ export default function Page() {
 
             <Button ref={buttonRef} type="submit" disabled={loading}>
               <Camera />
-              {text.pt.add_photo.form.button.label}
+              {text.pt.form.button.label}
             </Button>
           </form>
         </Form>

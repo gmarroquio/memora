@@ -1,0 +1,100 @@
+{
+  "pt": {
+    "category": "Preços",
+    "title": "Preços Simples e Transparentes",
+    "subtitle": "Escolha o plano perfeito para a sua festa. Sem taxas ocultas ou surpresas.",
+    "cta": "Comece agora",
+    "one_time": "uma vez",
+    "most_popular": "Mais Vendido",
+    "prices": [
+      {
+        "name": "Básico",
+        "currency": "R$",
+        "price": 49,
+        "id": "tier_1",
+        "perks": [
+          "Até 500 fotos",
+          "R$ 0.15 por foto adicional (opcional)",
+          "6 meses de armazenamento",
+          "Link personalizado do álbum",
+          "Baixar todas as fotos"
+        ]
+      },
+      {
+        "name": "Premium",
+        "currency": "R$",
+        "price": 99,
+        "id": "tier_2",
+        "perks": [
+          "Até 1500 fotos",
+          "R$ 0.10 por foto adicional (opcional)",
+          "1 ano de armazenamento",
+          "Link personalizado do álbum e código QR",
+          "Baixar todas as fotos",
+          "Ferramentas de edição de fotos (em breve)"
+        ]
+      },
+      {
+        "name": "Grandes Eventos",
+        "cta": "Entre em contato",
+        "disabled": true,
+        "perks": [
+          "Personalizado para o seu evento",
+          "Albums públicos",
+          "Link personalizado do álbum e código QR",
+          "Baixar todas as fotos",
+          "Vizualização em tempo real",
+          "Ferramentas de edição de fotos (em breve)"
+        ]
+      }
+    ]
+  },
+  "en": {
+    "category": "Pricing",
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the perfect plan for your party. No hidden fees or surprises.",
+    "cta": "Get Started",
+    "most_popular": "Most Popular",
+    "one_time": "one-time",
+    "prices": [
+      {
+        "name": "Basic",
+        "currency": "U$",
+        "price": 49,
+        "perks": [
+          "Up to 500 photos",
+          "U$ 0.15 per adition photo",
+          "6 months of storage",
+          "Custom album link",
+          "Download all photos"
+        ]
+      },
+      {
+        "name": "Premium",
+        "currency": "U$",
+        "price": 99,
+        "perks": [
+          "Up to 1500 photos",
+          "U$ 0.10 per adition photo",
+          "1 year of storage",
+          "Custom album link & QR code",
+          "Download all photos",
+          "Photo editing tools (coming soon)"
+        ]
+      },
+      {
+        "name": "Big Events",
+        "cta": "Get in touch",
+        "perks": [
+          "Unlimited photos",
+          "Tailored for your event",
+          "Public albums",
+          "Custom album link & QR code",
+          "Download all photos",
+          "Real time feed",
+          "Photo editing tools (coming soon)"
+        ]
+      }
+    ]
+  }
+}

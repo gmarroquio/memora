@@ -1,10 +1,11 @@
 "use client";
 
 import { ChangeEvent, useRef } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 import { Camera } from "lucide-react";
 import { renameFile } from "@/lib/utils";
+import text from "./text.json";
 
 interface CameraCaptureProps {
   onCapture: (imageData: File) => void;
@@ -34,7 +35,7 @@ export default function CameraCapture({
         }}
       >
         <Camera className="mr-2 h-4 w-4" />
-        {title ?? "Capture"}
+        {title ?? text.pt.button}
       </Button>
       <Input
         ref={ref}

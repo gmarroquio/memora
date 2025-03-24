@@ -1,0 +1,18 @@
+{
+  "pt": {
+    "features": "Recursos",
+    "how_it_works": "Como Funciona",
+    "testimonials": "Depoimentos",
+    "price": "Preço",
+    "get_start": "Entre",
+    "dashboard": "Dashboard"
+  },
+  "en": {
+    "features": "Features",
+    "how_it_works": "How It Works",
+    "testimonials": "Testimonials",
+    "price": "Price",
+    "get_start": "Get Started",
+    "dashboard": "Dashboard"
+  }
+}
