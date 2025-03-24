@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { Eye, Loader } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
-import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import text from "./text.json";
 import { useAuth } from "@clerk/nextjs";
 
 export type Album = {
@@ -60,7 +60,7 @@ export default function AlbumsList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {albums.length === 0 && (
           <span className="text-muted-foreground">
-            {text.pt.dashboard.albums.albums_list.no_albums}
+            {text.pt.albums_list.no_albums}
           </span>
         )}
         {albums.map((album) => (
@@ -79,7 +79,7 @@ export default function AlbumsList() {
                 />
               </div>
               <p className="mt-2 text-sm text-muted-foreground">
-                {text.pt.dashboard.albums.albums_list.photos_count.replace(
+                {text.pt.albums_list.photos_count.replace(
                   "{count}",
                   album.mediaCount.toString()
                 )}
@@ -87,12 +87,11 @@ export default function AlbumsList() {
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline" onClick={() => setPreviewAlbum(album)}>
-                <Eye className="mr-2 h-4 w-4" />{" "}
-                {text.pt.dashboard.albums.albums_list.preview}
+                <Eye className="mr-2 h-4 w-4" /> {text.pt.albums_list.preview}
               </Button>
               <Button asChild>
                 <Link href={`/dashboard/albums/${album.id}`}>
-                  {text.pt.dashboard.albums.albums_list.view_album}
+                  {text.pt.albums_list.view_album}
                 </Link>
               </Button>
             </CardFooter>
@@ -116,14 +115,14 @@ export default function AlbumsList() {
               />
             </div>
             <p>
-              {text.pt.dashboard.albums.albums_list.photos_count.replace(
+              {text.pt.albums_list.photos_count.replace(
                 "{count}",
                 previewAlbum?.mediaCount.toString() || "0"
               )}
             </p>
             <Button asChild>
               <Link href={`/dashboard/albums/${previewAlbum?.id}`}>
-                {text.pt.dashboard.albums.albums_list.view_album}
+                {text.pt.albums_list.view_album}
               </Link>
             </Button>
           </div>

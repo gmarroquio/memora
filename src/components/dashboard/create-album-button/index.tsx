@@ -29,7 +29,7 @@ import Image from "next/image";
 import { useUploadThing } from "@/lib/uploadthing";
 import { baseUrl, renameFile } from "@/lib/utils";
 import { toast } from "sonner";
-import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import text from "./text.json";
 import { useAuth } from "@clerk/nextjs";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -140,15 +140,13 @@ export default function CreateAlbumButton() {
         <Button>
           <Plus className="md:mr-2 h-4 w-4" />
           <span className="hidden md:block">
-            {text.pt.dashboard.albums.create_album.button.create}
+            {text.pt.create_album.button.create}
           </span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>
-            {text.pt.dashboard.albums.create_album.title}
-          </DialogTitle>
+          <DialogTitle>{text.pt.create_album.title}</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -158,15 +156,10 @@ export default function CreateAlbumButton() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>
-                    {text.pt.dashboard.albums.create_album.album_name.label}
-                  </FormLabel>
+                  <FormLabel>{text.pt.create_album.album_name.label}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder={
-                        text.pt.dashboard.albums.create_album.album_name
-                          .placeholder
-                      }
+                      placeholder={text.pt.create_album.album_name.placeholder}
                       {...field}
                     />
                   </FormControl>
@@ -180,13 +173,10 @@ export default function CreateAlbumButton() {
               render={() => (
                 <FormItem>
                   <FormLabel>
-                    {text.pt.dashboard.albums.create_album.cover_image.label}
+                    {text.pt.create_album.cover_image.label}
                   </FormLabel>
                   <FormDescription>
-                    {
-                      text.pt.dashboard.albums.create_album.cover_image
-                        .description
-                    }
+                    {text.pt.create_album.cover_image.description}
                   </FormDescription>
                   <div className="mt-2">
                     {coverImagePreview ? (
@@ -217,23 +207,14 @@ export default function CreateAlbumButton() {
                           <Upload className="h-8 w-8 text-muted-foreground" />
                           <div className="text-center">
                             <p className="text-sm font-medium">
-                              {
-                                text.pt.dashboard.albums.create_album
-                                  .cover_image.upload_prompt
-                              }
+                              {text.pt.create_album.cover_image.upload_prompt}
                             </p>
                             <p className="text-xs text-muted-foreground">
-                              {
-                                text.pt.dashboard.albums.create_album
-                                  .cover_image.file_types
-                              }
+                              {text.pt.create_album.cover_image.file_types}
                             </p>
                           </div>
                           <Button type="button" variant="secondary">
-                            {
-                              text.pt.dashboard.albums.create_album.cover_image
-                                .select_file
-                            }
+                            {text.pt.create_album.cover_image.select_file}
                           </Button>
                         </div>
                         <Input
@@ -251,7 +232,7 @@ export default function CreateAlbumButton() {
               )}
             />
             <Button type="submit" disabled={isUploading || isLoading}>
-              {text.pt.dashboard.albums.create_album.button.create}
+              {text.pt.create_album.button.create}
             </Button>
           </form>
         </Form>
