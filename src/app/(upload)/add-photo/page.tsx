@@ -33,6 +33,7 @@ import { Logo } from "@/components/logo";
 const searchAlbum = z.object({
   code: z
     .string()
+    .toUpperCase()
     .min(6, "Album name must be 6 characters")
     .max(6, "Album name must be 6 characters"),
   name: z.string().min(1, "Name is required"),
@@ -116,27 +117,27 @@ export default function Page() {
                     <InputOTP maxLength={6} {...field} inputMode="text">
                       <InputOTPGroup>
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={0}
                         />
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={1}
                         />
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={2}
                         />
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={3}
                         />
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={4}
                         />
                         <InputOTPSlot
-                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl"
+                          className="h-12 w-12 text-3xl md:h-16 md:w-16 md:text-5xl uppercase"
                           index={5}
                         />
                       </InputOTPGroup>
