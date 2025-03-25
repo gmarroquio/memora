@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import text from "./text.json";
+import { Logo } from "../logo";
 
 export const TopBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,8 @@ export const TopBar = () => {
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-semibold tracking-tight">Memora</span>
+            <Logo size={0.04} color="white" />
+            <span className="text-xl font-semibold tracking-tight">emora</span>
             <span className="text-xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-tr from-primary to-secondary">
               .party
             </span>
