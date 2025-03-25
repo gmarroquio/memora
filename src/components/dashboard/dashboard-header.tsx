@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import text from "@/constants/texts.json";
 import { useState } from "react";
+import { Logo } from "../logo";
 
 export default function DashboardHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,10 +30,9 @@ export default function DashboardHeader() {
       </div>
       <aside className="md:w-52 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="hidden md:flex flex-col py-8 px-4">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-semibold tracking-tight">
-              {text.pt.dashboard.sidebar.title}
-            </span>
+          <Link href="/" className="flex items-center">
+            <Logo size={0.04} color="white" />
+            <span className="text-xl font-semibold tracking-tight">emora</span>
           </Link>
           <nav className="flex flex-col space-y-4 lg:space-y-6 my-6">
             <Link
