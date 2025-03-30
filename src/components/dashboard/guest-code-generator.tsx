@@ -27,7 +27,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { toast } from "sonner";
 import { Copy, Check, Download } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
-import text from "@/constants/texts.json"; // Adjust the import path accordingly
+import text from "./text.json"; // Adjust the import path accordingly
 import { useAuth } from "@clerk/nextjs";
 
 const guestCodeSchema = z.object({
@@ -99,11 +99,9 @@ export default function GuestCodeGenerator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>
-          {text.pt.dashboard.settings.guest_code_generator.title}
-        </CardTitle>
+        <CardTitle>{text.en.settings.guest_code_generator.title}</CardTitle>
         <CardDescription>
-          {text.pt.dashboard.settings.guest_code_generator.description}
+          {text.en.settings.guest_code_generator.description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -115,10 +113,7 @@ export default function GuestCodeGenerator() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    {
-                      text.pt.dashboard.settings.guest_code_generator.expiration
-                        .label
-                    }
+                    {text.en.settings.guest_code_generator.expiration.label}
                   </FormLabel>
                   <FormControl>
                     <Input
@@ -131,7 +126,7 @@ export default function GuestCodeGenerator() {
                   </FormControl>
                   <FormDescription>
                     {
-                      text.pt.dashboard.settings.guest_code_generator.expiration
+                      text.en.settings.guest_code_generator.expiration
                         .description
                     }
                   </FormDescription>
@@ -140,7 +135,7 @@ export default function GuestCodeGenerator() {
               )}
             />
             <Button type="submit">
-              {text.pt.dashboard.settings.guest_code_generator.generate_code}
+              {text.en.settings.guest_code_generator.generate_code}
             </Button>
           </form>
         </Form>
@@ -149,10 +144,7 @@ export default function GuestCodeGenerator() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-semibold">
-                  {
-                    text.pt.dashboard.settings.guest_code_generator
-                      .generated_code
-                  }
+                  {text.en.settings.guest_code_generator.generated_code}
                 </p>
                 <p className="text-2xl font-bold">{generatedCode}</p>
               </div>
@@ -194,7 +186,7 @@ export default function GuestCodeGenerator() {
             </div>
             <div>
               <p className="font-semibold mb-2">
-                {text.pt.dashboard.settings.guest_code_generator.share_link}
+                {text.en.settings.guest_code_generator.share_link}
               </p>
               <div className="flex gap-2">
                 <Input

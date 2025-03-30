@@ -13,18 +13,18 @@ export function Pricing() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-              {text.pt.category}
+              {text.en.category}
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              {text.pt.title}
+              {text.en.title}
             </h2>
             <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {text.pt.subtitle}
+              {text.en.subtitle}
             </p>
           </div>
         </div>
         <div className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3">
-          {text.pt.prices.map((price, index) => (
+          {text.en.prices.map((price, index) => (
             <div
               key={index}
               className={cn(
@@ -34,7 +34,7 @@ export function Pricing() {
             >
               {price.name === "Premium" && (
                 <div className="absolute top-0 right-0 -translate-y-1/2 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
-                  {text.pt.most_popular}
+                  {text.en.most_popular}
                 </div>
               )}
               <div>
@@ -44,7 +44,7 @@ export function Pricing() {
                     <>
                       <span className="text-3xl font-bold">{`${price.currency}${price.price}`}</span>
                       <span className="ml-1 text-muted-foreground">
-                        {text.pt.one_time}
+                        {text.en.one_time}
                       </span>
                     </>
                   )}
@@ -61,7 +61,7 @@ export function Pricing() {
               {price.id ? (
                 <Link href={`/login?payments=${price.id}`}>
                   <Button className="mt-8 bg-primary hover:bg-primary/90">
-                    {price.cta ?? text.pt.cta}
+                    {price.cta ?? text.en.cta}
                   </Button>
                 </Link>
               ) : (
@@ -70,7 +70,7 @@ export function Pricing() {
                     disabled={price.disabled}
                     className="mt-8 bg-primary hover:bg-primary/90"
                   >
-                    {price.cta ?? text.pt.cta}
+                    {price.cta ?? text.en.cta}
                   </Button>
                 </>
               )}

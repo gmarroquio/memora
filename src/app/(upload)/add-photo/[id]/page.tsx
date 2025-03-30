@@ -80,7 +80,7 @@ export default function AddPhotoPage() {
         } else throw new Error();
       }
     } catch {
-      toast.error(text.pt.error_deleting);
+      toast.error(text.en.error_deleting);
     }
   };
 
@@ -120,7 +120,7 @@ export default function AddPhotoPage() {
         }
       }
     } catch {
-      toast.error(text.pt.error_uploading);
+      toast.error(text.en.error_uploading);
     }
     setIsUploading(false);
     setIsLoading(false);
@@ -137,14 +137,14 @@ export default function AddPhotoPage() {
       });
       setIsLoading(false);
     } else {
-      router.push(`/add-photo/?toast=${text.pt.error_finding}`);
+      router.push(`/add-photo/?toast=${text.en.error_finding}`);
     }
   };
 
   useEffect(() => {
     const storageUser = getAnonUser();
     if (!storageUser) {
-      router.push(`/add-photo/?toast=${text.pt.error_name}&code=${code}`);
+      router.push(`/add-photo/?toast=${text.en.error_name}&code=${code}`);
     }
     setUser(storageUser);
     fetch(baseUrl({ path: `/api/code/${code}` })).then((resp) => {
@@ -155,7 +155,7 @@ export default function AddPhotoPage() {
         });
         setIsLoading(false);
       } else {
-        router.push(`/add-photo/?toast=${text.pt.error_finding}`);
+        router.push(`/add-photo/?toast=${text.en.error_finding}`);
       }
     });
   }, [code, router]);
@@ -201,7 +201,7 @@ export default function AddPhotoPage() {
             className="grid grid-cols-3 gap-1 overflow-y-auto pb-12"
           >
             {medias.length === 0 && (
-              <span className="col-span-3 text-lg">{text.pt.no_photo}</span>
+              <span className="col-span-3 text-lg">{text.en.no_photo}</span>
             )}
             {medias.map((media) => (
               <div
@@ -256,7 +256,7 @@ export default function AddPhotoPage() {
             height={450}
           />
           <Input
-            placeholder={text.pt.subtitle}
+            placeholder={text.en.subtitle}
             defaultValue={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -268,10 +268,10 @@ export default function AddPhotoPage() {
               onClick={cleanPhoto}
               variant="destructive"
             >
-              {text.pt.delete}
+              {text.en.delete}
             </Button>
             <CameraCapture
-              title={text.pt.new_photo}
+              title={text.en.new_photo}
               onCapture={handleCapture}
             />
           </div>
@@ -285,18 +285,18 @@ export default function AddPhotoPage() {
             onClick={handleSubmit}
           >
             {Number(album?.count) >= Number(album?.limit) ? (
-              <span>{text.pt.limit}</span>
+              <span>{text.en.limit}</span>
             ) : (
               <>
                 {isUploading ? (
                   <>
                     <Upload className="mr-2 h-4 w-4" />
-                    {text.pt.uploading}
+                    {text.en.uploading}
                   </>
                 ) : (
                   <>
                     <Camera className="mr-2 h-4 w-4" />
-                    {text.pt.add_photo}
+                    {text.en.add_photo}
                   </>
                 )}
               </>
@@ -335,10 +335,10 @@ export default function AddPhotoPage() {
               onClick={handleDeletePhoto}
               variant="destructive"
             >
-              {text.pt.delete}
+              {text.en.delete}
             </Button>
             <CameraCapture
-              title={text.pt.new_photo}
+              title={text.en.new_photo}
               onCapture={handleCapture}
             />
           </div>

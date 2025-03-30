@@ -89,7 +89,7 @@ export default function Page() {
         throw new Error(error.message);
       }
     } catch {
-      toast.error(text.pt.error);
+      toast.error(text.en.error);
       setLoading(false);
     }
   };
@@ -112,7 +112,7 @@ export default function Page() {
               name="code"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{text.pt.form.album_code.label}</FormLabel>
+                  <FormLabel>{text.en.form.album_code.label}</FormLabel>
                   <FormControl>
                     <InputOTP maxLength={6} {...field} inputMode="text">
                       <InputOTPGroup>
@@ -144,7 +144,7 @@ export default function Page() {
                     </InputOTP>
                   </FormControl>
                   <FormDescription>
-                    {text.pt.form.album_code.description}
+                    {text.en.form.album_code.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -155,12 +155,12 @@ export default function Page() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{text.pt.form.name.label}</FormLabel>
+                  <FormLabel>{text.en.form.name.label}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
                   <FormDescription>
-                    {text.pt.form.name.description}
+                    {text.en.form.name.description}
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -169,7 +169,7 @@ export default function Page() {
 
             <Button ref={buttonRef} type="submit" disabled={loading}>
               <Camera />
-              {text.pt.form.button.label}
+              {text.en.form.button.label}
             </Button>
           </form>
         </Form>

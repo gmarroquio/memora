@@ -28,37 +28,37 @@ export const TopBar = () => {
               href="/#features"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.features}
+              {text.en.features}
             </Link>
             <Link
               href="/#how-it-works"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.how_it_works}
+              {text.en.how_it_works}
             </Link>
             <Link
               href="/#testimonials"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.testimonials}
+              {text.en.testimonials}
             </Link>
             <Link
               href="/#pricing"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.pt.price}
+              {text.en.price}
             </Link>
           </nav>
 
           <div className="hidden md:block">
             <SignedIn>
               <Link href="/dashboard" className="hidden md:flex">
-                <Button>{text.pt.dashboard}</Button>
+                <Button>{text.en.dashboard}</Button>
               </Link>
             </SignedIn>
             <SignedOut>
               <Link href="/login" className="hidden md:flex">
-                <Button>{text.pt.get_start}</Button>
+                <Button>{text.en.get_start}</Button>
               </Link>
             </SignedOut>
           </div>
@@ -85,37 +85,37 @@ export const TopBar = () => {
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.features}
+              {text.en.features}
             </Link>
             <Link
               href="#how-it-works"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.how_it_works}
+              {text.en.how_it_works}
             </Link>
             <Link
               href="#testimonials"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.testimonials}
+              {text.en.testimonials}
             </Link>
             <Link
               href="#pricing"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.pt.price}
+              {text.en.price}
             </Link>
             <SignedOut>
               <Link href="/login" className="flex flex-col gap-2 mt-4">
-                <Button>{text.pt.get_start}</Button>
+                <Button>{text.en.get_start}</Button>
               </Link>
             </SignedOut>
             <SignedIn>
               <Link href="/dashboard" className="flex flex-col gap-2 mt-4">
-                <Button>{text.pt.dashboard}</Button>
+                <Button>{text.en.dashboard}</Button>
               </Link>
             </SignedIn>
           </div>

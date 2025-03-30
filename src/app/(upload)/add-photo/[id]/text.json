@@ -11,5 +11,18 @@
     "error_finding": "Album não encontrado",
     "error_uploading": "Erro ao adicionar imagem",
     "error_name": "Nome é obrigatório"
+  },
+  "en": {
+    "no_photo": "Album does not have any photos yet",
+    "delete": "Delete",
+    "uploading": "Adding...",
+    "add_photo": "Add photo to Album",
+    "new_photo": "New photo",
+    "subtitle": "Subtitle (optional)",
+    "limit": "Album limit reached",
+    "error_deleting": "Error deleting image",
+    "error_finding": "Album not found",
+    "error_uploading": "Error adding image",
+    "error_name": "Name is required"
   }
 }

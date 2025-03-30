@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CogIcon, ImagesIcon, LogOut, Menu, Wallet, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
-import text from "@/constants/texts.json";
+import text from "./text.json";
 import { useState } from "react";
 import { Logo } from "../logo";
 
@@ -46,7 +46,7 @@ export default function DashboardHeader() {
               )}
             >
               <ImagesIcon />
-              <span>{text.pt.dashboard.sidebar.nav.gallery}</span>
+              <span>{text.en.sidebar.nav.gallery}</span>
             </Link>
             {
               //<Link
@@ -60,7 +60,7 @@ export default function DashboardHeader() {
               //  )}
               //>
               //  <AlbumIcon />
-              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
+              //  <span>{text.en.dashboard.sidebar.nav.albums}</span>
               //</Link>
             }
             <Link
@@ -74,7 +74,7 @@ export default function DashboardHeader() {
               )}
             >
               <Wallet />
-              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+              <span>{text.en.sidebar.nav.payments}</span>
             </Link>
             <Link
               href="/dashboard/settings"
@@ -87,14 +87,14 @@ export default function DashboardHeader() {
               )}
             >
               <CogIcon />
-              <span>{text.pt.dashboard.sidebar.nav.settings}</span>
+              <span>{text.en.sidebar.nav.settings}</span>
             </Link>
           </nav>
           <div className="flex items-center space-x-4">
             <SignOutButton>
               <Button variant="ghost">
                 <LogOut className="h-4 w-4" />
-                <span>{text.pt.dashboard.sidebar.logout}</span>
+                <span>{text.en.sidebar.logout}</span>
               </Button>
             </SignOutButton>
           </div>
@@ -114,7 +114,7 @@ export default function DashboardHeader() {
               )}
             >
               <ImagesIcon />
-              <span>{text.pt.dashboard.sidebar.nav.gallery}</span>
+              <span>{text.en.sidebar.nav.gallery}</span>
             </Link>
             {
               //<Link
@@ -128,7 +128,7 @@ export default function DashboardHeader() {
               //  )}
               //>
               //  <AlbumIcon />
-              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
+              //  <span>{text.en.dashboard.sidebar.nav.albums}</span>
               //</Link>
             }
             <Link
@@ -142,7 +142,7 @@ export default function DashboardHeader() {
               )}
             >
               <Wallet />
-              <span>{text.pt.dashboard.sidebar.nav.payments}</span>
+              <span>{text.en.sidebar.nav.payments}</span>
             </Link>
             <Link
               href="/dashboard/settings"
@@ -155,13 +155,13 @@ export default function DashboardHeader() {
               )}
             >
               <CogIcon />
-              <span>{text.pt.dashboard.sidebar.nav.settings}</span>
+              <span>{text.en.sidebar.nav.settings}</span>
             </Link>
           </nav>
           <SignOutButton>
             <Button className="p-0">
               <LogOut className="h-4 w-4" />
-              <span>{text.pt.dashboard.sidebar.logout}</span>
+              <span>{text.en.sidebar.logout}</span>
             </Button>
           </SignOutButton>
         </div>

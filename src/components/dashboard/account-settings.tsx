@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import text from "@/constants/texts.json";
+import text from "./text.json";
 import { baseUrl } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -48,30 +48,24 @@ export default async function AccountSettings() {
     >
       <Card>
         <CardHeader>
-          <CardTitle>
-            {text.pt.dashboard.settings.account_settings.title}
-          </CardTitle>
+          <CardTitle>{text.en.settings.account_settings.title}</CardTitle>
           <CardDescription>
-            {text.pt.dashboard.settings.account_settings.description}
+            {text.en.settings.account_settings.description}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">
-              {text.pt.dashboard.settings.account_settings.name.label}
+              {text.en.settings.account_settings.name.label}
             </Label>
             <Input
               name="title"
               id="title"
               defaultValue={album.title}
-              placeholder={
-                text.pt.dashboard.settings.account_settings.name.placeholder
-              }
+              placeholder={text.en.settings.account_settings.name.placeholder}
             />
           </div>
-          <Button>
-            {text.pt.dashboard.settings.account_settings.button.save}
-          </Button>
+          <Button>{text.en.settings.account_settings.button.save}</Button>
         </CardContent>
       </Card>
     </form>

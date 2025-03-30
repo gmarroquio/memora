@@ -14,17 +14,17 @@ export const Footer = () => {
                 Memora
               </span>
             </div>
-            <p className="text-sm text-muted-foreground">{texts.pt.subtitle}</p>
+            <p className="text-sm text-muted-foreground">{texts.en.subtitle}</p>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">{texts.pt.product.title}</h4>
+            <h4 className="font-medium">{texts.en.product.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="#features"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.product.links.features}
+                  {texts.en.product.links.features}
                 </Link>
               </li>
               <li>
@@ -32,7 +32,7 @@ export const Footer = () => {
                   href="#how-it-works"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.product.links.how_it_works}
+                  {texts.en.product.links.how_it_works}
                 </Link>
               </li>
               <li>
@@ -40,7 +40,7 @@ export const Footer = () => {
                   href="#pricing"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.product.links.pricing}
+                  {texts.en.product.links.pricing}
                 </Link>
               </li>
               <li>
@@ -48,20 +48,20 @@ export const Footer = () => {
                   href="#"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.product.links.faq}
+                  {texts.en.product.links.faq}
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">{texts.pt.company.title}</h4>
+            <h4 className="font-medium">{texts.en.company.title}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/about"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.company.links.about}
+                  {texts.en.company.links.about}
                 </Link>
               </li>
               <li>
@@ -69,7 +69,7 @@ export const Footer = () => {
                   href="/blog"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.company.links.blog}
+                  {texts.en.company.links.blog}
                 </Link>
               </li>
               <li>
@@ -77,13 +77,13 @@ export const Footer = () => {
                   href="/contact"
                   className="text-muted-foreground hover:text-primary"
                 >
-                  {texts.pt.company.links.contact}
+                  {texts.en.company.links.contact}
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="font-medium">{texts.pt.news.title}</h4>
+            <h4 className="font-medium">{texts.en.news.title}</h4>
             <form className="flex flex-col gap-2 sm:flex-row">
               <Input
                 type="email"
@@ -91,11 +91,11 @@ export const Footer = () => {
                 className="max-w-lg flex-1"
               />
               <Button type="submit" className="bg-primary hover:bg-primary/90">
-                {texts.pt.news.subscribe}
+                {texts.en.news.subscribe}
               </Button>
             </form>
             <p className="text-xs text-muted-foreground">
-              {texts.pt.news.warning}
+              {texts.en.news.warning}
             </p>
           </div>
         </div>
