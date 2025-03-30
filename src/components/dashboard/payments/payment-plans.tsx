@@ -29,26 +29,26 @@ const plans: Plan[] = [
     id: "tier_1",
     name: "Basic",
     price: 49,
-    description: "Perfeito para eventos com até 50 convidados",
+    description: "Perfect for events with up to 50 guests",
     features: [
-      { name: "Até 500 fotos", included: true },
-      { name: "R$ 0.15 por foto adicional", included: true },
-      { name: "6 meses de armazenamento", included: true },
-      { name: "Baixe todas as fotos", included: true },
-      { name: "Suporte prioritário", included: false },
+      { name: "Up to 500 photos", included: true },
+      { name: "$0.15 per additional photo", included: true },
+      { name: "6 months of storage", included: true },
+      { name: "Download all photos", included: true },
+      { name: "Priority support", included: false },
     ],
   },
   {
     id: "tier_2",
     name: "Premium",
     price: 99,
-    description: "Perfeito para eventos com até 150 convidados",
+    description: "Perfect for events with up to 150 guests",
     features: [
-      { name: "Até 1500 fotos", included: true },
-      { name: "R$ 0.10 por foto adicional", included: true },
-      { name: "1 ano de armazenamento", included: true },
-      { name: "Baixe todas as fotos", included: true },
-      { name: "Suporte prioritário", included: true },
+      { name: "Up to 1500 photos", included: true },
+      { name: "$0.10 per additional photo", included: true },
+      { name: "1 year of storage", included: true },
+      { name: "Download all photos", included: true },
+      { name: "Priority support", included: true },
     ],
     recommended: true,
   },
@@ -71,15 +71,15 @@ export default function PaymentPlans({
           >
             {plan.recommended && (
               <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 text-xs font-medium">
-                Recomendado
+                Recommended
               </div>
             )}
             <CardHeader>
               <CardTitle>{plan.name}</CardTitle>
               <CardDescription>{plan.description}</CardDescription>
               <div className="mt-4">
-                <span className="text-3xl font-bold">R${plan.price}</span>
-                <span className="text-muted-foreground ml-1">uma vez</span>
+                <span className="text-3xl font-bold">U${plan.price}</span>
+                <span className="text-muted-foreground ml-1">once</span>
               </div>
             </CardHeader>
             <CardContent>
@@ -108,7 +108,7 @@ export default function PaymentPlans({
                 className="w-full"
                 variant={plan.recommended ? "default" : "outline"}
               >
-                Selecionar plano {plan.name}
+                Select {plan.name} plan
               </Button>
             </CardFooter>
           </Card>
