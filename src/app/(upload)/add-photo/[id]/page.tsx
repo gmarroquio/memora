@@ -234,7 +234,10 @@ export default function AddPhotoPage() {
               "flex p-2 justify-center fixed bottom-0 right-0 left-0"
             )}
           >
-            <CameraCapture onCapture={handleCapture} />
+            <CameraCapture
+              title={text.en.take_picture}
+              onCapture={handleCapture}
+            />
           </div>
         </div>
       )}

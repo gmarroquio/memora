@@ -10,7 +10,8 @@
     "error_deleting": "Erro ao apagar imagem",
     "error_finding": "Album não encontrado",
     "error_uploading": "Erro ao adicionar imagem",
-    "error_name": "Nome é obrigatório"
+    "error_name": "Nome é obrigatório",
+    "take_picture": "Tirar foto"
   },
   "en": {
     "no_photo": "Album does not have any photos yet",
@@ -23,6 +24,7 @@
     "error_deleting": "Error deleting image",
     "error_finding": "Album not found",
     "error_uploading": "Error adding image",
-    "error_name": "Name is required"
+    "error_name": "Name is required",
+    "take_picture": "Take picture"
   }
 }

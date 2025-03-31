@@ -8,6 +8,7 @@ import { Download, Loader, Trash2 } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
 import { Media } from "./album-photo-gallery";
 import { useAuth } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 export default function PhotoGallery() {
   const [selectedPhotos, setSelectedPhotos] = useState<number[]>([]);
@@ -23,10 +24,22 @@ export default function PhotoGallery() {
     );
   };
 
-  const handleDelete = (id: number) => {
-    // In a real application, you would implement the delete functionality here
-    console.log("Deleting photo with id:", id);
-    setMedias((prev) => prev.filter((photo) => photo.id !== id));
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(baseUrl({ path: `/api/medias/` }), {
+        method: "DELETE",
+        headers: { userId: userId! },
+        body: JSON.stringify({
+          id,
+        }),
+      });
+      if (response.ok) {
+        const newMedias = medias.filter((m) => m.id !== id);
+        setMedias(newMedias);
+      } else throw new Error();
+    } catch {
+      toast.error("Error deleting image");
+    }
   };
 
   const handleDownload = () => {
