@@ -186,7 +186,7 @@ export default function AddPhotoPage() {
       {!imagePreview && !imageShow && (
         <div className="flex flex-col justify-between flex-1 py-4 h-screen">
           <InfiniteScroll
-            dataLength={album?.count ?? 0} //This is important field to render the next data
+            dataLength={album?.count ?? 0}
             next={() => {
               handleMorePhotos(Math.floor(medias.length / 21) + 1);
             }}

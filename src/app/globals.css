@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin 'tailwind-scrollbar';
 
 @import "uploadthing/tw/v4";
 @source "../../node_modules/@uploadthing/react/dist"; /** <-- depends on your project structure */
@@ -13,6 +14,11 @@
 }
 
 @utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
+
+@utility scrollbar-thin {
   margin-inline: auto;
   padding-inline: 2rem;
 }

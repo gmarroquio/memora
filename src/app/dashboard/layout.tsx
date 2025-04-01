@@ -20,7 +20,7 @@ export default function DashboardLayout({
     <div className="flex min-h-screen">
       <DashboardHeader />
       <Suspense>
-        <main className="flex-1 mt-6 flex">{children}</main>
+        <main className="flex-1 mt-6 md:mt-0 flex">{children}</main>
       </Suspense>
     </div>
   );
