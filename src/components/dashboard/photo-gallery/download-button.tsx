@@ -1,0 +1,33 @@
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
+
+type DownloadButtonProps = {
+  selectedPhotos: { url: string; name: string }[];
+};
+
+export const DownloadButton = ({ selectedPhotos }: DownloadButtonProps) => {
+  async function downloadFiles() {
+    const zip = new JSZip();
+    await Promise.all(
+      selectedPhotos.map(async (photo) => {
+        const img = await fetch(photo.url).then((r) => r.blob());
+        const sufix = img.type.split("/").at(-1);
+
+        zip.file(`${photo.name}.${sufix}`, img, { base64: true });
+      })
+    );
+
+    const zipped = await zip.generateAsync({
+      type: "blob",
+    });
+    saveAs(zipped, "photos");
+  }
+
+  return (
+    <Button onClick={downloadFiles} disabled={selectedPhotos.length === 0}>
+      <Download className="mr-2 h-4 w-4" /> Download Selected
+    </Button>
+  );
+};

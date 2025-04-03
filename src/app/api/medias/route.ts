@@ -10,7 +10,12 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
   const medias = await db
-    .select()
+    .select({
+      id: mediasTable.id,
+      name: mediasTable.utId,
+      url: mediasTable.url,
+      comment: mediasTable.comment,
+    })
     .from(mediasTable)
     .where(eq(mediasTable.ownerId, userId))
     .limit(10)

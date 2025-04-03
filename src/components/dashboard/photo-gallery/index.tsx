@@ -4,16 +4,25 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Download, Loader, Trash2 } from "lucide-react";
+import { Loader, Trash2 } from "lucide-react";
 import { baseUrl } from "@/lib/utils";
-import { Media } from "./album-photo-gallery";
 import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { DownloadButton } from "./download-button";
+
+export type Media = {
+  id: number;
+  url: string;
+  name: string;
+  comment?: string;
+};
 
 export default function PhotoGallery() {
-  const [selectedPhotos, setSelectedPhotos] = useState<number[]>([]);
+  const [selectedPhotos, setSelectedPhotos] = useState<
+    { url: string; name: string }[]
+  >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { isLoaded, userId } = useAuth();
   const [album, setAlbum] = useState<{ total: number; medias: Media[] }>({
@@ -21,12 +30,15 @@ export default function PhotoGallery() {
     medias: [],
   });
 
-  const togglePhotoSelection = (id: number) => {
-    setSelectedPhotos((prev) =>
-      prev.includes(id)
-        ? prev.filter((photoId) => photoId !== id)
-        : [...prev, id]
-    );
+  const togglePhotoSelection = (photo: { url: string; name: string }) => {
+    const index = selectedPhotos.findIndex((i) => i.url === photo.url);
+    if (index >= 0) {
+      setSelectedPhotos((prev) =>
+        prev.filter((prevPhoto) => prevPhoto.url !== photo.url)
+      );
+    } else {
+      setSelectedPhotos((prev) => [...prev, photo]);
+    }
   };
 
   const handleDelete = async (id: number) => {
@@ -45,11 +57,6 @@ export default function PhotoGallery() {
     } catch {
       toast.error("Error deleting image");
     }
-  };
-
-  const handleDownload = () => {
-    // In a real application, you would implement the download functionality here
-    console.log("Downloading selected photos:", selectedPhotos);
   };
 
   const handleMorePhotos = async (page = 1) => {
@@ -93,9 +100,7 @@ export default function PhotoGallery() {
         <p className="text-sm text-muted-foreground">
           {selectedPhotos.length} photo(s) selected
         </p>
-        <Button onClick={handleDownload} disabled={selectedPhotos.length === 0}>
-          <Download className="mr-2 h-4 w-4" /> Download Selected
-        </Button>
+        <DownloadButton selectedPhotos={selectedPhotos} />
       </div>
       <div
         id="scrollableDiv"
@@ -134,8 +139,12 @@ export default function PhotoGallery() {
               <Label className="font-bold">{media.comment}</Label>
               <div className="absolute top-2 left-2">
                 <Checkbox
-                  checked={selectedPhotos.includes(media.id)}
-                  onCheckedChange={() => togglePhotoSelection(media.id)}
+                  checked={
+                    selectedPhotos.findIndex((i) => i.url === media.url) >= 0
+                  }
+                  onCheckedChange={() =>
+                    togglePhotoSelection({ url: media.url, name: media.name })
+                  }
                 />
               </div>
               <div className="absolute top-2 right-2 flex space-x-2">

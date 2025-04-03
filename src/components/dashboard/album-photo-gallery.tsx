@@ -11,13 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Download, ChevronLeft, ChevronRight, Loader } from "lucide-react";
 import { toast } from "sonner";
-
-export type Media = {
-  url: string;
-  id: number;
-  preview: string;
-  comment: string;
-};
+import { Media } from "./types";
 
 interface AlbumPhotoGalleryProps {
   medias: Media[];

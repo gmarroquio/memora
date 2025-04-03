@@ -90,7 +90,6 @@ export default function GuestCodeGenerator() {
     if (node == null) {
       return;
     }
-    // For canvas, we just extract the image data and send that directly.
     const dataURI = node.toDataURL("image/png");
 
     downloadStringAsFile(dataURI, `${code}-qrcode.png`);
