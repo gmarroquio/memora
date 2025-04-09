@@ -41,8 +41,6 @@ export const GET = async (req: NextRequest) => {
   if (!userId)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
-  console.log("aqui");
-
   const album = await db
     .select({
       id: albumsTable.id,
