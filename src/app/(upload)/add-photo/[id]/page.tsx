@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import { baseUrl, cn } from "@/lib/utils";
 import { Album } from "@/components/dashboard/album-list";
 import { Input } from "@/components/ui/input";
-import { Media } from "@/components/dashboard/album-photo-gallery";
+import { Media } from "@/components/dashboard/types";
 import { Label } from "@/components/ui/label";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
