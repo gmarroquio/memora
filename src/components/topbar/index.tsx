@@ -52,12 +52,12 @@ export const TopBar = () => {
 
           <div className="hidden md:block">
             <SignedIn>
-              <Link href="/dashboard" className="hidden md:flex">
+              <Link prefetch href="/dashboard" className="hidden md:flex">
                 <Button>{text.en.dashboard}</Button>
               </Link>
             </SignedIn>
             <SignedOut>
-              <Link href="/login" className="hidden md:flex">
+              <Link prefetch href="/login" className="hidden md:flex">
                 <Button>{text.en.get_start}</Button>
               </Link>
             </SignedOut>
@@ -109,12 +109,16 @@ export const TopBar = () => {
               {text.en.price}
             </Link>
             <SignedOut>
-              <Link href="/login" className="flex flex-col gap-2 mt-4">
+              <Link prefetch href="/login" className="flex flex-col gap-2 mt-4">
                 <Button>{text.en.get_start}</Button>
               </Link>
             </SignedOut>
             <SignedIn>
-              <Link href="/dashboard" className="flex flex-col gap-2 mt-4">
+              <Link
+                prefetch
+                href="/dashboard"
+                className="flex flex-col gap-2 mt-4"
+              >
                 <Button>{text.en.dashboard}</Button>
               </Link>
             </SignedIn>

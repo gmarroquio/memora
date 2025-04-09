@@ -19,7 +19,7 @@ export function Hero() {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Link href="/login">
+              <Link prefetch href="/login">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
                   {text.en.create_your_album}
                 </Button>
