@@ -66,7 +66,6 @@
           "Up to 500 photos",
           "U$ 0.15 per adition photo",
           "6 months of storage",
-          "Custom album link",
           "Download all photos"
         ]
       },
@@ -79,9 +78,7 @@
           "Up to 1500 photos",
           "U$ 0.10 per adition photo",
           "1 year of storage",
-          "Custom album link & QR code",
-          "Download all photos",
-          "Photo editing tools (coming soon)"
+          "Download all photos"
         ]
       },
       {
@@ -94,8 +91,7 @@
           "Public albums",
           "Custom album link & QR code",
           "Download all photos",
-          "Real time feed",
-          "Photo editing tools (coming soon)"
+          "Real time feed"
         ]
       }
     ]
