@@ -5,20 +5,20 @@
     "subtitle": "Ouça o que os convidados têm a dizer sobre sua experiência com nosso aplicativo de álbum de fotos de festa.",
     "testimonials": [
       {
-        "comment": "Recebemos tantas fotos incríveis que não teríamos conseguido apenas com nosso fotógrafo. Nossos convidados capturaram momentos que teríamos perdido!",
-        "names": "Sarah & Michael",
+        "comment": "Conseguimos tantas fotos incríveis que não teríamos conseguido de outra forma. Todos capturaram momentos que teríamos perdido!",
+        "names": "Alex",
         "date": "Festa em Junho de 2023",
         "rating": 5
       },
       {
-        "comment": "Tão fácil de configurar! Incluímos o código QR nas mesas e todos adoraram adicionar suas fotos durante a festa.",
-        "names": "David & Emma",
+        "comment": "Super fácil de configurar! Colocamos o código QR em volta e todos adoraram compartilhar suas fotos durante a festa.",
+        "names": "Casey",
         "date": "Festa em Agosto de 2023",
         "rating": 5
       },
       {
-        "comment": "Nossos amigos que não puderam viajar para a festa adoraram poder ver todas as fotos em tempo real. Melhor decisão que tomamos!",
-        "names": "Jessica & Thomas",
+        "comment": "Compartilhar as fotos ao vivo foi um sucesso com todos que não puderam estar lá. Recurso fantástico.",
+        "names": "Morgan",
         "date": "Festa em Outubro de 2023",
         "rating": 5
       }
@@ -30,20 +30,20 @@
     "subtitle": "Hear what guests have to say about their experience with our party photo album app.",
     "testimonials": [
       {
-        "comment": "We received so many amazing photos that we wouldn't have gotten just with our photographer. Our guests captured moments we would have missed!",
-        "names": "Sarah & Michael",
+        "comment": "We got so many awesome photos that we wouldn't have gotten otherwise. Everyone captured moments we would have missed!",
+        "names": "Alex",
         "date": "Party in June 2023",
         "rating": 5
       },
       {
-        "comment": "So easy to set up! We included the QR code on the tables and everyone loved adding their photos during the party.",
-        "names": "David & Emma",
+        "comment": "Super easy to set up! We put the QR code around and everyone loved sharing their pics during the party.",
+        "names": "Casey",
         "date": "Party in August 2023",
         "rating": 5
       },
       {
-        "comment": "Our friends who couldn't travel for the party loved being able to see all the photos in real-time. Best decision we made!",
-        "names": "Jessica & Thomas",
+        "comment": "Sharing the live photos was a hit with everyone who couldn't be there. Fantastic feature.",
+        "names": "Morgan",
         "date": "Party in October 2023",
         "rating": 5
       }

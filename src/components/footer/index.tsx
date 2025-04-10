@@ -43,14 +43,16 @@ export const Footer = () => {
                   {texts.en.product.links.pricing}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  {texts.en.product.links.faq}
-                </Link>
-              </li>
+              {
+                //  <li>
+                //    <Link
+                //      href="#"
+                //      className="text-muted-foreground hover:text-primary"
+                //    >
+                //      {texts.en.product.links.faq}
+                //    </Link>
+                //  </li>
+              }
             </ul>
           </div>
           <div className="space-y-4">
@@ -64,22 +66,26 @@ export const Footer = () => {
                   {texts.en.company.links.about}
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  {texts.en.company.links.blog}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  {texts.en.company.links.contact}
-                </Link>
-              </li>
+              {
+                //<>
+                //  <li>
+                //    <Link
+                //      href="/blog"
+                //      className="text-muted-foreground hover:text-primary"
+                //    >
+                //      {texts.en.company.links.blog}
+                //    </Link>
+                //  </li>
+                //  <li>
+                //    <Link
+                //      href="/contact"
+                //      className="text-muted-foreground hover:text-primary"
+                //    >
+                //      {texts.en.company.links.contact}
+                //    </Link>
+                //  </li>
+                //</>
+              }
             </ul>
           </div>
           <div className="space-y-4">
@@ -103,17 +109,28 @@ export const Footer = () => {
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} Memora. All rights reserved.
           </p>
-          <div className="flex gap-4 mt-4 sm:mt-0">
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              Privacy
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              Terms
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary">
-              Cookies
-            </Link>
-          </div>
+          {
+            //            <div className="flex gap-4 mt-4 sm:mt-0">
+            //              <Link
+            //                href="#"
+            //                className="text-muted-foreground hover:text-primary"
+            //              >
+            //                Privacy
+            //              </Link>
+            //              <Link
+            //                href="#"
+            //                className="text-muted-foreground hover:text-primary"
+            //              >
+            //                Terms
+            //              </Link>
+            //              <Link
+            //                href="#"
+            //                className="text-muted-foreground hover:text-primary"
+            //              >
+            //                Cookies
+            //              </Link>
+            //            </div>
+          }
         </div>
       </div>
     </footer>
