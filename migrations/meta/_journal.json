@@ -1,124 +1,12 @@
 {
   "version": "7",
-  "dialect": "sqlite",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "6",
-      "when": 1741159553064,
-      "tag": "0000_first_black_crow",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1741161384344,
-      "tag": "0001_brainy_black_bird",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1741162486765,
-      "tag": "0002_tan_beast",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1741163489176,
-      "tag": "0003_moaning_tomas",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1741166554956,
-      "tag": "0004_overconfident_caretaker",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "6",
-      "when": 1741256723280,
-      "tag": "0005_gifted_serpent_society",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "6",
-      "when": 1741259640337,
-      "tag": "0006_luxuriant_saracen",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "6",
-      "when": 1741311041254,
-      "tag": "0007_mature_invisible_woman",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "6",
-      "when": 1741311281248,
-      "tag": "0008_cloudy_morbius",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "6",
-      "when": 1741575441718,
-      "tag": "0009_workable_vulture",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "6",
-      "when": 1741589793244,
-      "tag": "0010_dashing_malice",
-      "breakpoints": true
-    },
-    {
-      "idx": 11,
-      "version": "6",
-      "when": 1741609924855,
-      "tag": "0011_far_sugar_man",
-      "breakpoints": true
-    },
-    {
-      "idx": 12,
-      "version": "6",
-      "when": 1741672791159,
-      "tag": "0012_material_mariko_yashida",
-      "breakpoints": true
-    },
-    {
-      "idx": 13,
-      "version": "6",
-      "when": 1741673315819,
-      "tag": "0013_spotty_sheva_callister",
-      "breakpoints": true
-    },
-    {
-      "idx": 14,
-      "version": "6",
-      "when": 1741679772740,
-      "tag": "0014_spooky_prodigy",
-      "breakpoints": true
-    },
-    {
-      "idx": 15,
-      "version": "6",
-      "when": 1741679928404,
-      "tag": "0015_sad_flatman",
-      "breakpoints": true
-    },
-    {
-      "idx": 16,
-      "version": "6",
-      "when": 1741884377226,
-      "tag": "0016_far_silver_samurai",
+      "version": "7",
+      "when": 1744334572947,
+      "tag": "0000_round_gamma_corps",
       "breakpoints": true
     }
   ]

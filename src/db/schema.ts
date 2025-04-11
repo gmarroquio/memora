@@ -1,8 +1,8 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, pgTable, text } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
-export const usersTable = sqliteTable("users", {
+export const usersTable = pgTable("users", {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   email: text("email").unique().notNull(),
@@ -11,14 +11,14 @@ export const usersTable = sqliteTable("users", {
   albumLimit: integer("album_limit").default(0).notNull(),
 });
 
-export const anonUsersTable = sqliteTable("anon_users", {
+export const anonUsersTable = pgTable("anon_users", {
   id: text("id")
     .$defaultFn(() => createId())
     .primaryKey(),
   name: text("name").notNull(),
 });
 
-export const albumsTable = sqliteTable("albums", {
+export const albumsTable = pgTable("albums", {
   id: text("id")
     .$defaultFn(() => createId())
     .primaryKey(),
@@ -30,7 +30,7 @@ export const albumsTable = sqliteTable("albums", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
 
-export const mediasTable = sqliteTable("medias", {
+export const mediasTable = pgTable("medias", {
   id: integer("id").primaryKey(),
   url: text("url").notNull(),
   status: text("status", { enum: ["active", "deleted"] }).default("active"),
@@ -45,7 +45,7 @@ export const mediasTable = sqliteTable("medias", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
 
-export const previewsTable = sqliteTable("previews", {
+export const previewsTable = pgTable("previews", {
   id: integer("id").primaryKey(),
   url: text("url").notNull(),
   utId: text("ut_id").notNull().default("empty"),
@@ -54,7 +54,7 @@ export const previewsTable = sqliteTable("previews", {
     .references(() => mediasTable.id, { onDelete: "cascade" }),
 });
 
-export const codesTable = sqliteTable("album_codes", {
+export const codesTable = pgTable("album_codes", {
   id: integer("id").primaryKey(),
   code: text("code").notNull(),
   expireAt: text("expire_at")
@@ -65,7 +65,7 @@ export const codesTable = sqliteTable("album_codes", {
     .references(() => albumsTable.id, { onDelete: "cascade" }),
 });
 
-export const subscriptionsTable = sqliteTable("subscriptions", {
+export const subscriptionsTable = pgTable("subscriptions", {
   id: integer("id").primaryKey(),
   priceId: text("price_id"),
   receiptUrl: text("receipt_url"),

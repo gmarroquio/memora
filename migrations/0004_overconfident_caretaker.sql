@@ -1,1 +1,0 @@
-ALTER TABLE `medias` ADD `user_id` integer NOT NULL REFERENCES users(id);
