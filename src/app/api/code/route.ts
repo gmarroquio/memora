@@ -23,3 +23,21 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ code });
 }
+
+export async function GET(req: NextRequest) {
+  const userId = req.headers.get("userId");
+  if (!userId)
+    return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
+
+  const [album] = await db
+    .select()
+    .from(albumsTable)
+    .where(eq(albumsTable.userId, userId));
+
+  const codes = await db
+    .select()
+    .from(codesTable)
+    .where(eq(codesTable.albumId, album.id));
+
+  return NextResponse.json(codes);
+}
