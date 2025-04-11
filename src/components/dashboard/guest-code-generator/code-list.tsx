@@ -1,6 +1,7 @@
-import { format } from "date-fns";
+import { format, isAfter } from "date-fns";
 import text from "../text.json";
 import { AlbumLink, ShowQrCode } from "./code";
+import { cn } from "@/lib/utils";
 
 export const CodeList = ({
   codes,
@@ -25,7 +26,7 @@ export const CodeList = ({
             </p>
             <p className="text-2xl font-bold">{code}</p>
           </div>
-          <div>
+          <div className={cn(isAfter(new Date(), expireAt) && "sr-only")}>
             <ShowQrCode code={code} />
             <AlbumLink code={code} />
           </div>
