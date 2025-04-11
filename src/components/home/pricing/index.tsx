@@ -40,14 +40,23 @@ export function Pricing() {
               <div>
                 <h3 className="text-2xl font-bold">{price.name}</h3>
                 <div className="mt-4 flex items-baseline">
-                  {price.price && (
-                    <>
-                      <span className="text-3xl font-bold">{`${price.currency}${price.price}`}</span>
-                      <span className="ml-1 text-muted-foreground">
-                        {text.en.one_time}
-                      </span>
-                    </>
-                  )}
+                  {price.price &&
+                    (price.promo ? (
+                      <>
+                        <span className="text-2xl font-bold line-through text-muted-foreground">{`${price.currency}${price.price}`}</span>
+                        <span className="text-3xl font-bold ml-2">{`${price.currency}${price.promo}`}</span>
+                        <span className="ml-1 text-muted-foreground">
+                          {text.en.one_time}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-3xl font-bold">{`${price.currency}${price.price}`}</span>
+                        <span className="ml-1 text-muted-foreground">
+                          {text.en.one_time}
+                        </span>
+                      </>
+                    ))}
                 </div>
                 <ul className="mt-6 space-y-4">
                   {price.perks.map((perk, perkIndex) => (

@@ -60,6 +60,7 @@
       {
         "name": "Basic",
         "currency": "U$",
+        "promo": 24.5,
         "price": 49,
         "id": "tier_1",
         "perks": [
@@ -73,6 +74,7 @@
         "name": "Premium",
         "currency": "U$",
         "price": 99,
+        "promo": 49.5,
         "id": "tier_2",
         "perks": [
           "Up to 1500 photos",
