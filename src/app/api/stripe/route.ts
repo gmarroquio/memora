@@ -60,7 +60,7 @@ export async function GET(req: Request) {
       dev ? "http://localhost:3000" : "https://memora.party"
     }/dashboard/`,
     mode: "payment",
-    discounts: [{ coupon: "promo_1RCVIlE4vJuSIv12qmoP9nOk" }],
+    discounts: [{ promotion_code: "promo_1RCVIlE4vJuSIv12qmoP9nOk" }],
     line_items: [{ price: products[price].id, quantity: 1 }],
     ui_mode: "embedded",
     metadata: products[price],
