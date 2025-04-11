@@ -19,6 +19,7 @@ type Plan = {
   id: string;
   name: string;
   price: number;
+  promo?: number;
   description: string;
   features: PlanFeature[];
   recommended?: boolean;
@@ -28,6 +29,7 @@ const plans: Plan[] = [
   {
     id: "tier_1",
     name: "Basic",
+    promo: 49 / 2,
     price: 49,
     description: "Perfect for events with up to 50 guests",
     features: [
@@ -42,6 +44,7 @@ const plans: Plan[] = [
     id: "tier_2",
     name: "Premium",
     price: 99,
+    promo: 99 / 2,
     description: "Perfect for events with up to 150 guests",
     features: [
       { name: "Up to 1500 photos", included: true },
@@ -78,7 +81,8 @@ export default function PaymentPlans({
               <CardTitle>{plan.name}</CardTitle>
               <CardDescription>{plan.description}</CardDescription>
               <div className="mt-4">
-                <span className="text-3xl font-bold">U${plan.price}</span>
+                <span className="text-2xl font-bold line-through text-muted-foreground">{`U$${plan.price}`}</span>
+                <span className="text-3xl font-bold">U${plan.promo}</span>
                 <span className="text-muted-foreground ml-1">once</span>
               </div>
             </CardHeader>
