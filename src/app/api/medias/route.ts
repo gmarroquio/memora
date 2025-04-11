@@ -5,11 +5,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   const userId = req.headers.get("userId");
-  const page = Number(new URL(req.url).searchParams.get("page") ?? 1);
+  const searchParams = new URL(req.url).searchParams;
+  const page = Number(searchParams.get("page") ?? 1);
+  const limit = searchParams.get("all") !== "false";
   if (!userId)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
-  const medias = await db
+  const mediasQuery = db
     .select({
       id: mediasTable.id,
       name: mediasTable.utId,
@@ -18,9 +20,13 @@ export const GET = async (req: NextRequest) => {
     })
     .from(mediasTable)
     .where(eq(mediasTable.ownerId, userId))
-    .limit(10)
-    .offset((page - 1) * 10)
     .orderBy(desc(mediasTable.id));
+
+  if (limit) {
+    mediasQuery.limit(10).offset((page - 1) * 10);
+  }
+
+  const medias = await mediasQuery;
 
   const [{ count: total }] = await db
     .select({ count: count() })

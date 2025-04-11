@@ -10,7 +10,7 @@ import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { DownloadButton } from "./download-button";
+import { DownloadAllButton, DownloadButton } from "./download-button";
 
 export type Media = {
   id: number;
@@ -100,7 +100,10 @@ export default function PhotoGallery() {
         <p className="text-sm text-muted-foreground">
           {selectedPhotos.length} photo(s) selected
         </p>
-        <DownloadButton selectedPhotos={selectedPhotos} />
+        <div className="space-x-2">
+          <DownloadAllButton />
+          <DownloadButton selectedPhotos={selectedPhotos} />
+        </div>
       </div>
       <div
         id="scrollableDiv"
