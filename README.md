@@ -26,12 +26,14 @@
   3.99% + R$0.39
 - Vercel
   20 USD
+- Supabase
+  25 USD + 0.021 per gb after 100GB
+- Turso
+  8.25/25 USD
 - Uploadthing
   25 USD - 250gb + 0.08usd por gb > 250gb
 - Clerk
   25 USD + 0.02 per MAU after 10k
-- Turso
-  8.25/25 USD
 - Cloudflare
 
 ### Planos

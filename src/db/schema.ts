@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
 export const usersTable = pgTable("users", {
@@ -31,7 +31,7 @@ export const albumsTable = pgTable("albums", {
 });
 
 export const mediasTable = pgTable("medias", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   url: text("url").notNull(),
   status: text("status", { enum: ["active", "deleted"] }).default("active"),
   uploader: text("uploader"),
@@ -46,7 +46,7 @@ export const mediasTable = pgTable("medias", {
 });
 
 export const previewsTable = pgTable("previews", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   url: text("url").notNull(),
   utId: text("ut_id").notNull().default("empty"),
   mediaId: integer("media_id")
@@ -55,7 +55,7 @@ export const previewsTable = pgTable("previews", {
 });
 
 export const codesTable = pgTable("album_codes", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   code: text("code").notNull(),
   expireAt: text("expire_at")
     .default(sql`(CURRENT_TIMESTAMP)`)
@@ -66,7 +66,7 @@ export const codesTable = pgTable("album_codes", {
 });
 
 export const subscriptionsTable = pgTable("subscriptions", {
-  id: integer("id").primaryKey(),
+  id: serial("id").primaryKey(),
   priceId: text("price_id"),
   receiptUrl: text("receipt_url"),
   name: text("name").default("Basic"),

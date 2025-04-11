@@ -12,14 +12,14 @@ CREATE TABLE "anon_users" (
 );
 --> statement-breakpoint
 CREATE TABLE "album_codes" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"code" text NOT NULL,
 	"expire_at" text DEFAULT (CURRENT_TIMESTAMP) NOT NULL,
 	"album_id" text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "medias" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"url" text NOT NULL,
 	"status" text DEFAULT 'active',
 	"uploader" text,
@@ -30,14 +30,14 @@ CREATE TABLE "medias" (
 );
 --> statement-breakpoint
 CREATE TABLE "previews" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"url" text NOT NULL,
 	"ut_id" text DEFAULT 'empty' NOT NULL,
 	"media_id" integer NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "subscriptions" (
-	"id" integer PRIMARY KEY NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
 	"price_id" text,
 	"receipt_url" text,
 	"name" text DEFAULT 'Basic',

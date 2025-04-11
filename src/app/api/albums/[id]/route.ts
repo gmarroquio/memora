@@ -66,12 +66,12 @@ export const POST = async (
   const [newMedia] = await db
     .insert(mediasTable)
     .values({
-      albumId,
       ownerId: album.userId,
       url: body.url,
       comment: body.comment,
       utId: body.utId,
       uploader: body.uploader,
+      albumId,
     })
     .returning();
 
