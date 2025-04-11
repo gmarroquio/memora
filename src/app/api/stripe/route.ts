@@ -63,7 +63,6 @@ export async function GET(req: Request) {
     discounts: [{ coupon: "promo_1RCVIlE4vJuSIv12qmoP9nOk" }],
     line_items: [{ price: products[price].id, quantity: 1 }],
     ui_mode: "embedded",
-    allow_promotion_codes: true,
     metadata: products[price],
   });
 
