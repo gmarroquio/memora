@@ -56,6 +56,7 @@ export async function POST(req: NextRequest) {
   if (msg.type === "user.deleted") {
     await db.delete(usersTable).where(eq(usersTable.id, msg.data.id));
   } else if (msg.type === "user.created") {
+    console.log("create album");
     await db.insert(usersTable).values({
       id: msg.data.id,
       name: msg.data.first_name + " " + (msg.data.last_name ?? ""),
@@ -64,7 +65,7 @@ export async function POST(req: NextRequest) {
 
     await db.insert(albumsTable).values({
       userId: msg.data.id,
-      title: "Memórias de " + msg.data.first_name,
+      title: msg.data.first_name + "'s memories",
     });
   }
 
