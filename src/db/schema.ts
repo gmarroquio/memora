@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, serial, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text, varchar } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
 export const usersTable = pgTable("users", {
@@ -88,6 +88,24 @@ export const subscriptionsTable = pgTable("subscriptions", {
     .references(() => usersTable.id, { onDelete: "cascade" }),
 });
 
+export const blogPostTable = pgTable("blog_posts", {
+  id: varchar("id")
+    .$defaultFn(() => createId())
+    .primaryKey(),
+  title: varchar("title").notNull(),
+  text: text("text").notNull(),
+});
+
+export const blogImagesTable = pgTable("blog_images", {
+  id: varchar("id")
+    .$defaultFn(() => createId())
+    .primaryKey(),
+  url: varchar("url").notNull(),
+  postId: varchar("post_id")
+    .notNull()
+    .references(() => blogPostTable.id, { onDelete: "cascade" }),
+});
+
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;
 
@@ -102,3 +120,6 @@ export type SelectPreview = typeof previewsTable.$inferSelect;
 
 export type InsertCode = typeof codesTable.$inferInsert;
 export type SelectCode = typeof codesTable.$inferSelect;
+
+export type InsertSubscription = typeof subscriptionsTable.$inferInsert;
+export type SelectSubscription = typeof subscriptionsTable.$inferSelect;
