@@ -1,5 +1,12 @@
 import { sql } from "drizzle-orm";
-import { integer, pgTable, serial, text, varchar } from "drizzle-orm/pg-core";
+import {
+  integer,
+  pgTable,
+  serial,
+  text,
+  varchar,
+  timestamp,
+} from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
 export const usersTable = pgTable("users", {
@@ -92,14 +99,16 @@ export const blogPostTable = pgTable("blog_posts", {
   id: varchar("id")
     .$defaultFn(() => createId())
     .primaryKey(),
+  postDate: timestamp("postDate").notNull().defaultNow(),
+  cover: varchar("cover").notNull(),
+  keywords: varchar("keywords").notNull(),
   title: varchar("title").notNull(),
+  description: varchar("description").notNull(),
   text: text("text").notNull(),
 });
 
 export const blogImagesTable = pgTable("blog_images", {
-  id: varchar("id")
-    .$defaultFn(() => createId())
-    .primaryKey(),
+  id: varchar("id").primaryKey(),
   url: varchar("url").notNull(),
   postId: varchar("post_id")
     .notNull()

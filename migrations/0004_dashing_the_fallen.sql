@@ -1,0 +1,1 @@
+ALTER TABLE "blog_posts" ADD COLUMN "postDate" timestamp DEFAULT now() NOT NULL;
