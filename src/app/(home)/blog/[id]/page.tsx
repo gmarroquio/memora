@@ -1,13 +1,23 @@
 import { baseUrl } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 async function getData(id: string) {
   const host = (await headers()).get("host");
 
   const response = await fetch(baseUrl({ host, path: `/api/blog/${id}` }));
-  if (response.ok) return response.json();
-  else return undefined;
+  if (response.ok)
+    return response.json() as Promise<{
+      title: string;
+      description: string;
+      keywords: string;
+      text: string;
+      images: { id: string; url: string }[];
+    }>;
+  else {
+    redirect(baseUrl({ host, path: `/blog/` }));
+  }
 }
 
 export default async function Page({

@@ -7,8 +7,11 @@ async function getData() {
   const host = (await headers()).get("host");
 
   const response = await fetch(baseUrl({ host, path: "/api/blog" }));
-  if (response.ok) return response.json();
-  else return undefined;
+  if (response.ok)
+    return response.json() as Promise<
+      { id: string; cover: string; title: string; description: string }[]
+    >;
+  else return [];
 }
 
 export default async function Page() {

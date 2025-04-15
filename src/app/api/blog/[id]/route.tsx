@@ -25,6 +25,10 @@ export const GET = async (
     .leftJoin(blogImagesTable, eq(blogImagesTable.postId, blogPostTable.id))
     .where(eq(blogPostTable.id, id));
 
+  if (post.length === 0) {
+    return NextResponse.json({ message: "Post not found" }, { status: 404 });
+  }
+
   const clean: {
     title: string;
     cover: string;
