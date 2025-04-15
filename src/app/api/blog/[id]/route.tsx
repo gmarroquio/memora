@@ -18,7 +18,7 @@ export const GET = async (
       text: blogPostTable.text,
       image: {
         id: blogImagesTable.id,
-        ulr: blogImagesTable.url,
+        url: blogImagesTable.url,
       },
     })
     .from(blogPostTable)
@@ -32,7 +32,7 @@ export const GET = async (
     text: string;
     images: {
       id: string;
-      ulr: string;
+      url: string;
     }[];
   } = {
     title: post[0].title,
