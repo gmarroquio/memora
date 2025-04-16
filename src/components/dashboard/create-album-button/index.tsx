@@ -107,7 +107,7 @@ export default function CreateAlbumButton() {
           renameFile(data.coverImage, data.name.replaceAll(" ", "_")),
         ]);
         if (!coverUpload) throw new Error();
-        response = await fetch(baseUrl({ path: "/api/albums" }), {
+        response = await fetch(baseUrl("/api/albums"), {
           method: "POST",
           headers: { userId: userId! },
           body: JSON.stringify({
@@ -116,7 +116,7 @@ export default function CreateAlbumButton() {
           }),
         });
       } else {
-        response = await fetch(baseUrl({ path: "/api/albums" }), {
+        response = await fetch(baseUrl("/api/albums"), {
           method: "POST",
           headers: { userId: userId! },
           body: JSON.stringify({

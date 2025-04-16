@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { blogImagesTable, blogPostTable } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 export async function GET() {
   const posts = await db
@@ -18,6 +19,7 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  revalidateTag("blog");
   const token = req.headers.get("token");
   if (!token || token != "1234DeOliveira5") {
     return NextResponse.json({ message: "Wrong" }, { status: 400 });
@@ -35,9 +37,14 @@ export async function POST(req: NextRequest) {
     title: string;
     keywords: string;
     description: string;
-    cover: string;
-    images: { id: string; url: string }[];
+    cover: string; // description
+    images: { id: string; url: string }[]; // images: { id: string; description: string }[];
   } = await req.json();
+
+  //TODO: Generate all images based on the descriptions
+  // upload
+  // save the url and id
+  // add to database
 
   const [post] = await db
     .insert(blogPostTable)

@@ -19,7 +19,7 @@ export default function GuestCodeGenerator() {
 
   useEffect(() => {
     if (userId) {
-      fetch(baseUrl({ path: "/api/code" }), {
+      fetch(baseUrl("/api/code"), {
         headers: { userId: userId! },
       }).then((response) => {
         response.json().then(setCodes);

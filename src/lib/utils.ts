@@ -48,15 +48,10 @@ export function renameFile(file: File, name?: string) {
   return newFile;
 }
 
-export const baseUrl = ({
-  path,
-  host,
-}: {
-  path: string;
-  host?: string | null;
-}) => {
-  if (host) return (process.env.VERCEL ? "https://" : "http://") + host + path;
-  else {
-    return `${window.location.protocol}//${window.location.host}/${path}`;
-  }
+export const baseUrl = (path: string) => {
+  if (path[0] !== "/") path = "/" + path;
+  return (
+    (process.env.VERCEL ? "https://memora.party" : "http://localhost:3000") +
+    path
+  );
 };

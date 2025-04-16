@@ -40,7 +40,7 @@ export const CodeGeneratorForm = ({
 
   async function onSubmit(values: z.infer<typeof guestCodeSchema>) {
     try {
-      const response = await fetch(baseUrl({ path: `/api/code` }), {
+      const response = await fetch(baseUrl(`/api/code`), {
         method: "POST",
         headers: { userId: userId! },
         body: JSON.stringify(values),

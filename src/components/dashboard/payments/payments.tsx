@@ -27,7 +27,7 @@ export const PaymentsHistory = ({ setPrice }: PaymentHistoryProps) => {
   useEffect(() => {
     if (isLoaded && userId) {
       setLoading(true);
-      fetch(baseUrl({ path: "/api/user/subscription" }), {
+      fetch(baseUrl("/api/user/subscription"), {
         headers: { userId: userId },
       }).then((response) => {
         if (response.ok) {

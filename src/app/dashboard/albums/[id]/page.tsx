@@ -9,7 +9,7 @@ import { auth } from "@clerk/nextjs/server";
 async function getAlbum(id: string) {
   const { userId } = await auth();
   const host = (await headers()).get("host");
-  const response = await fetch(baseUrl({ path: `/api/albums/${id}`, host }), {
+  const response = await fetch(baseUrl(`/api/albums/${id}`), {
     headers: { userId: userId! },
   });
   if (response.ok) {

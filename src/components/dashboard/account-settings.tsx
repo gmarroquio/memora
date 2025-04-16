@@ -12,13 +12,11 @@ import text from "./text.json";
 import { baseUrl } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
-import { headers } from "next/headers";
 
 async function getData() {
   const { userId } = await auth();
-  const host = (await headers()).get("host");
 
-  const response = await fetch(baseUrl({ host, path: "/api/user/album" }), {
+  const response = await fetch(baseUrl("/api/user/album"), {
     headers: {
       userId: userId!,
     },
@@ -35,8 +33,7 @@ export default async function AccountSettings() {
       action={async (form) => {
         "use server";
         const { userId } = await auth();
-        const host = (await headers()).get("host");
-        await fetch(baseUrl({ host, path: "/api/user/album" }), {
+        await fetch(baseUrl("/api/user/album"), {
           method: "POST",
           headers: {
             userId: userId!,

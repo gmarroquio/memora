@@ -21,7 +21,7 @@ export default function Page() {
   useEffect(() => {
     if (price && isLoaded) {
       setLoading(true);
-      fetch(baseUrl({ path: "/api/stripe" }), {
+      fetch(baseUrl("/api/stripe"), {
         headers: { userId: userId!, price },
       })
         .then((response) => {

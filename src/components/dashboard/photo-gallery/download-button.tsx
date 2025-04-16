@@ -42,7 +42,7 @@ export const DownloadAllButton = () => {
   const { userId } = useAuth();
   async function downloadFiles() {
     setLoading(true);
-    const response = await fetch(baseUrl({ path: `/api/medias?limit=false` }), {
+    const response = await fetch(baseUrl(`/api/medias?limit=false`), {
       headers: { userId: userId! },
     });
 

@@ -37,7 +37,7 @@ export default function AlbumsList() {
 
   useEffect(() => {
     if (userId && isLoaded)
-      fetch(baseUrl({ path: "/api/albums" }), {
+      fetch(baseUrl("/api/albums"), {
         headers: { userId },
       }).then((response) => {
         if (response.ok) {

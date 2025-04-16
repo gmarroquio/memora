@@ -1,12 +1,18 @@
 import { baseUrl } from "@/lib/utils";
-import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_cache } from "next/cache";
+
+const getCachedPosts = unstable_cache(
+  async () => {
+    return getData();
+  },
+  ["blog"],
+  { revalidate: 3600, tags: ["blog"] }
+);
 
 async function getData() {
-  const host = (await headers()).get("host");
-
-  const response = await fetch(baseUrl({ host, path: "/api/blog" }));
+  const response = await fetch(baseUrl("/api/blog"));
   if (response.ok)
     return response.json() as Promise<
       { id: string; cover: string; title: string; description: string }[]
@@ -15,7 +21,7 @@ async function getData() {
 }
 
 export default async function Page() {
-  const data = await getData();
+  const data = await getCachedPosts();
 
   return (
     <div className="container mx-auto py-8">

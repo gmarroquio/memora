@@ -74,12 +74,12 @@ export default function Page() {
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     setLoading(true);
     try {
-      const response = await fetch(baseUrl({ path: `/api/code/${data.code}` }));
+      const response = await fetch(baseUrl(`/api/code/${data.code}`));
       if (response.ok) {
         const user = getAnonUser();
         const id = user?.id ?? createId();
         saveAnonUser(data.name, data.code, id);
-        await fetch(baseUrl({ path: `/api/user/anon` }), {
+        await fetch(baseUrl(`/api/user/anon`), {
           method: "POST",
           body: JSON.stringify({ name: data.name, id }),
         });

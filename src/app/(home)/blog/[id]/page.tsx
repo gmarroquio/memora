@@ -1,12 +1,14 @@
 import { baseUrl } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-async function getData(id: string) {
-  const host = (await headers()).get("host");
+export const revalidate = 60;
+export const dynamicParams = true;
 
-  const response = await fetch(baseUrl({ host, path: `/api/blog/${id}` }));
+async function getData(id: string) {
+  const response = await fetch(baseUrl(`/api/blog/${id}`), {
+    next: { tags: ["blog"] },
+  });
   if (response.ok)
     return response.json() as Promise<{
       title: string;
@@ -16,8 +18,20 @@ async function getData(id: string) {
       images: { id: string; url: string }[];
     }>;
   else {
-    redirect(baseUrl({ host, path: `/blog/` }));
+    redirect(baseUrl(`/blog/`));
   }
+}
+
+export async function generateStaticParams() {
+  const posts = await fetch(baseUrl("/api/blog")).then(
+    (res) =>
+      res.json() as Promise<
+        { id: string; cover: string; title: string; description: string }[]
+      >
+  );
+  return posts.map((post) => ({
+    id: String(post.id),
+  }));
 }
 
 export default async function Page({

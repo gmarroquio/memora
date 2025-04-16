@@ -43,7 +43,7 @@ export default function PhotoGallery() {
 
   const handleDelete = async (id: number) => {
     try {
-      const response = await fetch(baseUrl({ path: `/api/medias/` }), {
+      const response = await fetch(baseUrl(`/api/medias/`), {
         method: "DELETE",
         headers: { userId: userId! },
         body: JSON.stringify({
@@ -60,7 +60,7 @@ export default function PhotoGallery() {
   };
 
   const handleMorePhotos = async (page = 1) => {
-    const resp = await fetch(baseUrl({ path: `/api/medias?page=${page}` }), {
+    const resp = await fetch(baseUrl(`/api/medias?page=${page}`), {
       headers: { userId: userId! },
     });
     if (resp.ok) {
@@ -78,7 +78,7 @@ export default function PhotoGallery() {
 
   useEffect(() => {
     if (userId && isLoaded)
-      fetch(baseUrl({ path: `/api/medias?page=1` }), {
+      fetch(baseUrl(`/api/medias?page=1`), {
         headers: { userId: userId! },
       }).then((resp) => {
         resp.json().then(setAlbum);

@@ -63,16 +63,13 @@ export default function AddPhotoPage() {
   const handleDeletePhoto = async () => {
     try {
       if (imageShow) {
-        const response = await fetch(
-          baseUrl({ path: `/api/user/anon/media/` }),
-          {
-            method: "DELETE",
-            headers: { userId: user!.id },
-            body: JSON.stringify({
-              id: imageShow.id,
-            }),
-          }
-        );
+        const response = await fetch(baseUrl(`/api/user/anon/media/`), {
+          method: "DELETE",
+          headers: { userId: user!.id },
+          body: JSON.stringify({
+            id: imageShow.id,
+          }),
+        });
         if (response.ok) {
           const newMedias = medias.filter((m) => m.id !== imageShow.id);
           setMedias(newMedias);
@@ -95,20 +92,17 @@ export default function AddPhotoPage() {
       if (capturedImage && album) {
         const image = await startUpload(capturedImage);
         if (image && image.length > 0) {
-          const response = await fetch(
-            baseUrl({ path: `/api/albums/${album.id}/` }),
-            {
-              method: "POST",
-              body: JSON.stringify({
-                url: image[0].ufsUrl,
-                comment,
-                uploader: user.id,
-                utId: image[0].key,
-                previewUrl: image[1].ufsUrl,
-                previewKey: image[1].key,
-              }),
-            }
-          );
+          const response = await fetch(baseUrl(`/api/albums/${album.id}/`), {
+            method: "POST",
+            body: JSON.stringify({
+              url: image[0].ufsUrl,
+              comment,
+              uploader: user.id,
+              utId: image[0].key,
+              previewUrl: image[1].ufsUrl,
+              previewKey: image[1].key,
+            }),
+          });
           if (response.ok) {
             const { medias, count } = await response.json();
             setMedias(medias);
@@ -127,9 +121,7 @@ export default function AddPhotoPage() {
   };
 
   const handleMorePhotos = async (page = 1) => {
-    const resp = await fetch(
-      baseUrl({ path: `/api/code/${code}?page=${page}` })
-    );
+    const resp = await fetch(baseUrl(`/api/code/${code}?page=${page}`));
     if (resp.ok) {
       resp.json().then((body) => {
         setAlbum(body.album);
@@ -147,7 +139,7 @@ export default function AddPhotoPage() {
       router.push(`/add-photo/?toast=${text.en.error_name}&code=${code}`);
     }
     setUser(storageUser);
-    fetch(baseUrl({ path: `/api/code/${code}` })).then((resp) => {
+    fetch(baseUrl(`/api/code/${code}`)).then((resp) => {
       if (resp.ok) {
         resp.json().then((body) => {
           setAlbum(body.album);
