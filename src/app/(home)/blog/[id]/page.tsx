@@ -1,6 +1,9 @@
 import { baseUrl } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { redirect } from "next/navigation";
+import { db } from "@/db";
+import { blogPostTable } from "@/db/schema";
+import { desc } from "drizzle-orm";
 
 export const revalidate = 60;
 export const dynamicParams = true;
@@ -23,12 +26,16 @@ async function getData(id: string) {
 }
 
 export async function generateStaticParams() {
-  const posts = await fetch(baseUrl("/api/blog")).then(
-    (res) =>
-      res.json() as Promise<
-        { id: string; cover: string; title: string; description: string }[]
-      >
-  );
+  const posts = await db
+    .select({
+      id: blogPostTable.id,
+      title: blogPostTable.title,
+      cover: blogPostTable.cover,
+      description: blogPostTable.description,
+    })
+    .from(blogPostTable)
+    .orderBy(desc(blogPostTable.postDate));
+
   return posts.map((post) => ({
     id: String(post.id),
   }));

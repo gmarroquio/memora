@@ -1,24 +1,25 @@
-import { baseUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { unstable_cache } from "next/cache";
+import { db } from "@/db";
+import { blogPostTable } from "@/db/schema";
+import { desc } from "drizzle-orm";
 
 const getCachedPosts = unstable_cache(
   async () => {
-    return getData();
+    return db
+      .select({
+        id: blogPostTable.id,
+        title: blogPostTable.title,
+        cover: blogPostTable.cover,
+        description: blogPostTable.description,
+      })
+      .from(blogPostTable)
+      .orderBy(desc(blogPostTable.postDate));
   },
   ["blog"],
   { revalidate: 3600, tags: ["blog"] }
 );
-
-async function getData() {
-  const response = await fetch(baseUrl("/api/blog"));
-  if (response.ok)
-    return response.json() as Promise<
-      { id: string; cover: string; title: string; description: string }[]
-    >;
-  else return [];
-}
 
 export default async function Page() {
   const data = await getCachedPosts();
