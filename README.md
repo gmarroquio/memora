@@ -24,18 +24,25 @@
 
 - Stripe
   3.99% + R$0.39
+- Polar (dont know)
+  4% + U$0.4
 - Vercel
   20 USD
-- Supabase
+- Convex
+  25 usd + 0.03 per gb after 100 gb
+  - auth
+  - database
+  - storage (can be r2)
+  - real time
+- Supabase (gone)
   25 USD + 0.021 per gb after 100GB
   - auth
   - storage
   - database
-- Uploadthing
-  25 USD - 250gb + 0.08usd por gb > 250gb
-- Clerk
+- Uploadthing (gone)
+  25 USD - 250gb + 0.08usd per gb after 250gb
+- Clerk (gone)
   25 USD + 0.02 per MAU after 10k
-- Cloudflare R2/AWS S3 ?
 
 ### Planos
 
