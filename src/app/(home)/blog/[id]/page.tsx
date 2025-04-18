@@ -1,37 +1,59 @@
-import { baseUrl } from "@/lib/utils";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { redirect } from "next/navigation";
 import { db } from "@/db";
-import { blogPostTable } from "@/db/schema";
-import { desc } from "drizzle-orm";
+import { blogImagesTable, blogPostTable } from "@/db/schema";
+import { desc, eq } from "drizzle-orm";
 
 export const revalidate = 60;
 export const dynamicParams = true;
 
 async function getData(id: string) {
-  const response = await fetch(baseUrl(`/api/blog/${id}`), {
-    next: { tags: ["blog"] },
+  const post = await db
+    .select({
+      id: blogPostTable.id,
+      title: blogPostTable.title,
+      cover: blogPostTable.cover,
+      description: blogPostTable.description,
+      keywords: blogPostTable.keywords,
+      text: blogPostTable.text,
+      image: {
+        id: blogImagesTable.id,
+        url: blogImagesTable.url,
+      },
+    })
+    .from(blogPostTable)
+    .leftJoin(blogImagesTable, eq(blogImagesTable.postId, blogPostTable.id))
+    .where(eq(blogPostTable.id, id));
+
+  const clean: {
+    title: string;
+    cover: string;
+    description: string;
+    text: string;
+    keywords: string;
+    images: {
+      id: string;
+      url: string;
+    }[];
+  } = {
+    title: post[0].title,
+    cover: post[0].cover,
+    description: post[0].description,
+    text: post[0].text,
+    keywords: post[0].keywords,
+    images: [],
+  };
+
+  post.forEach((p) => {
+    if (p.image) clean.images.push(p.image);
   });
-  if (response.ok)
-    return response.json() as Promise<{
-      title: string;
-      description: string;
-      keywords: string;
-      text: string;
-      images: { id: string; url: string }[];
-    }>;
-  else {
-    redirect(baseUrl(`/blog/`));
-  }
+
+  return clean;
 }
 
 export async function generateStaticParams() {
   const posts = await db
     .select({
       id: blogPostTable.id,
-      title: blogPostTable.title,
-      cover: blogPostTable.cover,
-      description: blogPostTable.description,
     })
     .from(blogPostTable)
     .orderBy(desc(blogPostTable.postDate));
