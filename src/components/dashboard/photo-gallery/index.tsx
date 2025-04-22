@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Loader, Trash2 } from "lucide-react";
-import { baseUrl } from "@/lib/utils";
+import { Loader } from "lucide-react";
 import { useAuth } from "@clerk/nextjs";
-import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { DownloadAllButton, DownloadButton } from "./download-button";
+import { infinitePhotos } from "./fetch";
+import { DeleteButton } from "./delete-button";
 
 export type Media = {
   id: number;
@@ -23,12 +22,8 @@ export default function PhotoGallery() {
   const [selectedPhotos, setSelectedPhotos] = useState<
     { url: string; name: string }[]
   >([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { isLoaded, userId } = useAuth();
-  const [album, setAlbum] = useState<{ total: number; medias: Media[] }>({
-    total: 0,
-    medias: [],
-  });
+  const { isLoaded } = useAuth();
+  const { data, isLoading, isError, fetchNextPage } = infinitePhotos();
 
   const togglePhotoSelection = (photo: { url: string; name: string }) => {
     const index = selectedPhotos.findIndex((i) => i.url === photo.url);
@@ -41,56 +36,17 @@ export default function PhotoGallery() {
     }
   };
 
-  const handleDelete = async (id: number) => {
-    try {
-      const response = await fetch(baseUrl(`/api/medias/`), {
-        method: "DELETE",
-        headers: { userId: userId! },
-        body: JSON.stringify({
-          id,
-        }),
-      });
-      if (response.ok) {
-        const newMedias = album.medias.filter((m) => m.id !== id);
-        setAlbum((old) => ({ total: old.total - 1, medias: newMedias }));
-      } else throw new Error();
-    } catch {
-      toast.error("Error deleting image");
-    }
-  };
-
-  const handleMorePhotos = async (page = 1) => {
-    const resp = await fetch(baseUrl(`/api/medias?page=${page}`), {
-      headers: { userId: userId! },
-    });
-    if (resp.ok) {
-      resp.json().then((body) => {
-        setAlbum((old) => ({
-          total: old.total,
-          medias: old.medias.concat(body.medias),
-        }));
-      });
-      setIsLoading(false);
-    } else {
-      toast.error("Error loading photos");
-    }
-  };
-
-  useEffect(() => {
-    if (userId && isLoaded)
-      fetch(baseUrl(`/api/medias?page=1`), {
-        headers: { userId: userId! },
-      }).then((resp) => {
-        resp.json().then(setAlbum);
-        setIsLoading(false);
-      });
-  }, [userId, isLoaded]);
-
   if (isLoading && isLoaded) {
     return (
       <div className="h-screen flex items-center justify-center">
         <Loader className="animate-spin h-10 w-10" />
       </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="h-screen flex items-center justify-center">Error</div>
     );
   }
 
@@ -110,11 +66,9 @@ export default function PhotoGallery() {
         className="flex flex-col max-h-11/12 overflow-auto scrollbar-thin scrollbar-thumb-rounded scrollbar-track-transparent scrollbar-thumb-gray-400"
       >
         <InfiniteScroll
-          dataLength={album?.total ?? 0}
-          next={() => {
-            handleMorePhotos(Math.floor(album.medias.length / 10) + 1);
-          }}
-          hasMore={Number(album?.total) > album.medias.length}
+          dataLength={data?.total ?? 0}
+          next={fetchNextPage}
+          hasMore={Number(data?.total) > (data?.medias.length ?? 0)}
           loader={
             <>
               <div className="animate-pulse bg-gray-200 rounded-md" />
@@ -126,10 +80,10 @@ export default function PhotoGallery() {
           style={{ height: "unset", overflow: "unset" }}
           scrollableTarget="scrollableDiv"
         >
-          {album.medias.length === 0 && (
+          {data?.medias.length === 0 && (
             <span className="col-span-3 text-lg">No photos</span>
           )}
-          {album.medias.map((media) => (
+          {data?.medias.map((media) => (
             <div key={media.id} className="relative group">
               <Image
                 src={media.url || "/placeholder.svg"}
@@ -150,15 +104,7 @@ export default function PhotoGallery() {
                   }
                 />
               </div>
-              <div className="absolute top-2 right-2 flex space-x-2">
-                <Button
-                  variant="destructive"
-                  size="icon"
-                  onClick={() => handleDelete(media.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </div>
+              <DeleteButton id={media.id} />
             </div>
           ))}
         </InfiniteScroll>

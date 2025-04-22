@@ -5,6 +5,11 @@ import { usePostHog } from "posthog-js/react";
 
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { getQueryClient } from "@/lib/query";
+import type * as React from "react";
+import { IntlProvider } from "./intl-provider";
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -59,5 +64,20 @@ function SuspendedPostHogPageView() {
     <Suspense fallback={null}>
       <PostHogPageView />
     </Suspense>
+  );
+}
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const queryClient = getQueryClient();
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <IntlProvider>
+        <PostHogProvider>
+          {children}
+          <ReactQueryDevtools />
+        </PostHogProvider>
+      </IntlProvider>
+    </QueryClientProvider>
   );
 }
