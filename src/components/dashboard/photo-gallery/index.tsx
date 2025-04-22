@@ -8,7 +8,7 @@ import { useAuth } from "@clerk/nextjs";
 import { Label } from "@/components/ui/label";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { DownloadAllButton, DownloadButton } from "./download-button";
-import { infinitePhotos } from "./fetch";
+import { useInfinitePhotos } from "./fetch";
 import { DeleteButton } from "./delete-button";
 
 export type Media = {
@@ -23,7 +23,7 @@ export default function PhotoGallery() {
     { url: string; name: string }[]
   >([]);
   const { isLoaded } = useAuth();
-  const { data, isLoading, isError, fetchNextPage } = infinitePhotos();
+  const { data, isLoading, isError, fetchNextPage } = useInfinitePhotos();
 
   const togglePhotoSelection = (photo: { url: string; name: string }) => {
     const index = selectedPhotos.findIndex((i) => i.url === photo.url);

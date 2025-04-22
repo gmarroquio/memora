@@ -5,7 +5,7 @@ import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
 import { Media } from "./index";
 import { toast } from "sonner";
 
-export function deletePhoto() {
+export function useDeletePhoto() {
   const { userId } = useAuth();
   const client = getQueryClient();
 
@@ -46,7 +46,7 @@ export function useGetPhotos(page = 1) {
   });
 }
 
-export function infinitePhotos() {
+export function useInfinitePhotos() {
   const { userId } = useAuth();
 
   return useInfiniteQuery<

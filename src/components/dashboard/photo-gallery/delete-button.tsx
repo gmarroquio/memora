@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
-import { deletePhoto } from "./fetch";
+import { useDeletePhoto } from "./fetch";
 
 export function DeleteButton({ id }: { id: number }) {
-  const { mutate } = deletePhoto();
+  const { mutate } = useDeletePhoto();
 
   return (
     <div className="absolute top-2 right-2 flex space-x-2">
