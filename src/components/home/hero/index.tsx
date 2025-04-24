@@ -37,11 +37,11 @@ export function Hero() {
                 src="https://lsowtuhwxu.ufs.sh/f/JcBjQyIwDp03qmnEPduO3lFi7nRoqSwXyCA9PLEQ1TzhdtbY"
                 width={600}
                 height={600}
-                alt="Wedding couple looking at photos on a smartphone"
+                alt="Friends in a party"
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-background rounded-xl shadow-lg p-4 flex flex-col justify-center items-center">
+            <div className="absolute -bottom-6 -right-3 sm:-right-6 w-48 h-48 bg-background rounded-xl shadow-lg p-4 flex flex-col justify-center items-center">
               <Camera className="h-8 w-8 text-primary mb-2" />
               <p className="text-center text-sm font-medium">{text.pt.over}</p>
             </div>

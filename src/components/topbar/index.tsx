@@ -71,7 +71,7 @@ export const TopBar = () => {
         //MOBILE header
       }
       <header className="sm:hidden w-full fixed bottom-10 z-40 px-2">
-        <div className="container flex h-16 items-center justify-between rounded-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border border-gray-800/80">
+        <div className="container flex h-16 items-center justify-between rounded-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border border-gray-200/80">
           <Link href="/" className="flex items-center">
             <Logo size={0.04} color="white" />
             <span className="text-xl font-semibold tracking-tight">emora</span>
