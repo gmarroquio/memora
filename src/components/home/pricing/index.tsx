@@ -67,7 +67,7 @@ export function Pricing() {
                   ))}
                 </ul>
               </div>
-              {price.id ? (
+              {!price.disabled ? (
                 <Link prefetch href={`/login?payments=${price.id}`}>
                   <Button className="mt-8 bg-primary hover:bg-primary/90">
                     {price.cta ?? text.en.cta}

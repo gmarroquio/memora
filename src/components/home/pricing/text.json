@@ -11,6 +11,7 @@
         "name": "Básico",
         "currency": "R$",
         "price": 49,
+        "disabled": true,
         "id": "tier_1",
         "perks": [
           "Até 500 fotos",
@@ -25,6 +26,7 @@
         "currency": "R$",
         "price": 99,
         "id": "tier_2",
+        "disabled": true,
         "perks": [
           "Até 1500 fotos",
           "R$ 0.10 por foto adicional (opcional)",
@@ -53,7 +55,7 @@
     "category": "Pricing",
     "title": "Simple, Transparent Pricing",
     "subtitle": "Choose the perfect plan for your party. No hidden fees or surprises.",
-    "cta": "Get Started",
+    "cta": "Soon",
     "most_popular": "Most Popular",
     "one_time": "one-time",
     "prices": [
@@ -63,6 +65,7 @@
         "promo": 24.5,
         "price": 49,
         "id": "tier_1",
+        "disabled": true,
         "perks": [
           "Up to 500 photos",
           "U$ 0.15 per adition photo",
@@ -76,6 +79,7 @@
         "price": 99,
         "promo": 49.5,
         "id": "tier_2",
+        "disabled": true,
         "perks": [
           "Up to 1500 photos",
           "U$ 0.10 per adition photo",

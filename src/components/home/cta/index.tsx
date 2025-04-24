@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import text from "./text.json";
-import Link from "next/link";
+//import Link from "next/link";
 
 export function CTA() {
   return (
@@ -16,15 +16,17 @@ export function CTA() {
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
-            <Link prefetch href="/login">
-              <Button
-                size="lg"
-                className="bg-background text-primary hover:bg-background/90"
-              >
-                {text.en.button}
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              disabled
+              className="bg-background text-primary hover:bg-background/90"
+            >
+              {text.en.button}
+            </Button>
+
             {
+              //<Link prefetch href="/login">
+              //</Link>
               //<Button
               //  size="lg"
               //  className="bg-background text-primary hover:bg-background/90"

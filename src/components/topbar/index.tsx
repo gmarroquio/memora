@@ -51,16 +51,18 @@ export const TopBar = () => {
           </nav>
 
           <div className="hidden md:block">
-            <SignedIn>
-              <Link prefetch href="/dashboard" className="hidden md:flex">
-                <Button>{text.en.dashboard}</Button>
-              </Link>
-            </SignedIn>
-            <SignedOut>
-              <Link prefetch href="/login" className="hidden md:flex">
-                <Button>{text.en.get_start}</Button>
-              </Link>
-            </SignedOut>
+            {
+              //    <SignedIn>
+              //      <Link prefetch href="/dashboard" className="hidden md:flex">
+              //        <Button>{text.en.dashboard}</Button>
+              //      </Link>
+              //    </SignedIn>
+              //    <SignedOut>
+              //      <Link prefetch href="/login" className="hidden md:flex">
+              //        <Button>{text.en.get_start}</Button>
+              //      </Link>
+              //    </SignedOut>
+            }
           </div>
 
           <Button
