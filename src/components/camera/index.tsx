@@ -35,7 +35,7 @@ export default function CameraCapture({
         }}
       >
         <Camera className="mr-2 h-4 w-4" />
-        {title ?? text.en.button}
+        {title ?? text.pt.button}
       </Button>
       <Input
         ref={ref}

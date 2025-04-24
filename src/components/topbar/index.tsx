@@ -28,25 +28,25 @@ export const TopBar = () => {
               href="/#features"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.en.features}
+              {text.pt.features}
             </Link>
             <Link
               href="/#how-it-works"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.en.how_it_works}
+              {text.pt.how_it_works}
             </Link>
             <Link
               href="/#testimonials"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.en.testimonials}
+              {text.pt.testimonials}
             </Link>
             <Link
               href="/#pricing"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              {text.en.price}
+              {text.pt.price}
             </Link>
           </nav>
 
@@ -54,12 +54,12 @@ export const TopBar = () => {
             {
               //    <SignedIn>
               //      <Link prefetch href="/dashboard" className="hidden md:flex">
-              //        <Button>{text.en.dashboard}</Button>
+              //        <Button>{text.pt.dashboard}</Button>
               //      </Link>
               //    </SignedIn>
               //    <SignedOut>
               //      <Link prefetch href="/login" className="hidden md:flex">
-              //        <Button>{text.en.get_start}</Button>
+              //        <Button>{text.pt.get_start}</Button>
               //      </Link>
               //    </SignedOut>
             }
@@ -87,32 +87,32 @@ export const TopBar = () => {
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.en.features}
+              {text.pt.features}
             </Link>
             <Link
               href="#how-it-works"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.en.how_it_works}
+              {text.pt.how_it_works}
             </Link>
             <Link
               href="#testimonials"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.en.testimonials}
+              {text.pt.testimonials}
             </Link>
             <Link
               href="#pricing"
               className="text-lg font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
-              {text.en.price}
+              {text.pt.price}
             </Link>
             <SignedOut>
               <Link prefetch href="/login" className="flex flex-col gap-2 mt-4">
-                <Button>{text.en.get_start}</Button>
+                <Button>{text.pt.get_start}</Button>
               </Link>
             </SignedOut>
             <SignedIn>
@@ -121,7 +121,7 @@ export const TopBar = () => {
                 href="/dashboard"
                 className="flex flex-col gap-2 mt-4"
               >
-                <Button>{text.en.dashboard}</Button>
+                <Button>{text.pt.dashboard}</Button>
               </Link>
             </SignedIn>
           </div>

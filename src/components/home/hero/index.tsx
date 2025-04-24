@@ -12,21 +12,21 @@ export function Hero() {
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                {text.en.title}
+                {text.pt.title}
               </h1>
               <p className="max-w-[600px] text-foreground md:text-xl">
-                {text.en.subtitle}
+                {text.pt.subtitle}
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Link prefetch href="/login">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
-                  {text.en.create_your_album}
+                  {text.pt.create_your_album}
                 </Button>
               </Link>
               {
                 //<Button size="lg" variant="outline">
-                //  {text.en.home.hero.see_how_it_works}
+                //  {text.pt.home.hero.see_how_it_works}
                 //</Button>
               }
             </div>
@@ -43,7 +43,7 @@ export function Hero() {
             </div>
             <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-background rounded-xl shadow-lg p-4 flex flex-col justify-center items-center">
               <Camera className="h-8 w-8 text-primary mb-2" />
-              <p className="text-center text-sm font-medium">{text.en.over}</p>
+              <p className="text-center text-sm font-medium">{text.pt.over}</p>
             </div>
           </div>
         </div>

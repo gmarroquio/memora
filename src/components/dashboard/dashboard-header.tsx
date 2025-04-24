@@ -46,7 +46,7 @@ export default function DashboardHeader() {
               )}
             >
               <ImagesIcon />
-              <span>{text.en.sidebar.nav.gallery}</span>
+              <span>{text.pt.sidebar.nav.gallery}</span>
             </Link>
             {
               //<Link
@@ -60,7 +60,7 @@ export default function DashboardHeader() {
               //  )}
               //>
               //  <AlbumIcon />
-              //  <span>{text.en.dashboard.sidebar.nav.albums}</span>
+              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
               //</Link>
             }
             <Link
@@ -74,7 +74,7 @@ export default function DashboardHeader() {
               )}
             >
               <Wallet />
-              <span>{text.en.sidebar.nav.payments}</span>
+              <span>{text.pt.sidebar.nav.payments}</span>
             </Link>
             <Link
               href="/dashboard/settings"
@@ -87,14 +87,14 @@ export default function DashboardHeader() {
               )}
             >
               <CogIcon />
-              <span>{text.en.sidebar.nav.settings}</span>
+              <span>{text.pt.sidebar.nav.settings}</span>
             </Link>
           </nav>
           <div className="flex items-center space-x-4">
             <SignOutButton>
               <Button variant="ghost">
                 <LogOut className="h-4 w-4" />
-                <span>{text.en.sidebar.logout}</span>
+                <span>{text.pt.sidebar.logout}</span>
               </Button>
             </SignOutButton>
           </div>
@@ -114,7 +114,7 @@ export default function DashboardHeader() {
               )}
             >
               <ImagesIcon />
-              <span>{text.en.sidebar.nav.gallery}</span>
+              <span>{text.pt.sidebar.nav.gallery}</span>
             </Link>
             {
               //<Link
@@ -128,7 +128,7 @@ export default function DashboardHeader() {
               //  )}
               //>
               //  <AlbumIcon />
-              //  <span>{text.en.dashboard.sidebar.nav.albums}</span>
+              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
               //</Link>
             }
             <Link
@@ -142,7 +142,7 @@ export default function DashboardHeader() {
               )}
             >
               <Wallet />
-              <span>{text.en.sidebar.nav.payments}</span>
+              <span>{text.pt.sidebar.nav.payments}</span>
             </Link>
             <Link
               href="/dashboard/settings"
@@ -155,13 +155,13 @@ export default function DashboardHeader() {
               )}
             >
               <CogIcon />
-              <span>{text.en.sidebar.nav.settings}</span>
+              <span>{text.pt.sidebar.nav.settings}</span>
             </Link>
           </nav>
           <SignOutButton>
             <Button className="p-0">
               <LogOut className="h-4 w-4" />
-              <span>{text.en.sidebar.logout}</span>
+              <span>{text.pt.sidebar.logout}</span>
             </Button>
           </SignOutButton>
         </div>

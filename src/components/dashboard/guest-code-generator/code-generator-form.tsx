@@ -69,7 +69,7 @@ export const CodeGeneratorForm = ({
           render={({ field }) => (
             <FormItem>
               <FormLabel>
-                {text.en.settings.guest_code_generator.expiration.label}
+                {text.pt.settings.guest_code_generator.expiration.label}
               </FormLabel>
               <FormControl>
                 <Input
@@ -81,14 +81,14 @@ export const CodeGeneratorForm = ({
                 />
               </FormControl>
               <FormDescription>
-                {text.en.settings.guest_code_generator.expiration.description}
+                {text.pt.settings.guest_code_generator.expiration.description}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <Button type="submit">
-          {text.en.settings.guest_code_generator.generate_code}
+          {text.pt.settings.guest_code_generator.generate_code}
         </Button>
       </form>
     </Form>

@@ -20,15 +20,15 @@ export default function LoginPage() {
             <Logo size={0.2} logoBlur />
           </div>
           <h1 className="text-2xl font-bold text-center mb-6">
-            {text.en.title}
+            {text.pt.title}
           </h1>
           <Tabs
             value={activeTab}
             onValueChange={(value) => setActiveTab(value as "login" | "signup")}
           >
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">{text.en.tabs.login}</TabsTrigger>
-              <TabsTrigger value="signup">{text.en.tabs.signup}</TabsTrigger>
+              <TabsTrigger value="login">{text.pt.tabs.login}</TabsTrigger>
+              <TabsTrigger value="signup">{text.pt.tabs.signup}</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
               <SignIn

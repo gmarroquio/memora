@@ -45,24 +45,24 @@ export default async function AccountSettings() {
     >
       <Card>
         <CardHeader>
-          <CardTitle>{text.en.settings.account_settings.title}</CardTitle>
+          <CardTitle>{text.pt.settings.account_settings.title}</CardTitle>
           <CardDescription>
-            {text.en.settings.account_settings.description}
+            {text.pt.settings.account_settings.description}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="name">
-              {text.en.settings.account_settings.name.label}
+              {text.pt.settings.account_settings.name.label}
             </Label>
             <Input
               name="title"
               id="title"
               defaultValue={album.title}
-              placeholder={text.en.settings.account_settings.name.placeholder}
+              placeholder={text.pt.settings.account_settings.name.placeholder}
             />
           </div>
-          <Button>{text.en.settings.account_settings.button.save}</Button>
+          <Button>{text.pt.settings.account_settings.button.save}</Button>
         </CardContent>
       </Card>
     </form>

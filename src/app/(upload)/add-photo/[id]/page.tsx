@@ -77,7 +77,7 @@ export default function AddPhotoPage() {
         } else throw new Error();
       }
     } catch {
-      toast.error(text.en.error_deleting);
+      toast.error(text.pt.error_deleting);
     }
   };
 
@@ -114,7 +114,7 @@ export default function AddPhotoPage() {
         }
       }
     } catch {
-      toast.error(text.en.error_uploading);
+      toast.error(text.pt.error_uploading);
     }
     setIsUploading(false);
     setIsLoading(false);
@@ -129,14 +129,14 @@ export default function AddPhotoPage() {
       });
       setIsLoading(false);
     } else {
-      router.push(`/add-photo/?toast=${text.en.error_finding}`);
+      router.push(`/add-photo/?toast=${text.pt.error_finding}`);
     }
   };
 
   useEffect(() => {
     const storageUser = getAnonUser();
     if (!storageUser) {
-      router.push(`/add-photo/?toast=${text.en.error_name}&code=${code}`);
+      router.push(`/add-photo/?toast=${text.pt.error_name}&code=${code}`);
     }
     setUser(storageUser);
     fetch(baseUrl(`/api/code/${code}`)).then((resp) => {
@@ -147,7 +147,7 @@ export default function AddPhotoPage() {
         });
         setIsLoading(false);
       } else {
-        router.push(`/add-photo/?toast=${text.en.error_finding}`);
+        router.push(`/add-photo/?toast=${text.pt.error_finding}`);
       }
     });
   }, [code, router]);
@@ -193,7 +193,7 @@ export default function AddPhotoPage() {
             className="grid grid-cols-3 gap-1 overflow-y-auto pb-12"
           >
             {medias.length === 0 && (
-              <span className="col-span-3 text-lg">{text.en.no_photo}</span>
+              <span className="col-span-3 text-lg">{text.pt.no_photo}</span>
             )}
             {medias.map((media) => (
               <div
@@ -227,7 +227,7 @@ export default function AddPhotoPage() {
             )}
           >
             <CameraCapture
-              title={text.en.take_picture}
+              title={text.pt.take_picture}
               onCapture={handleCapture}
             />
           </div>
@@ -251,7 +251,7 @@ export default function AddPhotoPage() {
             height={450}
           />
           <Input
-            placeholder={text.en.subtitle}
+            placeholder={text.pt.subtitle}
             defaultValue={comment}
             onChange={(e) => setComment(e.target.value)}
           />
@@ -263,10 +263,10 @@ export default function AddPhotoPage() {
               onClick={cleanPhoto}
               variant="destructive"
             >
-              {text.en.delete}
+              {text.pt.delete}
             </Button>
             <CameraCapture
-              title={text.en.new_photo}
+              title={text.pt.new_photo}
               onCapture={handleCapture}
             />
           </div>
@@ -280,18 +280,18 @@ export default function AddPhotoPage() {
             onClick={handleSubmit}
           >
             {Number(album?.count) >= Number(album?.limit) ? (
-              <span>{text.en.limit}</span>
+              <span>{text.pt.limit}</span>
             ) : (
               <>
                 {isUploading ? (
                   <>
                     <Upload className="mr-2 h-4 w-4" />
-                    {text.en.uploading}
+                    {text.pt.uploading}
                   </>
                 ) : (
                   <>
                     <Camera className="mr-2 h-4 w-4" />
-                    {text.en.add_photo}
+                    {text.pt.add_photo}
                   </>
                 )}
               </>
@@ -330,10 +330,10 @@ export default function AddPhotoPage() {
               onClick={handleDeletePhoto}
               variant="destructive"
             >
-              {text.en.delete}
+              {text.pt.delete}
             </Button>
             <CameraCapture
-              title={text.en.new_photo}
+              title={text.pt.new_photo}
               onCapture={handleCapture}
             />
           </div>

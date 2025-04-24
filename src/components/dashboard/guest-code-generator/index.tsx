@@ -34,9 +34,9 @@ export default function GuestCodeGenerator() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{text.en.settings.guest_code_generator.title}</CardTitle>
+        <CardTitle>{text.pt.settings.guest_code_generator.title}</CardTitle>
         <CardDescription>
-          {text.en.settings.guest_code_generator.description}
+          {text.pt.settings.guest_code_generator.description}
         </CardDescription>
       </CardHeader>
       <CardContent>

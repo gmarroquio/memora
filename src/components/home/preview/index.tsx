@@ -9,16 +9,16 @@ export function Preview() {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:gap-16 items-center">
           <div className="space-y-4">
             <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">
-              {text.en.category}
+              {text.pt.category}
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              {text.en.title}
+              {text.pt.title}
             </h2>
             <p className="text-muted-foreground md:text-xl">
-              {text.en.subtitle}
+              {text.pt.subtitle}
             </p>
             <ul className="space-y-2">
-              {text.en.bullet_points.map((point, index) => (
+              {text.pt.bullet_points.map((point, index) => (
                 <li key={index} className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-primary"></div>
                   <span>{point}</span>
@@ -48,7 +48,7 @@ export function Preview() {
                 ))}
               </div>
               <p className="text-center text-sm font-medium">
-                &quot;{text.en.comment}&quot;
+                &quot;{text.pt.comment}&quot;
               </p>
             </div>
           </div>

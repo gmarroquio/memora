@@ -9,10 +9,10 @@ export function CTA() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-              {text.en.title}
+              {text.pt.title}
             </h2>
             <p className="max-w-[900px] text-primary-foreground/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {text.en.subtitle}
+              {text.pt.subtitle}
             </p>
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -21,7 +21,7 @@ export function CTA() {
               disabled
               className="bg-background text-primary hover:bg-background/90"
             >
-              {text.en.button}
+              {text.pt.button}
             </Button>
 
             {
@@ -31,7 +31,7 @@ export function CTA() {
               //  size="lg"
               //  className="bg-background text-primary hover:bg-background/90"
               //>
-              //  {text.en.learn_more}
+              //  {text.pt.learn_more}
               //</Button>
             }
           </div>
