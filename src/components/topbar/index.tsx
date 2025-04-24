@@ -168,7 +168,12 @@ export const TopBar = () => {
               {text.pt.price}
             </Link>
             <SignedOut>
-              <Link prefetch href="/login" className="flex flex-col gap-2 mt-4">
+              <Link
+                prefetch
+                href="/login"
+                className="flex flex-col gap-2 mt-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <Button>{text.pt.get_start}</Button>
               </Link>
             </SignedOut>
@@ -177,6 +182,7 @@ export const TopBar = () => {
                 prefetch
                 href="/dashboard"
                 className="flex flex-col gap-2 mt-4"
+                onClick={() => setIsMenuOpen(false)}
               >
                 <Button>{text.pt.dashboard}</Button>
               </Link>
