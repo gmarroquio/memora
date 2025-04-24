@@ -34,7 +34,11 @@ export function Pricing() {
 }
 
 const TabGuestTrigger: React.FC<{ guest: number }> = ({ guest }) => {
-  return <TabsTrigger value={`${guest}`}>{guest} convidados</TabsTrigger>;
+  return (
+    <TabsTrigger value={`${guest}`} className="w-full">
+      {guest} <span className="hidden sm:block">convidados</span>
+    </TabsTrigger>
+  );
 };
 
 const TabGuestContent: React.FC<{ guest: number; price: number }> = ({
@@ -64,8 +68,8 @@ const TabGuestContent: React.FC<{ guest: number; price: number }> = ({
 export const Guest = () => {
   return (
     <>
-      <Tabs defaultValue="10" className="mx-auto space-y-2">
-        <TabsList>
+      <Tabs defaultValue="10" className="mx-auto w-full space-y-2">
+        <TabsList className="w-full justify-between">
           <TabGuestTrigger guest={10} />
           <TabGuestTrigger guest={25} />
           <TabGuestTrigger guest={50} />
