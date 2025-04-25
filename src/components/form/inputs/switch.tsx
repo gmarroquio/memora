@@ -7,12 +7,19 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { FormInput } from "./types";
+import { FieldPath, FieldValues } from "react-hook-form";
 
-export const SwitchForm: React.FC<
-  FormInput & {
-    message?: { on: string; off: string };
-  }
-> = ({ form, name, label, message }) => {
+export const SwitchForm = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  form,
+  name,
+  label,
+  message,
+}: FormInput<TFieldValues, TName> & {
+  message?: { on: string; off: string };
+}) => {
   return (
     <FormField
       control={form.control}

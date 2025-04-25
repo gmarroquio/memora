@@ -13,12 +13,18 @@ import { Upload, X } from "lucide-react";
 import Image from "next/image";
 import { FormInput } from "./types";
 import { useRef, useState } from "react";
+import { FieldPath, FieldValues } from "react-hook-form";
 
-export const FileForm: React.FC<FormInput & { description: string }> = ({
+export const FileForm = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
   form,
   name,
   label,
   description,
+}: FormInput<TFieldValues, TName> & {
+  description: string;
 }) => {
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
     null
@@ -28,7 +34,8 @@ export const FileForm: React.FC<FormInput & { description: string }> = ({
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      form.setValue("coverImage", file);
+      //eslint-disable-next-line
+      form.setValue(name, file as any);
       const reader = new FileReader();
       reader.onload = (e) => {
         setCoverImagePreview(e.target?.result as string);
@@ -38,7 +45,8 @@ export const FileForm: React.FC<FormInput & { description: string }> = ({
   };
 
   const clearCoverImage = () => {
-    form.setValue("coverImage", undefined);
+    //eslint-disable-next-line
+    form.setValue(name, undefined as any);
     setCoverImagePreview(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";

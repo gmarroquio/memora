@@ -13,13 +13,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { FieldPath, FieldValues } from "react-hook-form";
 
-export const SelectForm: React.FC<
-  FormInput & {
-    options: { value: string; label: string }[];
-    placeholder: string;
-  }
-> = ({ form, name, label, placeholder, options }) => {
+export const SelectForm = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  form,
+  name,
+  label,
+  options,
+  placeholder,
+}: FormInput<TFieldValues, TName> & {
+  options: { value: string; label: string }[];
+  placeholder: string;
+}) => {
   return (
     <FormField
       control={form.control}

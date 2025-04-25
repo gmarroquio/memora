@@ -61,7 +61,6 @@ const createAlbumSchema = z.object({
 type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
-  //eslint-disable-next-line
   const { userId } = useAuth();
   const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -85,8 +84,7 @@ export default function CreateAlbumButton() {
   const onSubmit = async (data: CreateAlbumFormValues) => {
     setLoading(true);
     try {
-      let response;
-      let body: Record<string, undefined | string | boolean> = {
+      const body: Record<string, undefined | string | boolean> = {
         title: data.name,
         guests: data.guests,
         startDate: data.endDate.toISOString(),
@@ -103,7 +101,7 @@ export default function CreateAlbumButton() {
         if (!coverUpload) throw new Error();
         body.coverUrl = coverUpload[0].ufsUrl;
       }
-      response = await fetch(baseUrl("/api/albums"), {
+      const response = await fetch(baseUrl("/api/albums"), {
         method: "POST",
         headers: { userId: userId! },
         body: JSON.stringify(body),

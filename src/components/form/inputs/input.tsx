@@ -7,12 +7,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { FormInput } from "./types";
+import { FieldPath, FieldValues } from "react-hook-form";
 
-export const InputForm: React.FC<FormInput & { placeholder: string }> = ({
+export const InputForm = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
   form,
   label,
   name,
   placeholder,
+}: FormInput<TFieldValues, TName> & {
+  placeholder: string;
 }) => {
   return (
     <FormField

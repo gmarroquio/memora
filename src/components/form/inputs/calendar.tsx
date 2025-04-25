@@ -18,12 +18,19 @@ import {
 import { Calendar } from "@/components/ui/calendar";
 import { FormInput } from "./types";
 import { Input } from "@/components/ui/input";
+import { FieldPath, FieldValues } from "react-hook-form";
 
-export const CalendarForm: React.FC<
-  FormInput & {
-    disable?: (data: Date) => boolean;
-  }
-> = ({ form, name, label, disable }) => {
+export const CalendarForm = <
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+>({
+  form,
+  name,
+  label,
+  disable,
+}: FormInput<TFieldValues, TName> & {
+  disable?: (data: Date) => boolean;
+}) => {
   return (
     <FormField
       control={form.control}
