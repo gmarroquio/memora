@@ -4,12 +4,9 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SignIn, SignUp } from "@clerk/nextjs";
 import text from "./text.json";
-import { useSearchParams } from "next/navigation";
 import { Logo } from "@/components/logo";
 
 export default function LoginPage() {
-  const searchParams = useSearchParams();
-  const payments = searchParams.get("payments");
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
 
   return (
@@ -31,22 +28,10 @@ export default function LoginPage() {
               <TabsTrigger value="signup">{text.pt.tabs.signup}</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-              <SignIn
-                fallbackRedirectUrl={
-                  payments
-                    ? `/dashboard/payments?payments=${payments}`
-                    : "/dashboard"
-                }
-              />
+              <SignIn fallbackRedirectUrl={"/dashboard"} />
             </TabsContent>
             <TabsContent value="signup">
-              <SignUp
-                fallbackRedirectUrl={
-                  payments
-                    ? `/dashboard/payments?payments=${payments}`
-                    : "/dashboard"
-                }
-              />
+              <SignUp fallbackRedirectUrl={"/dashboard"} />
             </TabsContent>
           </Tabs>
         </div>

@@ -4,25 +4,15 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const products = {
-  tier_1: {
-    id: process.env.PRODUCT_TIER_1!,
-    photo_limit: 500,
-    time: 6,
-    name: "Basic",
-  },
-  tier_2: {
-    id: process.env.PRODUCT_TIER_2!,
-    photo_limit: 1500,
-    time: 12,
-    name: "Premium",
-  },
-};
-
 export async function GET(req: Request) {
   const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
   const userId = req.headers.get("userId");
-  const price = req.headers.get("price") as "tier_1" | "tier_2";
+  const price = req.headers.get("price") as
+    | "tier_1"
+    | "tier_2"
+    | "tier_3"
+    | "tier_4"
+    | "tier_5";
   if (!userId || !price)
     return NextResponse.json({ message: "User unauthorized" }, { status: 401 });
 
@@ -54,16 +44,21 @@ export async function GET(req: Request) {
     stripeCustomerId = newCustomer.id;
   }
 
+  const {
+    data: [product_price],
+  } = await stripe.prices.list({
+    product: process.env.STRIPE_PRODUCT!,
+    lookup_keys: [price],
+  });
+
   const checkout = await stripe.checkout.sessions.create({
     customer: stripeCustomerId,
     return_url: `${
       dev ? "http://localhost:3000" : "https://memora.party"
     }/dashboard/`,
     mode: "payment",
-    discounts: [{ promotion_code: "promo_1RCVIlE4vJuSIv12qmoP9nOk" }],
-    line_items: [{ price: products[price].id, quantity: 1 }],
+    line_items: [{ price: product_price.id, quantity: 1 }],
     ui_mode: "embedded",
-    metadata: products[price],
   });
 
   return NextResponse.json(checkout);

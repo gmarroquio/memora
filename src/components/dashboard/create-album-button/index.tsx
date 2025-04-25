@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,26 +11,22 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  FormDescription,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Plus, Upload, X } from "lucide-react";
-import Image from "next/image";
+import { Plus } from "lucide-react";
 import { useUploadThing } from "@/lib/uploadthing";
 import { baseUrl, renameFile } from "@/lib/utils";
 import { toast } from "sonner";
 import text from "./text.json";
 import { useAuth } from "@clerk/nextjs";
+import { addHours } from "date-fns";
+import { SwitchForm } from "@/components/form/inputs/switch";
+import { CalendarForm } from "@/components/form/inputs/calendar";
+import { InputForm } from "@/components/form/inputs/input";
+import { SelectForm } from "@/components/form/inputs/select";
+import { FileForm } from "@/components/form/inputs/image";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -45,6 +41,12 @@ const createAlbumSchema = z.object({
     .string()
     .min(1, "Album name is required")
     .max(15, "Album name must be 15 characters or less"),
+  guests: z.enum(["tier_1", "tier_2", "tier_3", "tier_4", "tier_5"]),
+  startDate: z.date(),
+  endDate: z.date(),
+  vintage: z.boolean(),
+  revealTime: z.enum(["now", "after", "12h", "24h"]),
+  openGallery: z.boolean(),
   coverImage: z
     .any()
     .optional()
@@ -60,14 +62,10 @@ type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
   //eslint-disable-next-line
-  const { isLoaded, userId } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const { userId } = useAuth();
+  const [isOpen, setIsOpen] = useState(true);
   const [isLoading, setLoading] = useState(false);
-  const [coverImagePreview, setCoverImagePreview] = useState<string | null>(
-    null
-  );
   const { startUpload, isUploading } = useUploadThing("imageUploader");
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
   const form = useForm<CreateAlbumFormValues>({
@@ -75,55 +73,41 @@ export default function CreateAlbumButton() {
     defaultValues: {
       name: "",
       coverImage: undefined,
+      guests: "tier_1",
+      startDate: new Date(),
+      endDate: addHours(new Date(), 8),
+      vintage: true,
+      revealTime: "after",
+      openGallery: false,
     },
   });
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      form.setValue("coverImage", file);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setCoverImagePreview(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const clearCoverImage = () => {
-    form.setValue("coverImage", undefined);
-    setCoverImagePreview(null);
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
 
   const onSubmit = async (data: CreateAlbumFormValues) => {
     setLoading(true);
     try {
       let response;
+      let body: Record<string, undefined | string | boolean> = {
+        title: data.name,
+        guests: data.guests,
+        startDate: data.endDate.toISOString(),
+        endDate: data.endDate.toISOString(),
+        vintage: data.vintage,
+        revealTime: data.revealTime,
+        openGallery: data.openGallery,
+        coverUrl: undefined,
+      };
       if (data.coverImage) {
         const coverUpload = await startUpload([
           renameFile(data.coverImage, data.name.replaceAll(" ", "_")),
         ]);
         if (!coverUpload) throw new Error();
-        response = await fetch(baseUrl("/api/albums"), {
-          method: "POST",
-          headers: { userId: userId! },
-          body: JSON.stringify({
-            title: data.name,
-            coverUrl: coverUpload[0].ufsUrl,
-          }),
-        });
-      } else {
-        response = await fetch(baseUrl("/api/albums"), {
-          method: "POST",
-          headers: { userId: userId! },
-          body: JSON.stringify({
-            title: data.name,
-          }),
-        });
+        body.coverUrl = coverUpload[0].ufsUrl;
       }
+      response = await fetch(baseUrl("/api/albums"), {
+        method: "POST",
+        headers: { userId: userId! },
+        body: JSON.stringify(body),
+      });
       if (response.ok) {
         const album = await response.json();
         router.push(`/dashboard/albums/${album.id}`);
@@ -135,7 +119,7 @@ export default function CreateAlbumButton() {
   };
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog modal open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button>
           <Plus className="md:mr-2 h-4 w-4" />
@@ -144,92 +128,84 @@ export default function CreateAlbumButton() {
           </span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-xl max-h-10/12 md:max-h-11/12 overflow-auto">
         <DialogHeader>
           <DialogTitle>{text.pt.create_album.title}</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="grid md:grid-cols-2 gap-6 items-center"
+          >
+            <InputForm
               name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{text.pt.create_album.album_name.label}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={text.pt.create_album.album_name.placeholder}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Nome do Álbum"
+              form={form}
+              placeholder="Digite o nome do album"
             />
-            <FormField
-              control={form.control}
+            <CalendarForm
+              form={form}
+              name="startDate"
+              label="Início"
+              disable={(date) => date < new Date()}
+            />
+            <CalendarForm
+              form={form}
+              name="endDate"
+              label="Fim"
+              disable={(date) =>
+                date < new Date() || date < form.watch("startDate")
+              }
+            />
+            <SelectForm
+              name="guests"
+              form={form}
+              label="Convidados"
+              placeholder="convidados"
+              options={[
+                { value: "tier_1", label: "10 convidado" },
+                { value: "tier_2", label: "25 convidado" },
+                { value: "tier_3", label: "50 convidado" },
+                { value: "tier_4", label: "100 convidado" },
+                { value: "tier_5", label: "150 convidado" },
+              ]}
+            />
+            <SwitchForm
+              form={form}
+              label="Abrir Galeria"
+              name="openGallery"
+              message={{
+                on: "Galeria disponível em tempo real",
+                off: "Galeria disponível só após revelar",
+              }}
+            />
+            <SwitchForm
+              form={form}
+              label="Efeito Analógico"
+              name="vintage"
+              message={{
+                on: "Fotos com efeito analógico",
+                off: "Fotos sem efeitos",
+              }}
+            />
+            <SelectForm
+              name="revealTime"
+              form={form}
+              label="Quando será revelado"
+              placeholder="tempo"
+              options={[
+                { value: "now", label: "Instantâneo" },
+                { value: "after", label: "Após a festa" },
+                { value: "12h", label: "12 horas após a festa" },
+                { value: "24h", label: "24 horas após a festa" },
+              ]}
+            />
+            <FileForm
+              form={form}
               name="coverImage"
-              render={() => (
-                <FormItem>
-                  <FormLabel>
-                    {text.pt.create_album.cover_image.label}
-                  </FormLabel>
-                  <FormDescription>
-                    {text.pt.create_album.cover_image.description}
-                  </FormDescription>
-                  <div className="mt-2">
-                    {coverImagePreview ? (
-                      <div className="relative aspect-video w-full overflow-hidden rounded-md border">
-                        <Image
-                          src={coverImagePreview || "/placeholder.svg"}
-                          alt="Cover preview"
-                          objectFit="cover"
-                          height={500}
-                          width={500}
-                        />
-                        <Button
-                          type="button"
-                          variant="destructive"
-                          size="icon"
-                          className="absolute top-2 right-2 h-8 w-8 rounded-full"
-                          onClick={clearCoverImage}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    ) : (
-                      <>
-                        <div
-                          onClick={() => fileInputRef.current?.click()}
-                          className="flex flex-col items-center justify-center gap-4 rounded-md border border-dashed p-6"
-                        >
-                          <Upload className="h-8 w-8 text-muted-foreground" />
-                          <div className="text-center">
-                            <p className="text-sm font-medium">
-                              {text.pt.create_album.cover_image.upload_prompt}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              {text.pt.create_album.cover_image.file_types}
-                            </p>
-                          </div>
-                          <Button type="button" variant="secondary">
-                            {text.pt.create_album.cover_image.select_file}
-                          </Button>
-                        </div>
-                        <Input
-                          ref={fileInputRef}
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={handleFileChange}
-                        />
-                      </>
-                    )}
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Imagem de capa"
+              description="Envie uma imagem de capa para seu álbum (opcional)"
             />
             <Button type="submit" disabled={isUploading || isLoading}>
               {text.pt.create_album.button.create}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CogIcon, ImagesIcon, LogOut, Menu, Wallet, X } from "lucide-react";
+import { AlbumIcon, CogIcon, ImagesIcon, LogOut, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import text from "./text.json";
@@ -48,33 +48,18 @@ export default function DashboardHeader() {
               <ImagesIcon />
               <span>{text.pt.sidebar.nav.gallery}</span>
             </Link>
-            {
-              //<Link
-              //  href="/dashboard/albums"
-              //  onClick={() => setIsMenuOpen(!isMenuOpen)}
-              //  className={cn(
-              //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-              //    pathname.startsWith("/dashboard/albums")
-              //      ? "text-primary font-bold"
-              //      : "text-muted-foreground"
-              //  )}
-              //>
-              //  <AlbumIcon />
-              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
-              //</Link>
-            }
             <Link
-              href="/dashboard/payments"
+              href="/dashboard/albums"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname === "/dashboard/payments"
+                pathname.startsWith("/dashboard/albums")
                   ? "text-primary font-bold"
                   : "text-muted-foreground"
               )}
             >
-              <Wallet />
-              <span>{text.pt.sidebar.nav.payments}</span>
+              <AlbumIcon />
+              <span>{text.pt.sidebar.nav.albums}</span>
             </Link>
             <Link
               href="/dashboard/settings"
@@ -116,33 +101,18 @@ export default function DashboardHeader() {
               <ImagesIcon />
               <span>{text.pt.sidebar.nav.gallery}</span>
             </Link>
-            {
-              //<Link
-              //  href="/dashboard/albums"
-              //  onClick={() => setIsMenuOpen(!isMenuOpen)}
-              //  className={cn(
-              //    "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-              //    pathname.startsWith("/dashboard/albums")
-              //      ? "text-primary font-bold"
-              //      : "text-muted-foreground"
-              //  )}
-              //>
-              //  <AlbumIcon />
-              //  <span>{text.pt.dashboard.sidebar.nav.albums}</span>
-              //</Link>
-            }
             <Link
-              href="/dashboard/payments"
+              href="/dashboard/albums"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={cn(
                 "text-sm font-medium transition-colors flex items-center space-x-2 hover:text-primary",
-                pathname === "/dashboard/payments"
+                pathname.startsWith("/dashboard/albums")
                   ? "text-primary font-bold"
                   : "text-muted-foreground"
               )}
             >
-              <Wallet />
-              <span>{text.pt.sidebar.nav.payments}</span>
+              <AlbumIcon />
+              <span>{text.pt.sidebar.nav.albums}</span>
             </Link>
             <Link
               href="/dashboard/settings"

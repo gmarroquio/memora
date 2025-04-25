@@ -28,6 +28,9 @@
   4% + U$0.4
 - Vercel
   20 USD
+- Cloudflare R2 (fazer como teste)
+  - 0.015 after 10gb
+  - Cloudflare images for content delivery
 - Convex
   25 usd + 0.03 per gb after 100 gb
   - auth
@@ -46,15 +49,15 @@
 
 ### Planos
 
-Paga e tem acesso por x meses, fotos são apagadas dps de 1 mês sem novo pagamento
-Fotos acima do limite com tempo de expiração, 0.1 cents a mais por foto
+Por album e por pessoa
 
-- tier 1 - custo 1.35 usd - price 19.9 usd
-  - 500 fotos
-  - 6 meses
-- tier 2 - custo 5.4 usd - price 59.9 usd
-  - 1000 fotos
-  - 1 ano
-- tier 3 - custo 21.6 usd - price 129.9 usd
-  - ilimitado
-  - 1 ano
+Album com 10
+9.99
+Album com 25
+19.99
+Album com 50
+39.99
+Album com 100
+69.99
+Album com 150
+99.99

@@ -24,11 +24,6 @@ export function Hero() {
                   {text.pt.create_your_album}
                 </Button>
               </Link>
-              {
-                //<Button size="lg" variant="outline">
-                //  {text.pt.home.hero.see_how_it_works}
-                //</Button>
-              }
             </div>
           </div>
           <div className="relative flex items-center justify-center">
