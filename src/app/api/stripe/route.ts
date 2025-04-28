@@ -59,6 +59,10 @@ export async function GET(req: Request) {
     mode: "payment",
     line_items: [{ price: product_price.id, quantity: 1 }],
     ui_mode: "embedded",
+    customer_email: user.email,
+    metadata: {
+      userId,
+    },
   });
 
   return NextResponse.json(checkout);
