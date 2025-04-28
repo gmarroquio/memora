@@ -25,7 +25,7 @@ export const InputForm = <
       control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem className="md:col-span-2">
+        <FormItem className="md:col-span-2 w-full">
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input placeholder={placeholder} {...field} />

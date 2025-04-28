@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { albumsTable, subscriptionsTable, usersTable } from "@/db/schema";
+import { subscriptionsTable, usersTable } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -22,13 +22,6 @@ export async function POST(req: NextRequest) {
     photoLimit: body.photoLimit,
     expirationTime: body.time,
   });
-
-  await db
-    .update(albumsTable)
-    .set({
-      photoLimit: body.photoLimit,
-    })
-    .where(eq(albumsTable.userId, user.id));
 
   return NextResponse.json({ message: "Done" });
 }

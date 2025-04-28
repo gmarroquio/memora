@@ -6,6 +6,7 @@ import {
   text,
   varchar,
   timestamp,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { createId } from "@paralleldrive/cuid2";
 
@@ -15,7 +16,6 @@ export const usersTable = pgTable("users", {
   email: text("email").unique().notNull(),
   phoneNumber: text("phone_number"),
   stripeId: text("stripe_id"),
-  albumLimit: integer("album_limit").default(0).notNull(),
 });
 
 export const anonUsersTable = pgTable("anon_users", {
@@ -23,6 +23,9 @@ export const anonUsersTable = pgTable("anon_users", {
     .$defaultFn(() => createId())
     .primaryKey(),
   name: text("name").notNull(),
+  albumId: text("album_id").references(() => albumsTable.id, {
+    onDelete: "cascade",
+  }),
 });
 
 export const albumsTable = pgTable("albums", {
@@ -30,8 +33,13 @@ export const albumsTable = pgTable("albums", {
     .$defaultFn(() => createId())
     .primaryKey(),
   title: text("title").notNull(),
+  userLimit: integer("user_limit").notNull().default(10),
+  startDate: timestamp("start_date"),
+  endDate: timestamp("end_date"),
+  vintage: boolean("vintage"),
+  revealTime: text("reveal_time", { enum: ["now", "after", "12h", "24h"] }),
+  openGallery: boolean("open_gallery"),
   coverUrl: text("cover_url"),
-  photoLimit: integer("photo_limit").default(10),
   userId: text("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),
@@ -41,9 +49,11 @@ export const mediasTable = pgTable("medias", {
   id: serial("id").primaryKey(),
   url: text("url").notNull(),
   status: text("status", { enum: ["active", "deleted"] }).default("active"),
-  uploader: text("uploader"),
   comment: text("comment"),
   utId: text("ut_id").notNull().default("empty"),
+  uploader: text("uploader")
+    .notNull()
+    .references(() => anonUsersTable.id, { onDelete: "cascade" }),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),

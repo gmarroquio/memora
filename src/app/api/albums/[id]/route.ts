@@ -52,7 +52,6 @@ export const POST = async (
     .select({
       id: albumsTable.id,
       userId: albumsTable.userId,
-      limit: albumsTable.photoLimit,
     })
     .from(albumsTable)
     .where(eq(albumsTable.id, albumId));

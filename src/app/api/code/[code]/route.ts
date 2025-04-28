@@ -1,20 +1,13 @@
 import { db } from "@/db";
-import {
-  albumsTable,
-  anonUsersTable,
-  codesTable,
-  mediasTable,
-  previewsTable,
-} from "@/db/schema";
-import { and, count, desc, eq } from "drizzle-orm";
+import { albumsTable, anonUsersTable, codesTable } from "@/db/schema";
+import { eq, count } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { isAfter } from "date-fns";
 
 export async function GET(
-  req: NextRequest,
+  _: NextRequest,
   { params: _params }: { params: Promise<{ code: string }> }
 ) {
-  const page = Number(new URL(req.url).searchParams.get("page") ?? 1);
   const { code: incomeCode } = await _params;
 
   const [code] = await db
@@ -38,42 +31,15 @@ export async function GET(
       id: albumsTable.id,
       title: albumsTable.title,
       coverUrl: albumsTable.coverUrl,
-      limit: albumsTable.photoLimit,
-      userId: albumsTable.userId,
+      endDate: albumsTable.endDate,
+      userLimit: albumsTable.userLimit,
+      users: count(anonUsersTable.id),
     })
     .from(albumsTable)
-    .limit(1)
-    .where(eq(albumsTable.id, code.albumId));
+    .leftJoin(anonUsersTable, eq(anonUsersTable.albumId, albumsTable.id))
+    .where(eq(albumsTable.id, code.albumId))
+    .groupBy(albumsTable.id)
+    .limit(1);
 
-  const medias = await db
-    .select({
-      id: mediasTable.id,
-      url: mediasTable.url,
-      preview: previewsTable.url,
-      uploaderId: anonUsersTable.id,
-      uploaderName: anonUsersTable.name,
-      comment: mediasTable.comment,
-    })
-    .from(mediasTable)
-    .leftJoin(anonUsersTable, eq(anonUsersTable.id, mediasTable.uploader))
-    .leftJoin(previewsTable, eq(mediasTable.id, previewsTable.mediaId))
-    .where(eq(mediasTable.albumId, code.albumId))
-    .orderBy(desc(mediasTable.id))
-    .offset(21 * (page - 1))
-    .limit(21);
-
-  const [userMedias] = await db
-    .select({ count: count() })
-    .from(mediasTable)
-    .where(
-      and(
-        eq(mediasTable.ownerId, album.userId),
-        eq(mediasTable.albumId, album.id)
-      )
-    );
-
-  return NextResponse.json({
-    album: { ...album, count: userMedias.count },
-    medias,
-  });
+  return NextResponse.json(album);
 }

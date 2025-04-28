@@ -21,7 +21,7 @@ import { baseUrl, renameFile } from "@/lib/utils";
 import { toast } from "sonner";
 import text from "./text.json";
 import { useAuth } from "@clerk/nextjs";
-import { addHours } from "date-fns";
+import { addHours, subDays } from "date-fns";
 import { SwitchForm } from "@/components/form/inputs/switch";
 import { CalendarForm } from "@/components/form/inputs/calendar";
 import { InputForm } from "@/components/form/inputs/input";
@@ -62,7 +62,7 @@ type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
   const { userId } = useAuth();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
   const router = useRouter();
@@ -146,7 +146,7 @@ export default function CreateAlbumButton() {
               form={form}
               name="startDate"
               label="Início"
-              disable={(date) => date < new Date()}
+              disable={(date) => date < subDays(new Date(), 1)}
             />
             <CalendarForm
               form={form}

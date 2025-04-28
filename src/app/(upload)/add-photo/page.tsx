@@ -25,9 +25,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { baseUrl } from "@/lib/utils";
 import text from "./text.json";
-import { Input } from "@/components/ui/input";
-import { createId } from "@paralleldrive/cuid2";
-import { getAnonUser, saveAnonUser } from "@/lib/anonUser";
 import { Logo } from "@/components/logo";
 
 const searchAlbum = z.object({
@@ -36,7 +33,6 @@ const searchAlbum = z.object({
     .toUpperCase()
     .min(6, "Album name must be 6 characters")
     .max(6, "Album name must be 6 characters"),
-  name: z.string().min(1, "Name is required"),
 });
 
 type SearchAlbum = z.infer<typeof searchAlbum>;
@@ -52,7 +48,6 @@ export default function Page() {
     resolver: zodResolver(searchAlbum),
     defaultValues: {
       code: code ?? "",
-      name: "",
     },
   });
 
@@ -62,27 +57,11 @@ export default function Page() {
     }
   }, [toastMessage]);
 
-  useEffect(() => {
-    const user = getAnonUser();
-    if (user) {
-      form.setValue("code", code ?? user.code);
-      form.setValue("name", user.name);
-    }
-    //eslint-disable-next-line
-  }, []);
-
   const handleSubmit = async (data: z.infer<typeof searchAlbum>) => {
     setLoading(true);
     try {
       const response = await fetch(baseUrl(`/api/code/${data.code}`));
       if (response.ok) {
-        const user = getAnonUser();
-        const id = user?.id ?? createId();
-        saveAnonUser(data.name, data.code, id);
-        await fetch(baseUrl(`/api/user/anon`), {
-          method: "POST",
-          body: JSON.stringify({ name: data.name, id }),
-        });
         router.push(`/add-photo/${data.code}`);
       } else {
         const error = await response.json();
@@ -150,23 +129,6 @@ export default function Page() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{text.pt.form.name.label}</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    {text.pt.form.name.description}
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <Button ref={buttonRef} type="submit" disabled={loading}>
               <Camera />
               {text.pt.form.button.label}
