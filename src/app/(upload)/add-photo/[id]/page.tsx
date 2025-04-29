@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Loader } from "lucide-react";
 import Image from "next/image";
-import { baseUrl, cn } from "@/lib/utils";
+import { baseUrl } from "@/lib/utils";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
 import text from "./text.json";

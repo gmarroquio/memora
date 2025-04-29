@@ -1,0 +1,1 @@
+ALTER TABLE "albums" ALTER COLUMN "user_limit" SET NOT NULL;
