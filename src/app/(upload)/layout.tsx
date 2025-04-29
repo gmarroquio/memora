@@ -9,7 +9,7 @@ export default function Layout({
 }>) {
   return (
     <div className="h-dvh flex flex-col">
-      <header className="absolute bg-white top-4 right-0 border rounded-l-md py-1 px-2 shadow-md">
+      <header className="fixed bg-white top-4 right-0 border rounded-l-md py-1 px-2 shadow-md">
         <Link href="/" className="flex items-center gap-1">
           <span className="font-semibold text-sm tracking-tight text-primary-foreground">
             powered by

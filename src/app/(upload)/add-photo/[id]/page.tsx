@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Loader } from "lucide-react";
 import Image from "next/image";
-import { baseUrl } from "@/lib/utils";
+import { baseUrl, cn } from "@/lib/utils";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
 import text from "./text.json";
@@ -145,7 +145,7 @@ export default function AddPhotoPage() {
   }
 
   return (
-    <div className="w-full md:w-xl mx-auto pt-2 px-2 space-y-2 flex-1 flex flex-col">
+    <div className="w-full h-screen md:w-xl mx-auto pt-2 px-2 space-y-2">
       {album.coverUrl ? (
         <Image
           src={album.coverUrl}
@@ -171,85 +171,28 @@ export default function AddPhotoPage() {
       {!user ? (
         <AddAnonUser albumId={album.id} setUser={setUser} />
       ) : (
-        <div className="flex flex-col flex-1">
-          <div className="flex-1">Feed</div>
+        <>
+          <div className="grid grid-cols-3 gap-3 pb-25">
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+            <div className="border border-white rounded-md h-32 w-full" />
+          </div>
           <Footer limit={27} taken={4} />
-        </div>
+        </>
       )}
     </div>
   );
 }
-
-//           {imagePreview && (
-//             <>
-//               <Image
-//                 src={imagePreview || "/placeholder.svg"}
-//                 alt="Captured"
-//                 className="hidden md:block mx-auto w-auto rounded-lg object-cover"
-//                 width={500}
-//                 height={500}
-//               />
-//               <Image
-//                 src={imagePreview || "/placeholder.svg"}
-//                 alt="Captured"
-//                 className="md:hidden mx-auto w-auto rounded-lg object-cover"
-//                 width={500}
-//                 height={450}
-//               />
-//               <Input
-//                 placeholder={text.pt.subtitle}
-//                 defaultValue={comment}
-//                 onChange={(e) => setComment(e.target.value)}
-//               />
-//
-//               <div className="flex space-x-2">
-//                 <Button
-//                   disabled={!capturedImage || isUploading}
-//                   className="w-full"
-//                   onClick={cleanPhoto}
-//                   variant="destructive"
-//                 >
-//                   {text.pt.delete}
-//                 </Button>
-//                 <CameraCapture
-//                   title={text.pt.new_photo}
-//                   onCapture={handleCapture}
-//                 />
-//               </div>
-//               <Button
-//                 disabled={
-//                   !capturedImage ||
-//                   isUploading ||
-//                   Number(album?.count) >= Number(album?.limit)
-//                 }
-//                 className="w-full"
-//                 onClick={handleSubmit}
-//               >
-//                 {Number(album?.count) >= Number(album?.limit) ? (
-//                   <span>{text.pt.limit}</span>
-//                 ) : (
-//                   <>
-//                     {isUploading ? (
-//                       <>
-//                         <Upload className="mr-2 h-4 w-4" />
-//                         {text.pt.uploading}
-//                       </>
-//                     ) : (
-//                       <>
-//                         <Camera className="mr-2 h-4 w-4" />
-//                         {text.pt.add_photo}
-//                       </>
-//                     )}
-//                   </>
-//                 )}
-//               </Button>
-//             </>
-//           )}
-//
-//           {imageShow && (
-//             <>
-//               <Button size="icon" onClick={() => setImageShow(null)}>
-//                 <ChevronLeft />
-//               </Button>
-//               <Image
-//                 src={imageShow.previe
