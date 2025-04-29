@@ -66,7 +66,7 @@ export const Guest = () => {
         </div>
       </Tabs>
       <Link prefetch className="mx-auto" href={`/login`}>
-        <Button className="mt-8 bg-primary w-lg hover:bg-primary/90">
+        <Button className="mt-8 bg-primary w-xs md:w-lg hover:bg-primary/90">
           Criar album
         </Button>
       </Link>
