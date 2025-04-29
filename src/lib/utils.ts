@@ -49,7 +49,6 @@ export function renameFile(file: File, name?: string) {
 }
 
 export const baseUrl = (path: string) => {
-  console.log(process.env.VERCEL);
   if (path[0] !== "/") path = "/" + path;
   if (window)
     return `${window.location.protocol}//${window.location.host}/${path}`;
