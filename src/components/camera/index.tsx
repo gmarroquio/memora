@@ -39,7 +39,7 @@ export default function CameraCapture({
       </Button>
       <Input
         ref={ref}
-        className="sr-only hidden"
+        className="hidden"
         onChange={onChange}
         type="file"
         name="media"

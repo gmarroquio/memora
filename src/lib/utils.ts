@@ -26,7 +26,7 @@ export function stringHash(str: string) {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     hash = (hash << 5) - hash + str.charCodeAt(i);
-    hash |= 0; // Convert to 32bit integer
+    hash |= 0;
   }
   return hash.toString(36);
 }
@@ -53,7 +53,8 @@ export const baseUrl = (path: string) => {
   if (window)
     return `${window.location.protocol}//${window.location.host}/${path}`;
   return (
-    (process.env.VERCEL ? "https://memora.party" : "http://localhost:3000") +
-    path
+    (process.env.VERCEL
+      ? "https://memora.party"
+      : process.env.NEXT_PUBLIC_LOCAL_URL ?? "http://localhost:3000") + path
   );
 };

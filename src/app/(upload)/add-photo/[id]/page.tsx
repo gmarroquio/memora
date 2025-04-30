@@ -42,11 +42,6 @@ export default function AddPhotoPage() {
     (Album & { limit: number; count: number }) | null
   >(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const [isUploading, setIsUploading] = useState<boolean>(false);
-  // const [imagePreview, setImagePreview] = useState<string | null>(null);
-  // const [imageShow, setImageShow] = useState<MediaAlbum | null>(null);
-  // const [capturedImage, setCapturedImage] = useState<File[] | null>(null);
-  // const [comment, setComment] = useState<string>("");
   const [user, setUser] = useState<Uploader | undefined>(undefined);
   const [previews, setPreviews] = useState<{ url: string; key: string }[]>([
     { url: "/placeholder.svg", key: "1" },
@@ -55,23 +50,6 @@ export default function AddPhotoPage() {
     { url: "/placeholder.svg", key: "4" },
   ]);
   const router = useRouter();
-  //const { startUpload } = useUploadThing("imageUploader");
-
-  // const handleCapture = async (imageData: File) => {
-  //   setImageShow(null);
-  //   while (imageData.size > 4 * 1024 * 1024) {
-  //     imageData = await convertImage(imageData, 0.9, 1, false);
-  //   }
-  //   const preview = await convertImage(imageData);
-  //   setCapturedImage([imageData, preview]);
-  //   if (imageData) setImagePreview(URL.createObjectURL(preview));
-  // };
-
-  // const cleanPhoto = () => {
-  //   setImagePreview(null);
-  //   setCapturedImage(null);
-  //   setComment("");
-  // };
 
   // const handleDeletePhoto = async () => {
   //   try {
@@ -90,43 +68,6 @@ export default function AddPhotoPage() {
   //   } catch {
   //     toast.error(text.pt.error_deleting);
   //   }
-  // };
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setIsUploading(true);
-  //   setIsLoading(true);
-  //   const user = getAnonUser();
-  //   if (!capturedImage || !imagePreview || !user) return;
-
-  //   try {
-  //     if (capturedImage && album) {
-  //       const image = await startUpload(capturedImage);
-  //       if (image && image.length > 0) {
-  //         const response = await fetch(baseUrl(`/api/albums/${album.id}/`), {
-  //           method: "POST",
-  //           body: JSON.stringify({
-  //             url: image[0].ufsUrl,
-  //             comment,
-  //             uploader: user.id,
-  //             utId: image[0].key,
-  //             previewUrl: image[1].ufsUrl,
-  //             previewKey: image[1].key,
-  //           }),
-  //         });
-  //         if (response.ok) {
-  //           await response.json();
-  //           cleanPhoto();
-  //         } else throw new Error();
-  //       } else {
-  //         throw new Error();
-  //       }
-  //     }
-  //   } catch {
-  //     toast.error(text.pt.error_uploading);
-  //   }
-  //   setIsUploading(false);
-  //   setIsLoading(false);
   // };
 
   useEffect(() => {
@@ -158,8 +99,6 @@ export default function AddPhotoPage() {
     }
     //eslint-disable-next-line
   }, [user]);
-
-  console.log({ album });
 
   if (isLoading || !album) {
     return (
@@ -233,7 +172,7 @@ export default function AddPhotoPage() {
               </div>
             ))}
           </div>
-          <Footer limit={27} taken={previews.length} />
+          <Footer limit={27} taken={previews.length} albumId={album.id} />
         </>
       )}
     </div>
