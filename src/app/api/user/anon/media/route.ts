@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { albumsTable, mediasTable, previewsTable } from "@/db/schema";
+import { mediasTable, previewsTable } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 

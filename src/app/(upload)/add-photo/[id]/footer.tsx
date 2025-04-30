@@ -5,7 +5,7 @@ import { convertImage } from "@/lib/image";
 import { useUploadThing } from "@/lib/uploadthing";
 import { renameFile } from "@/lib/utils";
 import { ChangeEvent, useRef, useState } from "react";
-import { Loader, X } from "lucide-react";
+import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAnonUser } from "@/lib/anonUser";
 import { toast } from "sonner";

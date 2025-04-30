@@ -15,11 +15,6 @@ import { addHours, formatDistanceToNowStrict } from "date-fns";
 import { Footer } from "./footer";
 import { toast } from "sonner";
 
-// interface MediaAlbum extends Media {
-//   uploaderId: string;
-//   uploaderName: string;
-// }
-
 export type Album = {
   id: string;
   title: string;
@@ -43,7 +38,7 @@ export default function AddPhotoPage() {
   >(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<Uploader | undefined>(undefined);
-  const [previews, setPreviews] = useState<{ url: string; key: string }[]>([
+  const [previews] = useState<{ url: string; key: string }[]>([
     { url: "/placeholder.svg", key: "1" },
     { url: "/placeholder.svg", key: "2" },
     { url: "/placeholder.svg", key: "3" },
