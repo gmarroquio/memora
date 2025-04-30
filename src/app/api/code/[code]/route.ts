@@ -31,9 +31,13 @@ export async function GET(
       id: albumsTable.id,
       title: albumsTable.title,
       coverUrl: albumsTable.coverUrl,
+      startDate: albumsTable.startDate,
       endDate: albumsTable.endDate,
       userLimit: albumsTable.userLimit,
       users: count(anonUsersTable.id),
+      vintage: albumsTable.vintage,
+      revealTime: albumsTable.revealTime,
+      openGallery: albumsTable.openGallery,
     })
     .from(albumsTable)
     .leftJoin(anonUsersTable, eq(anonUsersTable.albumId, albumsTable.id))

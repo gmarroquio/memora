@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { mediasTable, previewsTable } from "@/db/schema";
+import { albumsTable, mediasTable, previewsTable } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -42,4 +42,21 @@ export async function DELETE(req: NextRequest) {
   });
 
   return NextResponse.json({ message: "Photo deleted" });
+}
+
+export async function GET(req: NextRequest) {
+  const userId = req.headers.get("userId");
+  if (!userId)
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+
+  const previews = await db
+    .select({
+      url: previewsTable.url,
+      key: previewsTable.utId,
+    })
+    .from(previewsTable)
+    .leftJoin(mediasTable, eq(previewsTable.mediaId, mediasTable.id))
+    .where(eq(mediasTable.uploader, userId));
+
+  return NextResponse.json(previews);
 }

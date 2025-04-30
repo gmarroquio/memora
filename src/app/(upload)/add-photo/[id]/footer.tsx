@@ -1,11 +1,8 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 import { CameraButton } from "./camera";
 
-export const Footer = ({ limit }: { limit: number; taken: number }) => {
-  const [taken, setTaken] = useState(0);
-
+export const Footer = ({ limit, taken }: { limit: number; taken: number }) => {
   return (
     <div className="fixed w-full h-0 bottom-20 left-0 right-0 px-2">
       <div className="flex bg-white/5 backdrop-blur supports-[backdrop-filter]:bg-white/5 h-20 justify-between items-center rounded-full">
@@ -29,9 +26,7 @@ export const Footer = ({ limit }: { limit: number; taken: number }) => {
             );
           })}
         </div>
-        <CameraButton
-          onClick={() => setTaken((old) => (old + 1) % (limit + 1))}
-        />
+        <CameraButton onClick={() => console.log("tirando foto")} />
         <div className="flex-1" />
       </div>
     </div>
