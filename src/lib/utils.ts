@@ -50,11 +50,13 @@ export function renameFile(file: File, name?: string) {
 
 export const baseUrl = (path: string) => {
   if (path[0] !== "/") path = "/" + path;
-  if (window)
+
+  if (typeof window !== "undefined")
     return `${window.location.protocol}//${window.location.host}/${path}`;
+
   return (
     (process.env.VERCEL
       ? "https://memora.party"
-      : process.env.NEXT_PUBLIC_LOCAL_URL ?? "http://localhost:3000") + path
+      : process.env.LOCAL_URL ?? "http://localhost:3000") + path
   );
 };

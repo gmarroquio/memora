@@ -1,5 +1,5 @@
 "use client";
-import { baseUrl, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { CameraButton } from "./camera";
 import { convertImage } from "@/lib/image";
 import { useUploadThing } from "@/lib/uploadthing";
@@ -8,7 +8,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAnonUser } from "@/lib/anonUser";
-import { toast } from "sonner";
+import { useUploadPhoto } from "./fetch";
 
 export const Footer = ({
   limit,
@@ -19,11 +19,12 @@ export const Footer = ({
   taken: number;
   albumId: string;
 }) => {
-  const { startUpload } = useUploadThing("imageUploader");
+  const user = getAnonUser();
+  const { startUpload, isUploading } = useUploadThing("imageUploader");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [capture, setCapture] = useState<File[]>([]);
   const [preview, setPreview] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const { mutate, isPending } = useUploadPhoto(user!.id);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -48,39 +49,18 @@ export const Footer = ({
   };
 
   const handleSubmit = async () => {
-    setLoading(true);
-    const user = getAnonUser();
-    if (!preview || !user) return;
-
-    try {
-      if (capture.length === 2) {
-        const image = await startUpload(capture);
-        if (image && image.length > 0) {
-          const response = await fetch(baseUrl(`/api/albums/${albumId}/`), {
-            method: "POST",
-            body: JSON.stringify({
-              url: image[0].ufsUrl,
-              uploader: user.id,
-              utId: image[0].key,
-              previewUrl: image[1].ufsUrl,
-              previewKey: image[1].key,
-            }),
-          });
-          if (response.ok) {
-            await response.json();
-            cleanPhoto();
-          } else throw new Error();
-        } else {
-          throw new Error();
-        }
+    if (capture.length === 2) {
+      const image = await startUpload(capture);
+      if (image && image.length > 0) {
+        mutate({ albumId, image });
+        cleanPhoto();
+      } else {
+        throw new Error();
       }
-    } catch {
-      toast.error("Não foi possível enviar foto");
     }
-    setLoading(false);
   };
 
-  if (loading) {
+  if (isPending || isUploading) {
     return (
       <div className="fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center bg-black">
         <Loader className="animate-spin h-10 w-10" />

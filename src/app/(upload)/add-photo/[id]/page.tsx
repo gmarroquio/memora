@@ -5,15 +5,15 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Loader } from "lucide-react";
 import Image from "next/image";
-import { baseUrl, cn } from "@/lib/utils";
+import { baseUrl } from "@/lib/utils";
 import { getAnonUser } from "@/lib/anonUser";
 import { useRouter } from "next/navigation";
 import text from "./text.json";
 import AddAnonUser from "./add-user";
 import { ptBR } from "date-fns/locale";
-import { addHours, formatDistanceToNowStrict } from "date-fns";
+import { addHours, formatDistanceToNowStrict, isAfter } from "date-fns";
 import { Footer } from "./footer";
-import { toast } from "sonner";
+import Feed from "./feed";
 
 export type Album = {
   id: string;
@@ -38,32 +38,7 @@ export default function AddPhotoPage() {
   >(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<Uploader | undefined>(undefined);
-  const [previews] = useState<{ url: string; key: string }[]>([
-    { url: "/placeholder.svg", key: "1" },
-    { url: "/placeholder.svg", key: "2" },
-    { url: "/placeholder.svg", key: "3" },
-    { url: "/placeholder.svg", key: "4" },
-  ]);
   const router = useRouter();
-
-  // const handleDeletePhoto = async () => {
-  //   try {
-  //     if (imageShow) {
-  //       const response = await fetch(baseUrl(`/api/user/anon/media/`), {
-  //         method: "DELETE",
-  //         headers: { userId: user!.id },
-  //         body: JSON.stringify({
-  //           id: imageShow.id,
-  //         }),
-  //       });
-  //       if (response.ok) {
-  //         setImageShow(null);
-  //       } else throw new Error();
-  //     }
-  //   } catch {
-  //     toast.error(text.pt.error_deleting);
-  //   }
-  // };
 
   useEffect(() => {
     const storageUser = getAnonUser();
@@ -82,18 +57,6 @@ export default function AddPhotoPage() {
     });
     //eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    if (user) {
-      fetch(baseUrl("/api/user/anon/media"), {
-        headers: { userId: user.id },
-      }).then((response) => {
-        if (response.ok) {
-        } else toast.error("Não foi possível carregar fotos");
-      });
-    }
-    //eslint-disable-next-line
-  }, [user]);
 
   if (isLoading || !album) {
     return (
@@ -123,11 +86,11 @@ export default function AddPhotoPage() {
         <span className="text-gray-300">
           {album.users} convidado{album.users === 1 ? "" : "s"}
         </span>
-        {album.revealTime !== "now" && (
+        {album.revealTime !== "now" && !isAfter(new Date(), album.endDate) && (
           <>
             <div className="rounded-full bg-white h-1 w-1" />
             <span className="text-gray-300">
-              fotos serão reveladas em{" "}
+              <span>fotos serão reveladas em </span>
               {formatDistanceToNowStrict(
                 addHours(
                   album.endDate,
@@ -147,27 +110,13 @@ export default function AddPhotoPage() {
         <AddAnonUser albumId={album.id} setUser={setUser} />
       ) : (
         <>
-          {
-            //TODO: add tab de pov e gallery
-          }
-          <div className="grid grid-cols-3 gap-3 pb-25">
-            {previews.map((p) => (
-              <div
-                key={p.key}
-                className="overflow-hidden rounded-md"
-                onClick={() => console.log("modal de apagar foto", p.key)}
-              >
-                <img
-                  src={p.url}
-                  className={cn(
-                    album.revealTime !== "now" && "blur",
-                    "border border-white rounded-md h-32 w-full"
-                  )}
-                />
-              </div>
-            ))}
-          </div>
-          <Footer limit={27} taken={previews.length} albumId={album.id} />
+          <Feed
+            gallery={album.openGallery || true}
+            reveal={
+              album.revealTime === "now" || isAfter(new Date(), album.endDate)
+            }
+          />
+          <Footer limit={27} taken={4} albumId={album.id} />
         </>
       )}
     </div>
