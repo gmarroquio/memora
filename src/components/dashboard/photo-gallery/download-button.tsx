@@ -32,7 +32,7 @@ export const DownloadButton = ({ selectedPhotos }: DownloadButtonProps) => {
 
   return (
     <Button onClick={downloadFiles} disabled={selectedPhotos.length === 0}>
-      <Download className="mr-2 h-4 w-4" /> Download Selected
+      <Download className="mr-2 h-4 w-4" /> Baixar selecionadas
     </Button>
   );
 };
@@ -72,7 +72,7 @@ export const DownloadAllButton = () => {
 
   return (
     <Button onClick={downloadFiles} disabled={loading}>
-      <Download className="mr-2 h-4 w-4" /> Download All Photos
+      <Download className="mr-2 h-4 w-4" /> Baixar todas as fotos
     </Button>
   );
 };

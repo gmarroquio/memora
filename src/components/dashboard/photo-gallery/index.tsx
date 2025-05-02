@@ -52,11 +52,11 @@ export default function PhotoGallery() {
 
   return (
     <>
-      <div className="flex justify-between items-center mb-4">
+      <div className="md:flex justify-between items-center mb-4 space-y-2">
         <p className="text-sm text-muted-foreground">
           {selectedPhotos.length} photo(s) selected
         </p>
-        <div className="space-x-2">
+        <div className="space-x-2 grid grid-cols-2">
           <DownloadAllButton />
           <DownloadButton selectedPhotos={selectedPhotos} />
         </div>
