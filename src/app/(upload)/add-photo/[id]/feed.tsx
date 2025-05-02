@@ -129,7 +129,7 @@ export default function Feed({
   return (
     <Tabs
       value={activeTab}
-      onValueChange={(value) => setActiveTab(value as any)}
+      onValueChange={(value) => setActiveTab(value as "gallery" | "pov")}
     >
       <TabsList className={cn(gallery && "grid grid-cols-2", "w-full")}>
         <TabsTrigger className="w-full" value="pov">
