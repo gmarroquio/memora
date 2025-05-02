@@ -8,7 +8,7 @@ import { ChangeEvent, useRef, useState } from "react";
 import { Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAnonUser } from "@/lib/anonUser";
-import { useUploadPhoto } from "./fetch";
+import { useUploadPhoto } from "@/lib/service/anon-photos";
 
 export const Footer = ({
   limit,
@@ -106,7 +106,7 @@ export const Footer = ({
       />
       {preview && (
         <div className="fixed top-0 bottom-0 left-0 right-0 bg-black flex flex-col justify-between px-4 py-10">
-          <img src={preview} className="rounded-md" />
+          <img alt="preview" src={preview} className="rounded-md" />
 
           <div className="grid grid-cols-3 items-center">
             <div className="col-start-2 flex justify-center">

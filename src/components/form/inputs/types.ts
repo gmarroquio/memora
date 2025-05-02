@@ -5,4 +5,5 @@ export type FormInput<T extends Record<string, any>, TName> = {
   name: TName;
   form: UseFormReturn<T>;
   label: string;
+  disabled?: boolean;
 };

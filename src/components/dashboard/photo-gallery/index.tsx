@@ -8,15 +8,8 @@ import { useAuth } from "@clerk/nextjs";
 import { Label } from "@/components/ui/label";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { DownloadAllButton, DownloadButton } from "./download-button";
-import { useInfinitePhotos } from "./fetch";
+import { useInfinitePhotos } from "@/lib/service/album";
 import { DeleteButton } from "./delete-button";
-
-export type Media = {
-  id: number;
-  url: string;
-  name: string;
-  comment?: string;
-};
 
 export default function PhotoGallery() {
   const [selectedPhotos, setSelectedPhotos] = useState<

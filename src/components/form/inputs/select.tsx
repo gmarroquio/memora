@@ -24,6 +24,7 @@ export const SelectForm = <
   label,
   options,
   placeholder,
+  disabled = false,
 }: FormInput<TFieldValues, TName> & {
   options: { value: string; label: string }[];
   placeholder: string;
@@ -36,7 +37,11 @@ export const SelectForm = <
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <Select
+              disabled={disabled}
+              onValueChange={field.onChange}
+              defaultValue={field.value}
+            >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>

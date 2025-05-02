@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import GuestCodeGenerator from "@/components/dashboard/guest-code-generator";
 import AccountSettings from "@/components/dashboard/account-settings";
 import text from "./text.json";
 

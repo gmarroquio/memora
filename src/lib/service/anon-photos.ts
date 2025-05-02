@@ -3,28 +3,16 @@ import { baseUrl } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-export function useGetAnonPhotos(userId: string, page = 1) {
+export function useGetAnonPhotos(
+  userId: string,
+  type: "all" | "guest",
+  page = 1
+) {
   return useQuery<{ url: string; key: string }[]>({
-    queryKey: ["getAnonPhotos", userId],
-    queryFn: async () => {
-      const res = await fetch(baseUrl(`/api/user/anon/media?page=${page}`), {
-        headers: { userId: userId },
-      });
-      if (res.ok) {
-        return res.json();
-      } else {
-        toast.error("Não foi possível carregar fotos");
-      }
-    },
-  });
-}
-
-export function useGetAllPhotos(userId: string, page = 1) {
-  return useQuery<{ url: string; key: string }[]>({
-    queryKey: ["getAllPhotos"],
+    queryKey: ["getPhoto", userId, type],
     queryFn: async () => {
       const res = await fetch(
-        baseUrl(`/api/user/anon/media?page=${page}&all=true`),
+        baseUrl(`/api/user/anon/media?page=${page}&all=${type === "all"}`),
         {
           headers: { userId: userId },
         }
@@ -63,7 +51,10 @@ export function useUploadPhoto(userId: string) {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ["getAnonPhotos", userId, "getAllPhotos"],
+        queryKey: ["getPhotos", userId, "all"],
+      });
+      client.invalidateQueries({
+        queryKey: ["getPhotos", userId, "guest"],
       });
     },
     onError: () => {
@@ -88,7 +79,10 @@ export function useDeletePhoto(userId: string) {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ["getAnonPhotos", userId, "getAllPhotos"],
+        queryKey: ["getPhotos", userId, "all"],
+      });
+      client.invalidateQueries({
+        queryKey: ["getPhotos", userId, "guest"],
       });
     },
     onError: () => {

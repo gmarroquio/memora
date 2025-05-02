@@ -64,6 +64,9 @@ export default function AlbumPhotoGallery({ medias }: AlbumPhotoGalleryProps) {
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {
+          //TODO: Select com galeria e pov de cada convidado
+        }
         {medias.map((photo) => (
           <div
             key={photo.id}

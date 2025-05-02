@@ -17,6 +17,7 @@ export const SwitchForm = <
   name,
   label,
   message,
+  disabled = false,
 }: FormInput<TFieldValues, TName> & {
   message?: { on: string; off: string };
 }) => {
@@ -31,6 +32,7 @@ export const SwitchForm = <
               <div className="flex justify-between items-center">
                 <FormLabel>{label}</FormLabel>
                 <Switch
+                  disabled={disabled}
                   checked={field.value}
                   onCheckedChange={field.onChange}
                 />

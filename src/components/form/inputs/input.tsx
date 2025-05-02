@@ -17,6 +17,7 @@ export const InputForm = <
   label,
   name,
   placeholder,
+  disabled = false,
 }: FormInput<TFieldValues, TName> & {
   placeholder: string;
 }) => {
@@ -28,7 +29,7 @@ export const InputForm = <
         <FormItem className="md:col-span-2 w-full">
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <Input placeholder={placeholder} {...field} />
+            <Input disabled={disabled} placeholder={placeholder} {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>

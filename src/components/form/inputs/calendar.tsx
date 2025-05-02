@@ -27,6 +27,7 @@ export const CalendarForm = <
   form,
   name,
   label,
+  disabled = false,
   disable,
 }: FormInput<TFieldValues, TName> & {
   disable?: (data: Date) => boolean;
@@ -42,6 +43,7 @@ export const CalendarForm = <
             <PopoverTrigger asChild>
               <FormControl>
                 <Button
+                  disabled={disabled}
                   variant={"outline"}
                   className={cn(
                     "w-full pl-3 text-left font-normal",

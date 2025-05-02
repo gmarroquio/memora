@@ -4,6 +4,7 @@ import AlbumPhotoGallery from "@/components/dashboard/album-photo-gallery";
 import Image from "next/image";
 import { baseUrl } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
+import EditAlbumButton from "@/components/dashboard/edit-album-button";
 
 async function getAlbum(id: string) {
   const { userId } = await auth();
@@ -52,16 +53,26 @@ export default async function AlbumPage({
               width={1000}
               height={300}
             />
+            <Image
+              src={album.coverUrl}
+              alt="Album cover"
+              className="block md:hidden object-cover"
+              width={500}
+              height={150}
+            />
           </>
         )}
-        <h1 className="text-3xl font-bold">{album.title}</h1>
-        <p className="text-muted-foreground">{album.medias.length} photos</p>
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold">{album.title}</h1>
+            <p className="text-muted-foreground">{album.medias.length} fotos</p>
+          </div>
+          <EditAlbumButton albumId={album.id} />
+        </div>
       </div>
       {album.medias.length === 0 && (
         <>
-          <span className="text-muted-foreground">
-            Album doesn&apos;t have any media yet
-          </span>
+          <span className="text-muted-foreground">Album ainda sem fotos</span>
         </>
       )}
       <AlbumPhotoGallery medias={album.medias} />

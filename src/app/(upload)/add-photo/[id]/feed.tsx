@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { useDeletePhoto, useGetAllPhotos, useGetAnonPhotos } from "./fetch";
+import { useDeletePhoto, useGetAnonPhotos } from "@/lib/service/anon-photos";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getAnonUser } from "@/lib/anonUser";
@@ -54,6 +54,7 @@ const Photo = ({
         onClick={() => setOpen(true)}
       >
         <img
+          alt={"preview"}
           src={src}
           className={cn(
             !reveal && "blur",
@@ -65,35 +66,15 @@ const Photo = ({
   );
 };
 
-export const POV = ({ reveal }: { reveal: boolean }) => {
+export const Gallery = ({
+  reveal,
+  type,
+}: {
+  reveal: boolean;
+  type: "guest" | "all";
+}) => {
   const user = getAnonUser();
-  const { data } = useGetAnonPhotos(user!.id);
-  return (
-    <div className="grid grid-cols-3 gap-3 pb-25">
-      {!data &&
-        [
-          { url: "/placeholder.svg", key: "1" },
-          { url: "/placeholder.svg", key: "2" },
-          { url: "/placeholder.svg", key: "3" },
-        ].map((p) => (
-          <Photo
-            reveal={false}
-            pending
-            key={p.key}
-            imageKey={p.key}
-            src={p.url}
-          />
-        ))}
-      {data?.map((p) => (
-        <Photo reveal={reveal} key={p.key} imageKey={p.key} src={p.url} />
-      ))}
-    </div>
-  );
-};
-
-export const Gallery = ({ reveal }: { reveal: boolean }) => {
-  const user = getAnonUser();
-  const { data } = useGetAllPhotos(user!.id);
+  const { data } = useGetAnonPhotos(user!.id, type);
   return (
     <div className="grid grid-cols-3 gap-3 pb-25">
       {!data &&
@@ -138,10 +119,10 @@ export default function Feed({
         {gallery && <TabsTrigger value="gallery">Galeria</TabsTrigger>}
       </TabsList>
       <TabsContent value="pov">
-        <POV reveal={reveal} />
+        <Gallery reveal={reveal} type="guest" />
       </TabsContent>
       <TabsContent value="gallery">
-        <Gallery reveal={reveal} />
+        <Gallery reveal={reveal} type="all" />
       </TabsContent>
     </Tabs>
   );

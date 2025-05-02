@@ -50,11 +50,11 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
   const page = Number(searchParams.get("page"));
-  const all = Boolean(searchParams.get("all"));
+  const all = searchParams.get("all") === "true";
 
   let previews;
 
-  if (!all)
+  if (!all) {
     previews = await db
       .select({
         url: previewsTable.url,
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
       .where(eq(mediasTable.uploader, userId))
       .limit(10)
       .offset((page - 1) * 10);
-  else
+  } else {
     previews = await db
       .select({
         url: previewsTable.url,
@@ -75,6 +75,7 @@ export async function GET(req: NextRequest) {
       .leftJoin(mediasTable, eq(previewsTable.mediaId, mediasTable.id))
       .limit(10)
       .offset((page - 1) * 10);
+  }
 
   return NextResponse.json(previews);
 }

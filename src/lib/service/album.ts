@@ -2,8 +2,14 @@ import { getQueryClient } from "@/lib/query";
 import { baseUrl } from "@/lib/utils";
 import { useAuth } from "@clerk/nextjs";
 import { useQuery, useMutation, useInfiniteQuery } from "@tanstack/react-query";
-import { Media } from "./index";
 import { toast } from "sonner";
+
+export type Media = {
+  id: number;
+  url: string;
+  name: string;
+  comment?: string;
+};
 
 export function useDeletePhoto() {
   const { userId } = useAuth();
@@ -77,6 +83,55 @@ export function useInfinitePhotos() {
       } else {
         throw new Error("Cannot fetch album");
       }
+    },
+  });
+}
+
+export function useGetAbum(albumId: string) {
+  const { userId } = useAuth();
+
+  return useQuery<{
+    title: string;
+    openGallery: boolean;
+    startDate: string;
+    endDate: string;
+    revealTime: string;
+    vintage: boolean;
+    medias: Media[];
+  }>({
+    queryKey: ["getAlbum", userId, albumId],
+    queryFn: async () => {
+      const res = await fetch(baseUrl(`/api/albums/${albumId}`), {
+        headers: { userId: userId! },
+      });
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("Cannot fetch album");
+      }
+    },
+  });
+}
+
+export function useUpdateAlbum(albumId: string) {
+  const { userId } = useAuth();
+  const client = getQueryClient();
+
+  return useMutation({
+    mutationFn: async (body: Record<string, undefined | string | boolean>) => {
+      console.log("not implemented");
+      const response = await fetch(baseUrl(`/api/albums/${albumId}`), {
+        method: "POST",
+        headers: { userId: userId! },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) throw new Error();
+    },
+    onSuccess: () => {
+      client.invalidateQueries({ queryKey: ["getAlbum", userId, albumId] });
+    },
+    onError: () => {
+      toast.error("Error creating album");
     },
   });
 }

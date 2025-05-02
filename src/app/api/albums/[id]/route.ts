@@ -106,3 +106,15 @@ export const POST = async (
 
   return NextResponse.json({ medias, count: userMedias.count });
 };
+
+export const PUT = async (
+  req: NextRequest,
+  { params: _params }: { params: Promise<{ id: string }> }
+) => {
+  const { id: albumId } = await _params;
+  const userId = req.headers.get("userId");
+
+  console.log(albumId, userId);
+
+  return NextResponse.json({ message: "not implemented" });
+};
