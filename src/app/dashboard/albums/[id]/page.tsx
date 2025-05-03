@@ -5,6 +5,7 @@ import Image from "next/image";
 import { baseUrl } from "@/lib/utils";
 import { auth } from "@clerk/nextjs/server";
 import EditAlbumButton from "@/components/dashboard/edit-album-button";
+import QrCodeAlbum from "@/components/dashboard/qr-code-album";
 
 async function getAlbum(id: string) {
   const { userId } = await auth();
@@ -67,7 +68,10 @@ export default async function AlbumPage({
             <h1 className="text-3xl font-bold">{album.title}</h1>
             <p className="text-muted-foreground">{album.medias.length} fotos</p>
           </div>
-          <EditAlbumButton albumId={album.id} />
+          <div className="space-x-2">
+            <QrCodeAlbum albumId={album.id} />
+            <EditAlbumButton albumId={album.id} />
+          </div>
         </div>
       </div>
       {album.medias.length === 0 && (

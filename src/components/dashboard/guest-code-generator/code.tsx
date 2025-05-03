@@ -44,7 +44,7 @@ export const ShowQrCode = ({ code }: { code: string }) => {
           });
         }}
       >
-        Download QR code
+        <span className="hidden md:block">Download QR code</span>
         <Download className="h-4 w-4" />
       </Button>
     </>
@@ -66,7 +66,7 @@ export const AlbumLink = ({ code }: { code: string }) => {
   return (
     <>
       <Button variant="outline" onClick={handleCopy}>
-        Copy album url
+        <span className="hidden md:block">Copy album url</span>
         {isCopied ? (
           <Check className="h-4 w-4" />
         ) : (

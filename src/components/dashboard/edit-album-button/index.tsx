@@ -22,7 +22,7 @@ import { InputForm } from "@/components/form/inputs/input";
 import { SelectForm } from "@/components/form/inputs/select";
 import { useGetAbum, useUpdateAlbum } from "@/lib/service/album";
 
-const createAlbumSchema = z.object({
+const editAlbumSchema = z.object({
   name: z
     .string()
     .min(1, "Album name is required")
@@ -34,7 +34,7 @@ const createAlbumSchema = z.object({
   openGallery: z.boolean(),
 });
 
-type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
+type EditAlbumFormValues = z.infer<typeof editAlbumSchema>;
 
 export default function EditAlbumButton({ albumId }: { albumId: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +42,8 @@ export default function EditAlbumButton({ albumId }: { albumId: string }) {
   const { data, isPending: pendingAlbum } = useGetAbum(albumId);
   const { mutate, isPending: pendingEdit } = useUpdateAlbum(albumId);
 
-  const form = useForm<CreateAlbumFormValues>({
-    resolver: zodResolver(createAlbumSchema),
+  const form = useForm<EditAlbumFormValues>({
+    resolver: zodResolver(editAlbumSchema),
     defaultValues: {
       name: "",
       startDate: new Date(),
@@ -55,7 +55,7 @@ export default function EditAlbumButton({ albumId }: { albumId: string }) {
   });
 
   //TODO: Not Implemented
-  const onSubmit = async (data: CreateAlbumFormValues) => {
+  const onSubmit = async (data: EditAlbumFormValues) => {
     const body: Record<string, undefined | string | boolean> = {
       title: data.name,
       startDate: data.endDate.toISOString(),
