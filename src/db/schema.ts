@@ -33,8 +33,8 @@ export const albumsTable = pgTable("albums", {
     .primaryKey(),
   title: text("title").notNull(),
   userLimit: integer("user_limit").notNull().default(10),
-  startDate: timestamp("start_date"),
-  endDate: timestamp("end_date"),
+  startDate: timestamp("start_date", { withTimezone: true }),
+  endDate: timestamp("end_date", { withTimezone: true }),
   vintage: boolean("vintage"),
   revealTime: text("reveal_time", { enum: ["now", "after", "12h", "24h"] }),
   openGallery: boolean("open_gallery"),
@@ -73,7 +73,9 @@ export const previewsTable = pgTable("previews", {
 export const codesTable = pgTable("album_codes", {
   id: serial("id").primaryKey(),
   code: text("code").notNull(),
-  expiresAt: timestamp("expires_at").defaultNow().notNull(),
+  expiresAt: timestamp("expires_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),
@@ -87,11 +89,11 @@ export const subscriptionsTable = pgTable("subscriptions", {
   status: text("status", {
     enum: ["active", "inactive", "expired", "deleted"],
   }).default("inactive"),
-  buyDate: timestamp("buy_date").defaultNow().notNull(),
-  activationDate: timestamp("activation_date"),
+  buyDate: timestamp("buy_date", { withTimezone: true }).defaultNow().notNull(),
+  activationDate: timestamp("activation_date", { withTimezone: true }),
   photoLimit: integer("photo_limit").default(500),
   expirationTime: integer("expiration_time").default(6),
-  expiresAt: timestamp("expires_at").defaultNow(),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).defaultNow(),
   albumId: text("album_id").references(() => albumsTable.id, {
     onDelete: "cascade",
   }),
@@ -104,7 +106,9 @@ export const blogPostTable = pgTable("blog_posts", {
   id: varchar("id")
     .$defaultFn(() => createId())
     .primaryKey(),
-  postDate: timestamp("postDate").notNull().defaultNow(),
+  postDate: timestamp("postDate", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
   cover: varchar("cover").notNull(),
   keywords: varchar("keywords").notNull(),
   title: varchar("title").notNull(),
