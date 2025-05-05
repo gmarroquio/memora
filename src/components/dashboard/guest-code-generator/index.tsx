@@ -15,7 +15,7 @@ import { useAuth } from "@clerk/nextjs";
 
 export default function GuestCodeGenerator() {
   const { userId } = useAuth();
-  const [codes, setCodes] = useState<{ code: string; expireAt: string }[]>([]);
+  const [codes, setCodes] = useState<{ code: string; expiresAt: string }[]>([]);
 
   useEffect(() => {
     if (userId) {
@@ -27,8 +27,8 @@ export default function GuestCodeGenerator() {
     }
   }, [userId]);
 
-  const setGenerated = (code: string, expireAt: string) => {
-    setCodes((old) => [{ code, expireAt }, ...old]);
+  const setGenerated = (code: string, expiresAt: string) => {
+    setCodes((old) => [{ code, expiresAt }, ...old]);
   };
 
   return (

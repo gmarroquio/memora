@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export const CodeList = ({
   codes,
 }: {
-  codes: { code: string; expireAt: string }[];
+  codes: { code: string; expiresAt: string }[];
 }) => {
   return (
     <div className="space-y-2">
@@ -15,7 +15,7 @@ export const CodeList = ({
           <p className="text-2xl font-bold">No guest code generated yet.</p>
         </div>
       )}
-      {codes.map(({ code, expireAt }) => (
+      {codes.map(({ code, expiresAt }) => (
         <div
           className="py-2 px-4 bg-muted rounded-md flex justify-between items-center"
           key={code}
@@ -28,7 +28,7 @@ export const CodeList = ({
           </div>
           <div
             className={cn(
-              isAfter(new Date(), expireAt) && "hidden",
+              isAfter(new Date(), expiresAt) && "hidden",
               "grid grid-cols-2"
             )}
           >

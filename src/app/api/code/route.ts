@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
   await db
     .insert(codesTable)
-    .values({ code, expireAt: expires.toISOString(), albumId: album.id });
+    .values({ code, expiresAt: expires, albumId: album.id });
 
   return NextResponse.json({ code });
 }

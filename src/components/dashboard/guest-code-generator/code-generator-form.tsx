@@ -24,7 +24,7 @@ const guestCodeSchema = z.object({
 });
 
 type CodeGeneratorFormProps = {
-  setGeneratedCode: (code: string, expireAt: string) => void;
+  setGeneratedCode: (code: string, expiresAt: string) => void;
 };
 
 export const CodeGeneratorForm = ({

@@ -22,7 +22,7 @@ export async function GET(
       { status: 401 }
     );
 
-  if (isAfter(new Date(), new Date(code.expireAt))) {
+  if (isAfter(new Date(), code.expiresAt)) {
     return NextResponse.json({ message: "Expired code!" }, { status: 401 });
   }
 

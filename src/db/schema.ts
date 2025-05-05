@@ -1,4 +1,3 @@
-import { sql } from "drizzle-orm";
 import {
   integer,
   pgTable,
@@ -74,9 +73,7 @@ export const previewsTable = pgTable("previews", {
 export const codesTable = pgTable("album_codes", {
   id: serial("id").primaryKey(),
   code: text("code").notNull(),
-  expireAt: text("expire_at")
-    .default(sql`(CURRENT_TIMESTAMP)`)
-    .notNull(),
+  expiresAt: timestamp("expires_at").defaultNow().notNull(),
   albumId: text("album_id")
     .notNull()
     .references(() => albumsTable.id, { onDelete: "cascade" }),
@@ -90,13 +87,11 @@ export const subscriptionsTable = pgTable("subscriptions", {
   status: text("status", {
     enum: ["active", "inactive", "expired", "deleted"],
   }).default("inactive"),
-  buyDate: text("buy_date")
-    .default(sql`(CURRENT_TIMESTAMP)`)
-    .notNull(),
-  activationDate: text("activation_date"),
+  buyDate: timestamp("buy_date").defaultNow().notNull(),
+  activationDate: timestamp("activation_date"),
   photoLimit: integer("photo_limit").default(500),
   expirationTime: integer("expiration_time").default(6),
-  expireAt: text("expire_at"),
+  expiresAt: timestamp("expires_at").defaultNow(),
   albumId: text("album_id").references(() => albumsTable.id, {
     onDelete: "cascade",
   }),

@@ -50,6 +50,20 @@
       "when": 1745961646270,
       "tag": "0006_gifted_xorn",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1746404765351,
+      "tag": "0007_colossal_dracula",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1746404986389,
+      "tag": "0008_omniscient_doctor_octopus",
+      "breakpoints": true
     }
   ]
 }

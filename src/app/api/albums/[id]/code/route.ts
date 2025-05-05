@@ -67,7 +67,7 @@ export async function POST(
 
   await db.insert(codesTable).values({
     code,
-    expireAt: album.endDate?.toISOString(),
+    expiresAt: album.endDate ?? new Date(),
     albumId: album.id,
   });
 
