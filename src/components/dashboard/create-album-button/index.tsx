@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,16 +16,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Plus } from "lucide-react";
 import { useUploadThing } from "@/lib/uploadthing";
-import { baseUrl, renameFile } from "@/lib/utils";
+import { renameFile } from "@/lib/utils";
 import { toast } from "sonner";
 import text from "./text.json";
-import { useAuth } from "@clerk/nextjs";
 import { addHours, subDays } from "date-fns";
 import { SwitchForm } from "@/components/form/inputs/switch";
 import { CalendarForm } from "@/components/form/inputs/calendar";
 import { InputForm } from "@/components/form/inputs/input";
 import { SelectForm } from "@/components/form/inputs/select";
 import { FileForm } from "@/components/form/inputs/image";
+import { useCreateAlbum } from "@/lib/service/album/create-album";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -61,11 +60,9 @@ const createAlbumSchema = z.object({
 type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
-  const { userId } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setLoading] = useState(false);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
-  const router = useRouter();
+  const { mutateAsync, isPending } = useCreateAlbum();
 
   const form = useForm<CreateAlbumFormValues>({
     resolver: zodResolver(createAlbumSchema),
@@ -82,7 +79,6 @@ export default function CreateAlbumButton() {
   });
 
   const onSubmit = async (data: CreateAlbumFormValues) => {
-    setLoading(true);
     try {
       const body: Record<string, undefined | string | boolean> = {
         title: data.name,
@@ -101,18 +97,11 @@ export default function CreateAlbumButton() {
         if (!coverUpload) throw new Error();
         body.coverUrl = coverUpload[0].ufsUrl;
       }
-      const response = await fetch(baseUrl("/api/albums"), {
-        method: "POST",
-        headers: { userId: userId! },
-        body: JSON.stringify(body),
-      });
-      if (response.ok) {
-        const album = await response.json();
-        router.push(`/dashboard/albums/${album.id}`);
-      } else throw new Error();
+
+      await mutateAsync(body);
+      setIsOpen(false);
     } catch {
       toast.error("Error creating album");
-      setLoading(false);
     }
   };
 
@@ -205,7 +194,7 @@ export default function CreateAlbumButton() {
               label="Imagem de capa"
               description="Envie uma imagem de capa para seu álbum (opcional)"
             />
-            <Button type="submit" disabled={isUploading || isLoading}>
+            <Button type="submit" disabled={isUploading || isPending}>
               {text.pt.create_album.button.create}
             </Button>
           </form>

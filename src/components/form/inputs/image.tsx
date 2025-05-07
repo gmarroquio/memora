@@ -66,7 +66,7 @@ export const FileForm = <
                 <Image
                   src={coverImagePreview || "/placeholder.svg"}
                   alt="Cover preview"
-                  objectFit="cover"
+                  className="object-cover"
                   height={500}
                   width={500}
                 />

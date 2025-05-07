@@ -87,32 +87,6 @@ export function useInfinitePhotos() {
   });
 }
 
-export function useGetAbum(albumId: string) {
-  const { userId } = useAuth();
-
-  return useQuery<{
-    title: string;
-    openGallery: boolean;
-    startDate: string;
-    endDate: string;
-    revealTime: string;
-    vintage: boolean;
-    medias: Media[];
-  }>({
-    queryKey: ["getAlbum", userId, albumId],
-    queryFn: async () => {
-      const res = await fetch(baseUrl(`/api/albums/${albumId}`), {
-        headers: { userId: userId! },
-      });
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Cannot fetch album");
-      }
-    },
-  });
-}
-
 export function useUpdateAlbum(albumId: string) {
   const { userId } = useAuth();
   const client = getQueryClient();
@@ -131,7 +105,7 @@ export function useUpdateAlbum(albumId: string) {
       client.invalidateQueries({ queryKey: ["getAlbum", userId, albumId] });
     },
     onError: () => {
-      toast.error("Error creating album");
+      toast.error("Error updating album");
     },
   });
 }

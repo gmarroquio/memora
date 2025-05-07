@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -18,9 +18,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Eye, Loader } from "lucide-react";
-import { baseUrl } from "@/lib/utils";
 import text from "./text.json";
-import { useAuth } from "@clerk/nextjs";
+import { useGetAlbums } from "@/lib/service/album/get-albums";
 
 export type Album = {
   id: string;
@@ -30,24 +29,10 @@ export type Album = {
 };
 
 export default function AlbumsList() {
-  const { isLoaded, userId } = useAuth();
   const [previewAlbum, setPreviewAlbum] = useState<Album | null>(null);
-  const [albums, setAlbums] = useState<Album[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { data: albums, isPending } = useGetAlbums();
 
-  useEffect(() => {
-    if (userId && isLoaded)
-      fetch(baseUrl("/api/albums"), {
-        headers: { userId },
-      }).then((response) => {
-        if (response.ok) {
-          response.json().then(setAlbums);
-          setLoading(false);
-        }
-      });
-  }, [isLoaded, userId]);
-
-  if (loading || !isLoaded) {
+  if (isPending || !albums) {
     return (
       <div className="h-40 flex items-center justify-center">
         <Loader className="animate-spin h-10 w-10" />
@@ -73,8 +58,8 @@ export default function AlbumsList() {
                 <Image
                   src={album.coverUrl || "/placeholder.svg"}
                   alt={`Cover for ${album.title}`}
-                  width={309}
-                  height={174}
+                  width={500}
+                  height={200}
                   className="object-cover"
                 />
               </div>

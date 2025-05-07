@@ -20,7 +20,8 @@ import { SwitchForm } from "@/components/form/inputs/switch";
 import { CalendarForm } from "@/components/form/inputs/calendar";
 import { InputForm } from "@/components/form/inputs/input";
 import { SelectForm } from "@/components/form/inputs/select";
-import { useGetAbum, useUpdateAlbum } from "@/lib/service/album";
+import { useUpdateAlbum } from "@/lib/service/album";
+import { useGetAlbum } from "@/lib/service/album/get-album";
 
 const editAlbumSchema = z.object({
   name: z
@@ -39,7 +40,7 @@ type EditAlbumFormValues = z.infer<typeof editAlbumSchema>;
 export default function EditAlbumButton({ albumId }: { albumId: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [edit, setEdit] = useState(false);
-  const { data, isPending: pendingAlbum } = useGetAbum(albumId);
+  const { data, isPending: pendingAlbum } = useGetAlbum(albumId);
   const { mutate, isPending: pendingEdit } = useUpdateAlbum(albumId);
 
   const form = useForm<EditAlbumFormValues>({

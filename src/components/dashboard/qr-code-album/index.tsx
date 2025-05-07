@@ -14,7 +14,7 @@ import { useGenerateCode, useGetCode } from "@/lib/service/qrcode";
 import { CodeList } from "../guest-code-generator/code-list";
 
 export default function QrCodeAlbum({ albumId }: { albumId: string }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { data, isPending } = useGetCode(albumId);
   const { mutate, isPending: generating } = useGenerateCode(albumId);
 
