@@ -39,6 +39,7 @@ export const albumsTable = pgTable("albums", {
   revealTime: text("reveal_time", { enum: ["now", "after", "12h", "24h"] }),
   openGallery: boolean("open_gallery"),
   coverUrl: text("cover_url"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   userId: text("user_id")
     .notNull()
     .references(() => usersTable.id, { onDelete: "cascade" }),

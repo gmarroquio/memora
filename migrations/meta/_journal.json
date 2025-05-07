@@ -71,6 +71,13 @@
       "when": 1746406054065,
       "tag": "0009_marvelous_shotgun",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1746640060221,
+      "tag": "0010_greedy_sphinx",
+      "breakpoints": true
     }
   ]
 }

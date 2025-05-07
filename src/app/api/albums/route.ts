@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db/index";
 import { albumsTable, mediasTable, usersTable } from "@/db/schema";
-import { count, eq } from "drizzle-orm";
+import { count, desc, eq } from "drizzle-orm";
 
 export const POST = async (req: NextRequest) => {
   const userId = req.headers.get("userId");
@@ -46,7 +46,8 @@ export const GET = async (req: NextRequest) => {
     .from(albumsTable)
     .leftJoin(mediasTable, eq(albumsTable.id, mediasTable.albumId))
     .groupBy(albumsTable.id)
-    .where(eq(albumsTable.userId, userId));
+    .where(eq(albumsTable.userId, userId))
+    .orderBy(desc(albumsTable.createdAt));
 
   return NextResponse.json(album);
 };
