@@ -16,12 +16,13 @@ export function useCreateAlbum() {
         body: JSON.stringify(body),
       });
       if (!response.ok) throw new Error();
+      return response.json();
     },
     onSuccess: () => {
       client.invalidateQueries({ queryKey: ["getAlbum", userId] });
     },
     onError: () => {
-      toast.error("Error creating album");
+      toast.error("Error creating album query");
     },
   });
 }

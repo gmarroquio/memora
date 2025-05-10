@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { subscriptionsTable, usersTable } from "@/db/schema";
+import { albumsTable, subscriptionsTable, usersTable } from "@/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -15,12 +15,12 @@ export async function POST(req: NextRequest) {
     .from(usersTable)
     .where(eq(usersTable.stripeId, body.userId));
 
+  await db.update(albumsTable).set({}).where(eq(albumsTable.id, body.albumId));
+
   await db.insert(subscriptionsTable).values({
     userId: user.id,
     name: body.name,
     priceId: body.priceId,
-    photoLimit: body.photoLimit,
-    expirationTime: body.time,
   });
 
   return NextResponse.json({ message: "Done" });

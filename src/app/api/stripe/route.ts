@@ -1,11 +1,11 @@
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
+import { baseUrl } from "@/lib/utils";
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export async function GET(req: Request) {
-  const dev = process.env.NEXT_PUBLIC_VERCEL_ENV !== "production";
   const userId = req.headers.get("userId");
   const price = req.headers.get("price") as
     | "tier_1"
@@ -53,13 +53,9 @@ export async function GET(req: Request) {
 
   const checkout = await stripe.checkout.sessions.create({
     customer: stripeCustomerId,
-    return_url: `${
-      dev ? "http://localhost:3000" : "https://memora.party"
-    }/dashboard/`,
+    success_url: baseUrl("/dashboard"),
     mode: "payment",
     line_items: [{ price: product_price.id, quantity: 1 }],
-    ui_mode: "embedded",
-    customer_email: user.email,
     metadata: {
       userId,
     },

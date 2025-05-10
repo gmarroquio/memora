@@ -26,6 +26,7 @@ import { InputForm } from "@/components/form/inputs/input";
 import { SelectForm } from "@/components/form/inputs/select";
 import { FileForm } from "@/components/form/inputs/image";
 import { useCreateAlbum } from "@/lib/service/album/create-album";
+import { useRouter } from "next/navigation";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = [
@@ -60,6 +61,7 @@ const createAlbumSchema = z.object({
 type CreateAlbumFormValues = z.infer<typeof createAlbumSchema>;
 
 export default function CreateAlbumButton() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
   const { mutateAsync, isPending } = useCreateAlbum();
@@ -98,9 +100,10 @@ export default function CreateAlbumButton() {
         body.coverUrl = coverUpload[0].ufsUrl;
       }
 
-      await mutateAsync(body);
-      setIsOpen(false);
-    } catch {
+      const { url } = await mutateAsync(body);
+      router.push(url);
+    } catch (e) {
+      console.log(e);
       toast.error("Error creating album");
     }
   };
