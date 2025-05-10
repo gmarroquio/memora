@@ -32,7 +32,7 @@ export const albumsTable = pgTable("albums", {
     .$defaultFn(() => createId())
     .primaryKey(),
   title: text("title").notNull(),
-  userLimit: integer("user_limit").notNull().default(10),
+  userLimit: integer("user_limit").notNull().default(0),
   startDate: timestamp("start_date", { withTimezone: true }),
   endDate: timestamp("end_date", { withTimezone: true }),
   vintage: boolean("vintage"),
@@ -86,15 +86,7 @@ export const subscriptionsTable = pgTable("subscriptions", {
   id: serial("id").primaryKey(),
   priceId: text("price_id"),
   receiptUrl: text("receipt_url"),
-  name: text("name").default("Basic"),
-  status: text("status", {
-    enum: ["active", "inactive", "expired", "deleted"],
-  }).default("inactive"),
   buyDate: timestamp("buy_date", { withTimezone: true }).defaultNow().notNull(),
-  activationDate: timestamp("activation_date", { withTimezone: true }),
-  photoLimit: integer("photo_limit").default(500),
-  expirationTime: integer("expiration_time").default(6),
-  expiresAt: timestamp("expires_at", { withTimezone: true }).defaultNow(),
   albumId: text("album_id").references(() => albumsTable.id, {
     onDelete: "cascade",
   }),
