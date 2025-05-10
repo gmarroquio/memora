@@ -59,6 +59,7 @@ export const POST = async (req: NextRequest) => {
   const checkout = await stripe.checkout.sessions.create({
     customer: stripeCustomerId,
     success_url: baseUrl(`/dashboard/albums/${album.id}`),
+    cancel_url: baseUrl(`/dashboard/albums/${album.id}`),
     mode: "payment",
     line_items: [{ price: product_price.id, quantity: 1 }],
     metadata: {

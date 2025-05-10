@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { baseUrl } from "@/lib/utils";
 import { Check, Copy, Download } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 import { useRef, useState } from "react";
@@ -56,7 +57,7 @@ export const AlbumLink = ({ code }: { code: string }) => {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    copy(`${window.location.origin}/add-photo?code=${code}`);
+    copy(baseUrl(`/add-photo?code=${code}`));
     setIsCopied(true);
     toast("Copied to clipboard", {
       description: "Album link has been copied to your clipboard.",
