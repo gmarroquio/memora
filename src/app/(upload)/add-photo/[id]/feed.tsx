@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils";
 import { useDeletePhoto, useGetAnonPhotos } from "@/lib/service/anon-photos";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { getAnonUser } from "@/lib/anonUser";
 import { Loader } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
