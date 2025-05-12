@@ -11,29 +11,6 @@ export type Media = {
   comment?: string;
 };
 
-export function useDeletePhoto() {
-  const { userId } = useAuth();
-  const client = getQueryClient();
-
-  return useMutation({
-    mutationFn: async (id: number) => {
-      await fetch(baseUrl(`/api/medias/`), {
-        method: "DELETE",
-        headers: { userId: userId! },
-        body: JSON.stringify({
-          id,
-        }),
-      });
-    },
-    onSuccess: () => {
-      client.invalidateQueries({ queryKey: ["getPhotos", userId] });
-    },
-    onError: () => {
-      toast.error("Error deleting image");
-    },
-  });
-}
-
 export function useGetPhotos(page = 1) {
   const { userId } = useAuth();
 

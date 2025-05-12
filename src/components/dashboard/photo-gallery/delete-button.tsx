@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
-import { useDeletePhoto } from "@/lib/service/album";
+import { useDeletePhoto } from "@/lib/service/album/delete-photo";
 
 export function DeleteButton({ id }: { id: number }) {
   const { mutate } = useDeletePhoto();

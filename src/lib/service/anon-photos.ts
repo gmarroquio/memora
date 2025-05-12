@@ -3,13 +3,15 @@ import { baseUrl } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "sonner";
 
+const key = "getAnonPhoto";
+
 export function useGetAnonPhotos(
   userId: string,
   type: "all" | "guest",
   page = 1
 ) {
   return useQuery<{ url: string; key: string }[]>({
-    queryKey: ["getPhoto", userId, type],
+    queryKey: [key, userId, type],
     queryFn: async () => {
       const res = await fetch(
         baseUrl(`/api/user/anon/media?page=${page}&all=${type === "all"}`),
@@ -51,10 +53,7 @@ export function useUploadPhoto(userId: string) {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ["getPhotos", userId, "all"],
-      });
-      client.invalidateQueries({
-        queryKey: ["getPhotos", userId, "guest"],
+        queryKey: [key],
       });
     },
     onError: () => {
@@ -79,10 +78,7 @@ export function useDeletePhoto(userId: string) {
     },
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: ["getPhotos", userId, "all"],
-      });
-      client.invalidateQueries({
-        queryKey: ["getPhotos", userId, "guest"],
+        queryKey: [key],
       });
     },
     onError: () => {

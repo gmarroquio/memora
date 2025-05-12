@@ -19,7 +19,7 @@ const Photo = ({
   pending?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const { mutate, isPending } = useDeletePhoto(userId);
+  const { mutateAsync, isPending } = useDeletePhoto(userId);
 
   return (
     <>
@@ -34,7 +34,10 @@ const Photo = ({
                 <Button
                   className="text-xl px-8 py-4 font-bold text"
                   variant="destructive"
-                  onClick={() => mutate(imageKey)}
+                  onClick={async () => {
+                    await mutateAsync(imageKey);
+                    setOpen(false);
+                  }}
                 >
                   Deletar
                 </Button>
