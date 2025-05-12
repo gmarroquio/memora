@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     if (album.count >= album.userLimit) {
       return NextResponse.json(
-        { message: "Album atingiu o limite de usuários" },
+        { message: "Álbum atingiu o limite de usuários" },
         { status: 402 }
       );
     }

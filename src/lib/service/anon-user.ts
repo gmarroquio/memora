@@ -21,13 +21,18 @@ export const useCreateAnonUser = () => {
       });
 
       if (response.ok) return response.json();
+      else {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
     },
     onSuccess: (user) => {
       saveAnonUser(user);
       return user;
     },
-    onError: () => {
-      toast.error("Não foi possível criar usuário");
+    onError: (error) => {
+      console.log(error);
+      toast.error(error.message ?? "Não foi possível criar usuário");
     },
   });
 };

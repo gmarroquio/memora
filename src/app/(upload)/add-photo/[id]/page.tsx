@@ -41,10 +41,6 @@ export default function AddPhotoPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const storageUser = getAnonUser();
-    if (storageUser) {
-      setUser(storageUser);
-    }
     fetch(baseUrl(`/api/code/${code}`)).then((resp) => {
       if (resp.ok) {
         resp.json().then((body) => {
@@ -57,6 +53,15 @@ export default function AddPhotoPage() {
     });
     //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (album) {
+      const storageUser = getAnonUser(album.id);
+      if (storageUser) {
+        setUser(storageUser);
+      }
+    }
+  }, [album]);
 
   if (isLoading || !album) {
     return (
@@ -111,6 +116,7 @@ export default function AddPhotoPage() {
       ) : (
         <>
           <Feed
+            userId={user.id}
             gallery={album.openGallery || true}
             reveal={
               album.revealTime === "now" || isAfter(new Date(), album.endDate)

@@ -19,7 +19,7 @@ export const Footer = ({
   taken: number;
   albumId: string;
 }) => {
-  const user = getAnonUser();
+  const user = getAnonUser(albumId);
   const { startUpload, isUploading } = useUploadThing("imageUploader");
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [capture, setCapture] = useState<File[]>([]);

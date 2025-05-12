@@ -1,5 +1,10 @@
 import { db } from "@/db";
-import { mediasTable, previewsTable } from "@/db/schema";
+import {
+  albumsTable,
+  anonUsersTable,
+  mediasTable,
+  previewsTable,
+} from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -54,7 +59,19 @@ export async function GET(req: NextRequest) {
 
   let previews;
 
-  if (!all) {
+  const [album] = await db
+    .select({ id: albumsTable.id })
+    .from(albumsTable)
+    .leftJoin(anonUsersTable, eq(anonUsersTable.albumId, albumsTable.id))
+    .where(eq(anonUsersTable.id, userId));
+
+  if (!album)
+    return NextResponse.json(
+      { message: "Album does not exists" },
+      { status: 401 }
+    );
+
+  if (all) {
     previews = await db
       .select({
         url: previewsTable.url,
@@ -62,7 +79,7 @@ export async function GET(req: NextRequest) {
       })
       .from(previewsTable)
       .leftJoin(mediasTable, eq(previewsTable.mediaId, mediasTable.id))
-      .where(eq(mediasTable.uploader, userId))
+      .where(eq(mediasTable.albumId, album.id))
       .limit(10)
       .offset((page - 1) * 10);
   } else {
@@ -73,6 +90,9 @@ export async function GET(req: NextRequest) {
       })
       .from(previewsTable)
       .leftJoin(mediasTable, eq(previewsTable.mediaId, mediasTable.id))
+      .where(
+        and(eq(mediasTable.uploader, userId), eq(mediasTable.albumId, album.id))
+      )
       .limit(10)
       .offset((page - 1) * 10);
   }

@@ -11,15 +11,16 @@ const Photo = ({
   imageKey,
   pending,
   reveal,
+  userId,
 }: {
   src: string;
+  userId: string;
   imageKey: string;
   reveal: boolean;
   pending?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
-  const user = getAnonUser();
-  const { mutate, isPending } = useDeletePhoto(user!.id);
+  const { mutate, isPending } = useDeletePhoto(userId);
 
   return (
     <>
@@ -69,12 +70,13 @@ const Photo = ({
 export const Gallery = ({
   reveal,
   type,
+  userId,
 }: {
   reveal: boolean;
+  userId: string;
   type: "guest" | "all";
 }) => {
-  const user = getAnonUser();
-  const { data } = useGetAnonPhotos(user!.id, type);
+  const { data } = useGetAnonPhotos(userId, type);
   return (
     <div className="grid grid-cols-3 gap-3 pb-25">
       {!data &&
@@ -84,6 +86,7 @@ export const Gallery = ({
           { url: "/placeholder.svg", key: "3" },
         ].map((p) => (
           <Photo
+            userId={userId}
             reveal={false}
             pending
             key={p.key}
@@ -92,7 +95,13 @@ export const Gallery = ({
           />
         ))}
       {data?.map((p) => (
-        <Photo reveal={reveal} key={p.key} imageKey={p.key} src={p.url} />
+        <Photo
+          reveal={reveal}
+          key={p.key}
+          imageKey={p.key}
+          src={p.url}
+          userId={userId}
+        />
       ))}
     </div>
   );
@@ -101,8 +110,10 @@ export const Gallery = ({
 export default function Feed({
   reveal,
   gallery,
+  userId,
 }: {
   reveal: boolean;
+  userId: string;
   gallery: boolean;
 }) {
   const [activeTab, setActiveTab] = useState<"gallery" | "pov">("pov");
@@ -119,10 +130,10 @@ export default function Feed({
         {gallery && <TabsTrigger value="gallery">Galeria</TabsTrigger>}
       </TabsList>
       <TabsContent value="pov">
-        <Gallery reveal={reveal} type="guest" />
+        <Gallery userId={userId} reveal={reveal} type="guest" />
       </TabsContent>
       <TabsContent value="gallery">
-        <Gallery reveal={reveal} type="all" />
+        <Gallery userId={userId} reveal={reveal} type="all" />
       </TabsContent>
     </Tabs>
   );
