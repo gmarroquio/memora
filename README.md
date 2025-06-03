@@ -1,6 +1,6 @@
 # Memora - Share Party Photos Instantly
 
-**Live Site:** [https://memora.party](https://memora.party)
+**Live Site:** [http://memora.party](http://memora.party)
 
 Memora is a web-based platform designed for effortless and real-time photo sharing at parties. Guests can scan a QR code to instantly upload photos to a shared album directly from their mobile browser – no app download or account creation is required for guests. The focus is on simplicity and ease of use, allowing everyone to contribute and relive moments without interrupting the event.
 
@@ -31,7 +31,7 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-*   Node.js (version 20.19.0 or higher recommended)
+*   Node.js (version 20.19.0 or higher)
 *   npm or yarn or pnpm
 
 ### Installation
@@ -125,7 +125,6 @@ To get a local copy up and running, follow these simple steps.
 
 *   **Automatic Blog Post Creator:** Develop a feature to automatically generate blog posts, potentially using AI (e.g., Gemini) to summarize event highlights or showcase popular photos from albums.
 *   **Database Migration:** Complete migration of any existing data from Supabase to Convex to consolidate the backend and fully leverage Convex's real-time features.
-*   [ ] *Add more TODO items here*
 
 ## Contributing
 
@@ -141,11 +140,21 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-(You'll need to add a LICENSE.txt file if you choose this license, or specify another)
+This project is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+You are free to:
+*   **Share** — copy and redistribute the material in any medium or format
+*   **Adapt** — remix, transform, and build upon the material
+for any purpose, even commercially.
+
+Under the following terms:
+*   **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+*   **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+See the [full license text](https://creativecommons.org/licenses/by-sa/4.0/legalcode) for more details.
 
 ## Contact
 
-Your Name - guilherme@bitos.co
+Your Name - your-email@example.com
 
-Project Link (GitHub): [https://github.com/gmarroquio/memora](https://github.com/gmarroquio/memora)
+Project Link (GitHub): [https://github.com/your-username/memora](https://github.com/your-username/memora)
