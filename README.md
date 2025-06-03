@@ -155,6 +155,6 @@ See the [full license text](https://creativecommons.org/licenses/by-sa/4.0/legal
 
 ## Contact
 
-Your Name - your-email@example.com
+Your Name - guilherme@bitos.co
 
-Project Link (GitHub): [https://github.com/your-username/memora](https://github.com/your-username/memora)
+Project Link (GitHub): [https://github.com/gmarroquio/memora](https://github.com/gmarroquio/memora)
