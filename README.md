@@ -31,7 +31,7 @@ To get a local copy up and running, follow these simple steps.
 
 ### Prerequisites
 
-*   Node.js (version X.X.X or higher recommended)
+*   Node.js (version 20.19.0 or higher recommended)
 *   npm or yarn or pnpm
 
 ### Installation
