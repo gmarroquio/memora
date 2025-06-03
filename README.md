@@ -1,5 +1,7 @@
 # Memora - Share Party Photos Instantly
 
+**Live Site:** [https://memora.party](https://memora.party)
+
 Memora is a web-based platform designed for effortless and real-time photo sharing at parties. Guests can scan a QR code to instantly upload photos to a shared album directly from their mobile browser – no app download or account creation is required for guests. The focus is on simplicity and ease of use, allowing everyone to contribute and relive moments without interrupting the event.
 
 ## Key Features
@@ -20,7 +22,7 @@ Memora is a web-based platform designed for effortless and real-time photo shari
 *   **Authentication:** [Clerk](https://clerk.com/)
 *   **Analytics:** [PostHog](https://posthog.com/)
 *   **Payment Processing:** [Stripe](https://stripe.com/)
-*   **AI/ML Features:** [Replicate](https://replicate.com/) and [Gemini](https://ai.google.dev/)
+*   **AI/ML Features:** [Replicate](https://replicate.com/) & [Gemini](https://ai.google.dev/)
 *   **Hosting:** [Vercel](https://vercel.com/)
 
 ## Getting Started
@@ -56,8 +58,8 @@ To get a local copy up and running, follow these simple steps.
     NEXT_PUBLIC_CONVEX_URL=your_convex_url
 
     # UploadThing (for file/image uploads)
-    UPLOADTHING_SECRET= # Corrected from UPLOADTHING_TOKEN based on common usage, verify
-    UPLOADTHING_APP_ID= # Corrected from UPLOADTHING_API_KEY, verify
+    UPLOADTHING_SECRET= # Verify exact name required by SDK
+    UPLOADTHING_APP_ID= # Verify exact name required by SDK
 
     # Clerk (Authentication)
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
@@ -85,16 +87,16 @@ To get a local copy up and running, follow these simple steps.
     NEXT_PUBLIC_POSTHOG_HOST=your_posthog_host_url
 
     # Replicate (AI Model Hosting)
-    REPLICATE_API_TOKEN= # Corrected from REPLICATE_TOKEN, verify
+    REPLICATE_API_TOKEN= # Verify exact name required by SDK
 
     # Gemini (AI Services)
-    GEMINI_API_KEY= # Corrected from GEMINI_TOKEN, verify
+    GEMINI_API_KEY= # Verify exact name required by SDK
 
     # Local Development
     LOCAL_URL="http://192.168.15.45:3000" # Or your preferred local URL
     NEXT_PUBLIC_APP_URL="http://localhost:3000" # Often useful for API routes, adjust if LOCAL_URL is preferred
     ```
-    *Note: Obtain these keys from your respective service dashboards. Some variable names (e.g., for UploadThing, Replicate, Gemini) have been adjusted to common conventions; please verify the exact names required by those libraries/SDKs.*
+    *Note: Obtain these keys from your respective service dashboards. Please verify the exact environment variable names required by each library/SDK.*
 
 4.  **Run the Convex backend (if local development is supported/needed):**
     Follow Convex documentation for running a local development environment or ensure your deployment is active.
@@ -123,6 +125,7 @@ To get a local copy up and running, follow these simple steps.
 
 *   **Automatic Blog Post Creator:** Develop a feature to automatically generate blog posts, potentially using AI (e.g., Gemini) to summarize event highlights or showcase popular photos from albums.
 *   **Database Migration:** Complete migration of any existing data from Supabase to Convex to consolidate the backend and fully leverage Convex's real-time features.
+*   [ ] *Add more TODO items here*
 
 ## Contributing
 
@@ -143,6 +146,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - your-email@example.com
+Your Name - guilherme@bitos.co
 
-Project Link: [https://github.com/your-username/memora](https://github.com/your-username/memora)
+Project Link (GitHub): [https://github.com/gmarroquio/memora](https://github.com/gmarroquio/memora)
