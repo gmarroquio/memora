@@ -16,11 +16,11 @@ Memora is a web-based platform designed for effortless and real-time photo shari
 *   **Framework:** [Next.js](https://nextjs.org/) (React framework for frontend and backend)
 *   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 *   **Database & Real-time Backend:** [Convex](https://www.convex.dev/)
-*   **File Uploads:** (Likely [UploadThing](https://uploadthing.com/) based on env vars)
+*   **File Uploads:** [UploadThing](https://uploadthing.com/)
 *   **Authentication:** [Clerk](https://clerk.com/)
-*   **Analytics:** (Likely [PostHog](https://posthog.com/) based on env vars)
-*   **Payment Processing:** (Likely [Stripe](https://stripe.com/) based on env vars)
-*   **AI/ML Features:** (Potentially using [Replicate](https://replicate.com/) and [Gemini](https://ai.google.dev/) based on env vars)
+*   **Analytics:** [PostHog](https://posthog.com/)
+*   **Payment Processing:** [Stripe](https://stripe.com/)
+*   **AI/ML Features:** [Replicate](https://replicate.com/) and [Gemini](https://ai.google.dev/)
 *   **Hosting:** [Vercel](https://vercel.com/)
 
 ## Getting Started
